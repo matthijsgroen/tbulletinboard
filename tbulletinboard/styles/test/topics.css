@@ -1,0 +1,73 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+#markAsRead {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	font-size: 80%;
+	text-align: right;
+}
+#topicList {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+#topicList table.topics-table { border: 1px solid black; width: 100%; }
+#topicList table.topics-table thead th { font-size: 80%; border: 1px solid rgb(120,120,120); }
+#topicList table.topics-table thead th.odd { background-color: rgb(180,180,180); }
+#topicList table.topics-table thead th.even { background-color: rgb(200,200,200); }
+div.buttonBar {
+	text-align: left;
+	padding-left: 15px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: rgb(200, 180, 180);
+	border: 1px solid black;
+}
+div.buttonBar a { font-weight: bold; text-decoration: none; color: black; border: 1px solid black; }
+div.buttonBar a:hover { font-weight: bold; text-decoration: none; color: rgb(100, 100, 100); border: 1px solid rgb(240, 240, 240); }
+#topicList table.topics-table thead th.lastreaction { width: 15%; }
+#topicList table.topics-table thead th.nrread,
+#topicList table.topics-table thead th.nrreact,
+#topicList table.topics-table thead th.starter { width: 10%; }
+
+#topicList table.topics-table tbody td {
+	font-size: 80%;
+}
+
+#topicList table.topics-table tbody tr.oddRow td.oddCell { background-color: rgb(200,200,200); }
+#topicList table.topics-table tbody tr.oddRow td.evenCell { background-color: rgb(220,220,220); }
+
+#topicList table.topics-table tbody tr.evenRow td.oddCell { background-color: rgb(190,190,190); }
+#topicList table.topics-table tbody tr.evenRow td.evenCell { background-color: rgb(210,210,210); }
+
+#topicList table.topics-table tbody td.read,
+#topicList table.topics-table tbody td.icon { width: 18px; text-align: center; }
+
+#topicList table.topics-table tbody td.subject { text-align: left; padding-left: 10px; }
+
+#topicList table.topics-table td.starter { text-align: center; }
+#topicList table.topics-table td.nrreact { text-align: center; }
+#topicList table.topics-table td.nrread { text-align: center; }
+#topicList table.topics-table td.lastreaction { text-align: center; }
+
+#topicList table.topics-table td.lastreaction a { font-size: 80%; color: black; text-decoration: none; }
+#topicList table.topics-table td.lastreaction a:hover { font-size: 80%; color: black; text-decoration: underline; }
+.postCount { font-size: 75%; }
+
+#topicList .rowgroup { border: 1px solid rgb(100, 100, 100); background-color: rgb(160, 160, 160); text-align: left; font-size: 80%;  }
+
+.boardPageBar {
+	text-align: right;
+	margin-top: 10px;
+}
+
+span.topicPageNav { font-size: 90%; }
+span.topicPageNav a { text-decoration: none; }

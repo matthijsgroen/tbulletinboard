@@ -1,0 +1,23 @@
+<tbb-module>
+
+	<info>
+		<group>tbbgroups</group>
+		<name>Standard Groups</name>
+		<version>0.1</version>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="usertype">
+		<name>Board User groups</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>BoardMemberModule.class.php</filename>
+		<classname>BoardMemberModule</classname>
+	</plugin>
+
+</tbb-module>

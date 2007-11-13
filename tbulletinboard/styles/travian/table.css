@@ -1,0 +1,103 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+table.table {
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid black;
+}
+table.table caption {
+	white-space: nowrap;
+	font-size: 80%;
+	font-weight: bold;
+}
+table.table th {
+	font-size: 80%;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-bottom: 1px solid black;
+	color: #000000;
+}
+table.table th.odd { background-color: #30b356; }
+table.table th.even { background-color: #ffe21a; }
+table.table td { font-size: 80%; text-align: center; }
+table.table tr.oddRow td.oddCell { background-color: #00afe8; }
+table.table tr.oddRow td.evenCell { background-color: #ebebeb; }
+table.table tr.evenRow td.oddCell { background-color: #a4dee8; }
+table.table tr.evenRow td.evenCell { background-color:#fdfdfd; }
+
+table.table tr.suboddRow td.oddCell { background-color: #D99E35; }
+table.table tr.suboddRow td.evenCell { background-color: #D9AE62; }
+table.table tr.subevenRow td.oddCell { background-color: #D99620; }
+table.table tr.subevenRow td.evenCell { background-color:#D9A74F; }
+
+table.table tr.selectedRow td.oddCell { background-color: #E95D2C; }
+table.table tr.selectedRow td.evenCell { background-color: #E96C41; }
+table.table tr.selectedRow * { color: #E9CE9D; }
+
+table.table td.selectedCell { background-color: #E96C41 !important; }
+table.table td.selectedCell * { color: #E9CE9D !important; }
+
+#moveBoard table.bdMove {
+	width: 100%;
+}
+
+table.bdMove td.bdName {
+	text-align: left;
+}
+
+#boardTopicForm table.topicModules {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#boardTopicForm table.topicModules .moduleName {
+	text-align: left;
+	width: 90%;
+}
+
+table.topicModules {
+	width: 80%;
+}
+table.topicModules td {
+	vertical-align: top;
+}
+table.topicModules td.name {
+	width: 10%;
+	text-align: left;
+}
+table.topicModules td.description {
+	width: 50%;
+	text-align: left;
+}
+table.topicModules td.author {
+	width: 15%;
+	text-align: center;
+}
+table.topicModules td.active {
+	width: 10%;
+	text-align: center;
+}
+table.topicModules td.options {
+	width: 15%;
+	text-align: center;
+}
+
+tr.closeGroup {
+	display: none;
+}
+
+table.moduleTable td.pluginType {
+	text-align: left;
+}
+
+table.moduleTable tr.suboddRow td.pluginType,
+table.moduleTable tr.subevenRow td.pluginType {
+	padding-left: 15px;
+	text-align: left;
+}

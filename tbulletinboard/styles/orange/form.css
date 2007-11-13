@@ -1,0 +1,107 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+div.form { text-align: center; }
+
+div.form form {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#popup div.form form { width: 100%; }
+#popup div.form table { width: 90%; }
+
+div.form table {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	background-color: #E9B75F;
+	border: 1px solid black;
+	text-align: left;
+}
+
+div.form td { vertical-align: top; }
+td.finput { font-size: 80%; }
+td.fback { text-align: center; }
+tr.fr2 td.fname, tr.fr2 td.fback { background-color: #E9AE45; }
+tr.fr1 td.fname, tr.fr1 td.fback { background-color: #E9BE72; }
+tr.fr2 td.finput { background-color: #E9A630; color: black; }
+tr.fr1 td.finput { background-color: #E9B75F; color: black; }
+td.fname label.fname {
+	color: black;
+	font-size: 60%;
+	vertical-align: top;
+}
+div.form input {
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(80, 80, 80);
+	color: rgb(0, 0, 0);
+	font-size: 100%;
+}
+div.form textarea {
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(80, 80, 80);
+	color: rgb(0, 0, 0);
+	width: 100%;
+	font-size: 100%;
+}
+div.form input.radio {
+	border: none;
+}
+
+div.form th {
+	background-color: #E9B75F;
+	color: #A47219;
+	text-align: center;
+	border-top: 2px solid #F3D596;
+	border-bottom: 2px solid #D68526;
+}
+div.flabel {
+	font-size: 70%;
+	font-weight: bold;
+	color: rgb(10, 10, 10);
+	background-color: transparent;
+}
+td.fname div.fdesc small.fielddesc {
+	font-size: 70%;
+	color: #775519;
+	background-color: transparent;
+}
+
+td.fback { vertical-align: middle; }
+td.fback a {
+	color: rgb(0, 0, 0);
+	background-color: transparent;
+	font-size: 60%;
+	text-decoration: none;
+}
+
+div.form button {
+	color: black;
+	font-size: 100%;
+}
+.textvalue {
+	font-size: 100%;
+	color: rgb(10, 10, 10);
+	background-color: transparent;
+}
+td.finput small.optionComment { color: rgb(120, 120, 120); }
+
+input.addvalue {
+	border: 1px solid black;
+	width: 180px;
+}
+select.multivalue {
+	border: 1px solid black;
+	width: 180px;
+}
+
+#signatureForm table { width: 500px; }
+#signatureForm .flabel { width: 100px; }
+#signatureForm textarea { width: 400px; }

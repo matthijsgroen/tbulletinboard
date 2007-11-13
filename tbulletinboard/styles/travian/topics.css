@@ -1,0 +1,107 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+#markAsRead {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	font-size: 80%;
+	text-align: right;
+}
+#topicList {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+#topicList table.topics-table {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	width: 100%;
+}
+#topicList table.topics-table thead th { font-size: 80%;
+	border-bottom: 1px solid black;
+}
+#topicList table.topics-table th.odd { background-color: #ffe21a; }
+#topicList table.topics-table th.even { background-color: #30b356; }
+div.buttonBar {
+	text-align: left;
+	padding-left: 15px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: #fee1b7;
+	border: 1px solid black;
+}
+div.buttonBar a {
+	font-weight: bold; text-decoration: none;
+	color: #4C3C1F;
+	border: 1px solid #30b356;
+	background-color: #ffe21a;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+div.buttonBar a:hover {
+	font-weight: bold; text-decoration: none;
+	color: black;
+	border: 1px solid #000000;
+	padding-left: 3px;
+	padding-right: 3px;
+	background-color: #fff190;
+}
+#topicList table.topics-table thead th.lastreaction { width: 15%; }
+#topicList table.topics-table thead th.nrread,
+#topicList table.topics-table thead th.nrreact,
+#topicList table.topics-table thead th.starter { width: 10%; }
+
+#topicList table.topics-table tbody td {
+	font-size: 80%;
+}
+#topicList table.topics-table thead th.subject { background-color: #47cd74; }
+
+
+#topicList table.topics-table tbody tr.oddRow td.evenCell { background-color: #00afe8; }
+#topicList table.topics-table tbody tr.oddRow td.oddCell { background-color: #ebebeb; }
+
+#topicList table.topics-table tbody tr.evenRow td.evenCell { background-color: #a4dee8; }
+#topicList table.topics-table tbody tr.evenRow td.oddCell { background-color: #fdfdfd; }
+
+#topicList table.topics-table tbody td.check,
+#topicList table.topics-table tbody td.read,
+#topicList table.topics-table tbody td.icon { width: 18px; text-align: center; }
+
+#topicList table.topics-table tbody td.subject { text-align: left; padding-left: 10px; }
+
+#topicList table.topics-table td.starter { text-align: center; }
+#topicList table.topics-table td.nrreact { text-align: center; }
+#topicList table.topics-table td.nrread { text-align: center; }
+#topicList table.topics-table td.lastreaction { text-align: center; }
+
+#topicList table.topics-table td.lastreaction a { font-size: 80%; color: black; text-decoration: none; }
+#topicList table.topics-table td.lastreaction a:hover { font-size: 80%; color: black; text-decoration: underline; }
+.postCount { font-size: 75%; }
+
+#topicList .rowgroup {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	background-color: #fee1b7; text-align: left; font-size: 80%;
+}
+
+.boardPageBar {
+	text-align: right;
+	margin-top: 10px;
+}
+
+span.topicPageNav { font-size: 90%; }
+span.topicPageNav a { text-decoration: none; }
+
+span.highlight0 { background-color: yellow; }
+span.highlight1 { background-color: green; }
+span.highlight2 { background-color: pink; }
+span.highlight3 { background-color: orange; }
+span.highlight4 { background-color: red; }
+span.highlight5 { background-color: blue; }

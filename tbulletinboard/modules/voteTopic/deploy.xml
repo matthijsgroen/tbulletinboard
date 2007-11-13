@@ -1,0 +1,23 @@
+<tbb-module>
+
+	<info>
+		<group>voteTopic</group>
+		<name>Stemmen</name>
+		<version>0.1</version>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="topic">
+		<name>Stem Onderwerpen</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>VoteTopicPlugin.class.php</filename>
+		<classname>VoteTopicPlugin</classname>
+	</plugin>
+
+</tbb-module>

@@ -1,0 +1,55 @@
+<tbb-module>
+
+	<info>
+		<group>travian</group>
+		<name>Travian Tools</name>
+		<version>1.0</version>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="admin">
+		<name>Travian Admin</name>
+		<version>0.6</version>
+		<build>1</build>
+		<filename>TravianAdminPlugin.class.php</filename>
+		<classname>TravianAdminPlugin</classname>
+	</plugin>
+
+	<plugin type="usertype">
+		<name>Travian Alliance groups</name>
+		<version>1.0</version>
+		<build>1</build>
+		<filename>TravianMemberModule.class.php</filename>
+		<classname>TravianMemberModule</classname>
+	</plugin>
+
+	<plugin type="search">
+		<name>Travian Target Search</name>
+		<version>1.0</version>
+		<build>2</build>
+		<filename>TravianSearchPlugin.class.php</filename>
+		<classname>TravianSearchPlugin</classname>
+	</plugin>
+
+	<plugin type="topic">
+		<name>Travian Aanvals planner</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>TravianAttackTopicPlugin.class.php</filename>
+		<classname>TravianAttackTopicPlugin</classname>
+	</plugin>
+
+	<plugin type="userpanel">
+		<name>Travian User options</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>TravianUserPanelPlugin.class.php</filename>
+		<classname>TravianUserPanelPlugin</classname>
+	</plugin>
+
+</tbb-module>

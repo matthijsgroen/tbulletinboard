@@ -1,0 +1,79 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+table.table {
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid rgb(160, 160, 160);
+}
+table.table caption {
+	white-space: nowrap;
+	font-size: 80%;
+	font-weight: bold;
+}
+table.table th {
+	font-size: 80%;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid rgb(150, 150, 150);
+}
+table.table th.odd { background-color: rgb(200, 200, 200); }
+table.table th.even { background-color: rgb(220, 220, 220); }
+table.table td { font-size: 80%; text-align: center; }
+table.table tr.oddRow td.oddCell { background-color: rgb(195, 195, 195); }
+table.table tr.oddRow td.evenCell { background-color: rgb(205, 205, 205); }
+table.table tr.evenRow td.oddCell { background-color: rgb(210, 210, 210); }
+table.table tr.evenRow td.evenCell { background-color: rgb(215, 215, 215); }
+
+table.table tr.selectedRow td.oddCell { background-color: rgb(200, 200, 160); }
+table.table tr.selectedRow td.evenCell { background-color: rgb(210, 210, 170); }
+
+#moveBoard table.bdMove {
+	width: 100%;
+}
+
+table.bdMove td.bdName {
+	text-align: left;
+}
+
+#boardTopicForm table.topicModules {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#boardTopicForm table.topicModules .moduleName {
+	text-align: left;
+	width: 90%;
+}
+
+table.topicModules {
+	width: 80%;
+}
+table.topicModules td {
+	vertical-align: top;
+}
+table.topicModules td.name {
+	width: 10%;
+	text-align: left;
+}
+table.topicModules td.description {
+	width: 50%;
+	text-align: left;
+}
+table.topicModules td.author {
+	width: 15%;
+	text-align: center;
+}
+table.topicModules td.active {
+	width: 10%;
+	text-align: center;
+}
+table.topicModules td.options {
+	width: 15%;
+	text-align: center;
+}
