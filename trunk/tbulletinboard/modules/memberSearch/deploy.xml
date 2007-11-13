@@ -1,0 +1,23 @@
+<tbb-module>
+
+	<info>
+		<group>memberSearch</group>
+		<name>Leden zoeken</name>
+		<version>0.1</version>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="search">
+		<name>Leden zoeken</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>MemberSearchPlugin.class.php</filename>
+		<classname>MemberSearchPlugin</classname>
+	</plugin>
+
+</tbb-module>

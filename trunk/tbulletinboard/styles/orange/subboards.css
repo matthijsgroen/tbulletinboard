@@ -1,0 +1,99 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+#subBoards {
+	text-align: center;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#subBoards table.subBoard-table {
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.openSubboards {
+	margin-bottom: 20px;
+}
+
+#subBoards thead th { font-size: 80%; }
+
+#subBoards thead th.odd { background-color: #E9CFA2; }
+#subBoards thead th.even { background-color: #E9E1D3; }
+#subBoards td.openboard {
+	background-color: rgb(230, 230, 230);
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#subBoards .subboard-header h3 { font-size: 100%; margin-top: 2px; margin-bottom: 2px; }
+#subBoards .subboard-header h3 a { color: black; text-decoration: none;	border-bottom: 1px dashed black; }
+.subboard-header {
+	text-align: left;
+	padding-left: 20px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: #E9B75F;
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	font-size: 60%;
+}
+
+#subBoards table {
+	cell-spacing: 0px;
+}
+#subBoards td.forum { text-align: left; padding-left: 10px; font-size: 90%; }
+#subBoards td.forum small { color: #91671E; font-size: 80%; }
+#subBoards td.messages, #subBoards td.topics { text-align: center; font-size: 80%; }
+
+#subBoards tr.oddRow td.oddCell { background-color: #E9AE45; }
+#subBoards tr.oddRow td.evenCell { background-color: #E9BE72; }
+
+#subBoards tr.evenRow td.oddCell { background-color: #E9A630; }
+#subBoards tr.evenRow td.evenCell { background-color: #E9B75F; }
+
+#subBoards th {
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #5A4725;
+}
+
+#subBoards th.read { width: 20px;  }
+#subBoards th.moderator { width: 15%; }
+#subBoards th.lastpost { width: 15%; }
+#subBoards th.messages, th.topics { width: 10%; }
+#subBoards table thead th.forum { background-color: #E9E9E9; }
+
+#subBoards td.lastpost { font-size: 70%; text-align: center; }
+#subBoards td.lastpost a { font-size: 85%; }
+#subBoards td.lastpost .messageAuthor { font-size: 85%; font-weight: bold; }
+
+#subBoards td.forum small.subboards {
+	font-size: 70%;
+	color: rgb(0, 0, 0);
+}
+
+a.unreadBoard {
+	color: #000000;
+	font-weight: bold;
+}
+
+a.readBoard {
+	color: #91671E;
+	font-weight: bold;
+}
+
+#subBoards td.forum small.unreadStats {
+	font-size: 70%;
+	color: black;
+}

@@ -1,0 +1,118 @@
+/**
+ * Stylesheet bij THAiSi
+ * thaisi at servicez dot org
+ *
+ */
+
+div.form { text-align: center; }
+
+div.form form {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#popup div.form form { width: 100%; }
+#popup div.form table { width: 90%; }
+
+div.form table {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	color: white;
+	background-color: #fff190;
+	border: 1px solid black;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+div.form td { vertical-align: top; }
+td.finput { font-size: 80%; }
+td.fback { text-align: center; }
+tr.fr2 td.fname, tr.fr2 td.fback { background-color: #00afe8; }
+tr.fr1 td.fname, tr.fr1 td.fback { background-color: #fdfdfd; }
+tr.fr2 td.finput { background-color: #a4dee8; color: black; }
+tr.fr1 td.finput { background-color: #ebebeb; color: black; }
+td.fname label.fname {
+	color: black;
+	font-size: 60%;
+	vertical-align: top;
+}
+div.form input {
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(80, 80, 80);
+	color: rgb(0, 0, 0);
+	font-size: 100%;
+}
+div.form textarea {
+	background-color: rgb(245, 245, 245);
+	border: 1px solid rgb(80, 80, 80);
+	color: rgb(0, 0, 0);
+	width: 100%;
+	font-size: 100%;
+}
+div.form input.radio {
+	border: none;
+}
+
+div.form .formtitle {
+	background-color: #fee1b7;
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+}
+div.flabel {
+	font-size: 70%;
+	font-weight: bold;
+	color: rgb(10, 10, 10);
+	background-color: transparent;
+}
+td.fname div.fdesc small.fielddesc {
+	font-size: 70%;
+	color: #775519;
+	background-color: transparent;
+}
+
+td.fback { vertical-align: middle; }
+td.fback a {
+	color: rgb(0, 0, 0);
+	background-color: transparent;
+	font-size: 60%;
+	text-decoration: none;
+}
+
+div.form button {
+	color: black;
+	font-size: 100%;
+}
+.textvalue {
+	font-size: 100%;
+	color: rgb(10, 10, 10);
+	background-color: transparent;
+}
+td.finput small.optionComment { color: rgb(120, 120, 120); }
+
+input.addvalue {
+	border: 1px solid black;
+	width: 180px;
+}
+select.multivalue {
+	border: 1px solid black;
+	width: 180px;
+}
+
+#signatureForm table { width: 500px; }
+#signatureForm .flabel { width: 100px; }
+#signatureForm textarea { width: 400px; }
+
+.smileybox {
+	width: 200px;
+	padding: 2px;
+	border: 1px solid black;
+	background-color: #ffe21a;
+	margin: 10px;
+	
+}

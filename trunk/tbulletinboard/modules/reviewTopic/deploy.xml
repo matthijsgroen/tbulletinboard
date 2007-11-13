@@ -1,0 +1,31 @@
+<tbb-module>
+
+	<info>
+		<group>reviewTopic</group>
+		<name>Recenties</name>
+		<version>0.1</version>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="topic">
+		<name>Recentie Onderwerpen</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>ReviewTopicPlugin.class.php</filename>
+		<classname>ReviewTopicPlugin</classname>
+	</plugin>
+
+	<plugin type="admin">
+		<name>Recentie Admin</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>ReviewAdminPlugin.class.php</filename>
+		<classname>ReviewAdminPlugin</classname>
+	</plugin>
+
+</tbb-module>

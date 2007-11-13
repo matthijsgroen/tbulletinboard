@@ -1,0 +1,23 @@
+<tbb-module>
+
+	<info>
+		<group>topicSearch</group>
+		<name>Onderwerpen zoeken</name>
+		<version>0.1</version>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="search">
+		<name>Onderwerpen Zoeken</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>TopicSearchPlugin.class.php</filename>
+		<classname>TopicSearchPlugin</classname>
+	</plugin>
+
+</tbb-module>

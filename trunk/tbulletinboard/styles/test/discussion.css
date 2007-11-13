@@ -1,0 +1,124 @@
+
+#discussionTopic {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#discussionTopic table.topicPosts {
+	border: 1px solid black;
+	width: 100%;
+	text-align: left;
+}
+
+#discussionTopic table.topicPosts thead th { font-size: 80%; border: 1px solid rgb(120,120,120); }
+#discussionTopic table.topicPosts thead th.odd { background-color: rgb(180,180,180); }
+#discussionTopic table.topicPosts thead th.even { background-color: rgb(200,200,200); }
+#discussionTopic table.topicPosts thead th.author { width: 200px; }
+
+#discussionTopic table.topicPosts tbody tr.oddRow td.oddCell { background-color: rgb(210,210,210); }
+#discussionTopic table.topicPosts tbody tr.oddRow td.evenCell { background-color: rgb(220,220,220); }
+#discussionTopic table.topicPosts tbody tr.evenRow td.oddCell { background-color: rgb(200,200,200); }
+#discussionTopic table.topicPosts tbody tr.evenRow td.evenCell { background-color: rgb(210,210,210); }
+
+#discussionTopic table.topicPosts tbody tr.oddRow td.time { background-color: rgb(200,200,200); }
+#discussionTopic table.topicPosts tbody tr.oddRow td.toolbar { background-color: rgb(210,210,210); }
+
+#discussionTopic table.topicPosts tbody tr.evenRow td.time { background-color: rgb(190,190,190); }
+#discussionTopic table.topicPosts tbody tr.evenRow td.toolbar { background-color: rgb(200,200,200); }
+
+#discussionTopic table.topicPosts tbody td.author { vertical-align: top; padding-left: 5px; text-align: left; }
+#discussionTopic table.topicPosts tbody td.author .author { font-size: 80%; font-weight: bold; }
+
+#discussionTopic table.topicPosts tbody td.time { padding-left: 5px; font-size: 80%; text-align: left; }
+#discussionTopic table.topicPosts tbody td.toolbar { padding-left: 5px; font-size: 80%; text-align: left; }
+
+#discussionTopic table.topicPosts tbody td.message { padding-left: 5px; font-size: 80%; vertical-align: top; }
+
+#discussionTopic table.topicPosts tbody td.message p.edited {
+	padding-left: 20px;
+	font-style: italic;
+	color: rgb(90, 90, 90);
+	border-top: 1px solid rgb(190, 190, 190);
+}
+
+.topPageBar { text-align: left; margin-bottom: 10px; }
+.botPageBar { text-align: right; margin-top: 10px; }
+
+span.uline { text-decoration: underline; color: rgb(50, 50, 50); }
+
+#discussionTopic table.topicPosts tbody td.message A {
+	color: #333366;
+}
+
+#discussionTopic UL {
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.reviewScore {
+	font-size: 150%;
+}
+.reviewScore strong {
+	font-size: 130%;
+	font-weight: normal;
+}
+
+
+table.reviewProperties {
+	margin-left: 4px;
+	margin-right: 0px;
+	width: 50%;
+}
+table.reviewProperties td.name {
+	width: 40%;
+	text-align: right;
+	font-weight: bold;
+}
+table.reviewProperties td.value {
+	width: 60%;
+	text-align: right;
+}
+.revProperties {
+	text-align: left;
+}
+
+#discussionTopic table.reviewProperties tbody tr.oddRow td.evenCell { background-color: rgb(210,210,210); }
+#discussionTopic table.reviewProperties tbody tr.oddRow td.oddCell { background-color: rgb(220,220,220); }
+#discussionTopic table.reviewProperties tbody tr.evenRow td.evenCell { background-color: rgb(200,200,200); }
+#discussionTopic table.reviewProperties tbody tr.evenRow td.oddCell { background-color: rgb(210,210,210); }
+
+
+table.reviewScores {
+	margin-left: 4px;
+	margin-right: 0px;
+	width: 50%;
+	font-size: 130%;
+}
+table.reviewScores td.name {
+	width: 40%;
+	text-align: right;
+	font-weight: bold;
+}
+table.reviewScores td.value {
+	width: 60%;
+	text-align: right;
+}
+.revProperties {
+	text-align: left;
+}
+
+.partScore {
+	font-size: 130%;
+	font-weight: bold;
+}
+
+#discussionTopic table.reviewScores tbody tr.oddRow td.evenCell { background-color: rgb(210,210,210); }
+#discussionTopic table.reviewScores tbody tr.oddRow td.oddCell { background-color: rgb(220,220,220); }
+#discussionTopic table.reviewScores tbody tr.evenRow td.evenCell { background-color: rgb(200,200,200); }
+#discussionTopic table.reviewScores tbody tr.evenRow td.oddCell { background-color: rgb(210,210,210); }
