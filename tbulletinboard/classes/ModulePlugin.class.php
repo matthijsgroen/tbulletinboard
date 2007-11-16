@@ -68,7 +68,7 @@
 
 		function getPackContents($filename) {
 			$result = array();
-			$result['info'] = array('group' => 'unknown', 'name' => 'unknown', 'version' => 'unknown');
+			$result['info'] = array('group' => 'unknown', 'name' => 'unknown', 'version' => 'unknown', 'description' => '');
 			$result['author'] = array('name' => 'unknown', 'url' => '', 'email' => '');
 			$result['plugins'] = array();
 			$xmlContents = file_get_contents($filename);
@@ -87,6 +87,10 @@
 				if ($moduleInfo->containsTag("version")) {
 					$version = $moduleInfo->getTagContent("version");
 					$result['info']['version'] = $version->getText();
+				}
+				if ($moduleInfo->containsTag("description")) {
+					$description = $moduleInfo->getTagContent("description");
+					$result['info']['description'] = $description->getText();
 				}
 			}
 
@@ -159,6 +163,7 @@
 			$newModule->setValue("author", $packageContents['author']['name']);
 			$newModule->setValue("authorUrl", $packageContents['author']['url']);
 			$newModule->setValue("authorEmail", $packageContents['author']['email']);
+			$newModule->setValue("description", $packageContents['info']['description']);
 			$newModule->store();
 
 
@@ -274,8 +279,13 @@
 			if ($info === false) return false;
 
 			$className = $info->getValue("classname");
-			$moduleDir = $TBBconfiguration->uploadDir.'modules/'.$modulename.'/';
-			$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'modules/'.$modulename.'/';
+			if (isSet($_GLOBALS['developmentMode'])) {
+				$moduleDir = $TBBconfiguration->uploadDir.'modules/'.$modulename.'/';
+				$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'modules/'.$modulename.'/';
+			} else {
+				$moduleDir = $TBBconfiguration->uploadDir.'../modules/'.$modulename.'/';
+				$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'../modules/'.$modulename.'/';
+			}
 
 			require_once($moduleDir.$info->getValue("filename"));
 

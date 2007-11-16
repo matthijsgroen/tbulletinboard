@@ -4,8 +4,7 @@
 		<group>travian</group>
 		<name>Travian Tools</name>
 		<version>1.0</version>
-		<description>
-			Deze module breid het board uit met een aantal functionaliteiten tbv Travian.
+		<description>Deze module breid het board uit met een aantal functionaliteiten tbv Travian.
 			- Extra zoekoptie om doelwitten te vinden in Travian
 			- Beheer plugin om een gebruikers account te koppelen aan Travian
 			- Een gebruikerssysteem plugin om een gebruikersgroep te creeren aan de hand van een Travian Alliantie

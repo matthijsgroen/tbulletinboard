@@ -24,6 +24,7 @@
 	require_once($ivLibDir . 'library.php');
 	require_once($TBBclassDir . 'Configuration.class.php');
 	require_once($TBBclassDir . 'Session.class.php');
+	require_once($TBBconfigDir . 'settings.php');
 
 	// set security settings
 	//ini_set('session.use_only_cookies', true);
@@ -38,14 +39,14 @@
 	$database->setTablePrefix("tbb_");
 	$database->connect();
 	//$database->setVersion3();
-	$GLOBALS['ivTableSpace'] = 0;
-	$GLOBALS['iv_cal_daynames'] = array("ma", "di", "wo", "do", "vr", "za", "zo");
 	
 	$TBBconfiguration = new Configuration($database);
 	//$TBBconfiguration->smtpServer = 'smtp.athome.nl';
 	$TBBconfiguration->onlineTimeout = 10;
 	$TBBconfiguration->imageOnlineDir = 'images/';
-	$TBBconfiguration->uploadDir = '/var/www/tbb/upload/';
+	$TBBconfiguration->uploadDir = '/var/www/tbb2/upload/';
+	$developmentMode = true;
+
 	//$TBBconfiguration->uploadDir = '/home/menhir/public_html/upload/';
 	$TBBconfiguration->uploadOnlineDir = 'upload/';
 

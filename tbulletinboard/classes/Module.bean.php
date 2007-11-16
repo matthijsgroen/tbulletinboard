@@ -30,6 +30,7 @@
 			$this->defineText("author", "author", 250, false);
 			$this->defineText("authorUrl", "authorUrl", 250, false);
 			$this->defineText("authorEmail", "authorEmail", 250, false);
+			$this->defineText("description", "description", 1000, false);
 		}
 	}
 

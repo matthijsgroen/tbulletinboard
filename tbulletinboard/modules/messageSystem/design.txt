@@ -1,0 +1,27 @@
+
+	Idee berichten systeem:
+	
+	Berichten systeem koppelen aan de bestaande onderwerpen. In feite is je mailbox dus een verzamelplaats van 'prive' onderwerpen,
+	gedeeld met 'x' andere forumgebruikers.
+	Berichten systeem krijgt dan gewoon een board profiel, waar tags en onderwerptypes aan gekoppeld worden.
+	
+	Plugin types nodig:
+	- Message toolbar (!nieuw)
+	- User panel
+	- Admin
+	- Dashboard (!nieuw)	
+	
+	Database ontwerp:
+	
+	[ ] board (ID, parentID, name, read, write, topic, comment, order, settingsID, boardviews)
+
+	[x] boardsettings (ID, viewmode, seclevel, name, inc_count, signatures)
+	[x] boardtags (ID, settingID, tagID)
+	[x] boardtopic (ID, settingID, plugin, default)
+
+	[x] topic (ID, boardID, date, poster, title, icon, views, state, lastReaction, closed, special, plugin)
+
+	[ ] message_label (ID, userID, name)
+	[*] message_reciever (ID, topicID, userID, [sent/receive])
+	[*] message_control (ID, settingsID, boxlimit)
+

@@ -112,6 +112,7 @@
 				"Plugins: <strong>%s</strong><br />",
 				$packContents['info']['name'],  $packContents['info']['version'],
 				count($packContents['plugins'])));
+		$formFields->addText("Beschrijving", "", $packContents['info']['description']);
 		$formFields->addText("Auteur", "",
 			sprintf(
 				"Naam: <strong>%s</strong><br />". "Url: <strong>%s</strong><br />".
