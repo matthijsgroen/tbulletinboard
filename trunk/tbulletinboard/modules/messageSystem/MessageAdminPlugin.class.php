@@ -5,10 +5,10 @@
 	global $ivLibDir;
 	require_once($ivLibDir . "Table.class.php");
 
-	class MessageUserPanelPlugin extends AdminPlugin {
+	class MessageAdminPlugin extends AdminPlugin {
 		var $privateVars;
 
-		function MessageUserPanelPlugin() {
+		function MessageAdminPlugin() {
 			$this->AdminPlugin();
 		}
 
@@ -17,27 +17,26 @@
 
 		function createMenu(&$menu) {
 			$menu->addGroup("messages", "Berichten");
-			$menu->addItem("inbox", "messages", "Prive Berichten", 
-				"panelplugin.php?id=".$this->getModulename()."&screen=inbox", '', '', 0, false, '');
+			$menu->addItem("mess_settings", "messages", "Bericht instellingen", 
+				"adminplugin.php?id=".$this->getModulename(), '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
-			$menu->itemIndex = "inbox";
+			$menu->itemIndex = "mess_settings";
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Berichten", "panelplugin.php?id=".$this->getModuleName()."&screen=inbox");
+			$location->addLocation("Bericht instellingen", "panelplugin.php?id=".$this->getModuleName()."&screen=inbox");
 		}
 
 		function getPageTitle() {
-			return "Inbox";
+			return "Bericht instellingen";
 		}
 
 		function getPage() {
 			$moduleDir = $this->getModuleDir();
 			$step = 1;
-			if (($_GET['screen'] == "inbox") && ($step == 1)) 
-				include $moduleDir . "mailbox.screen.php";
+			include $moduleDir . "adminsettings.screen.php";
 
 		}
 

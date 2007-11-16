@@ -195,5 +195,73 @@
 			$form->increaseTabIndex();
 		}
 	}
+	
+	class FormTopicIconBar extends FormComponent {
+		
+		function FormTopicIconBar($name, $title, $description) { // "icon", "Pictogram", "pictogram van het onderwerp"
+			$this->FormComponent($title, $description, $name);
+		
+		}
 
+		function getInput() {
+			$selectedValue = 0;
+			if ($this->form->hasValue($this->identifier, 'boardiconbar')) {
+				$selectedValue = $this->form->getValue($this->identifier, 'boardiconbar');
+			}
+			$rowClass = "ft-iconbar";
+			$iconsStr = '';
+			$iconList = new TopicIconList();
+			$icons = $iconList->getIconsInfo();
+			for ($i = 0; $i < count($icons); $i++) {
+				$icon = $icons[$i];
+				$iconsStr .= sprintf(
+					' <input class="radio" id="%s" value="%s" %sname="%s" type="radio" tabindex="%s" />&nbsp;<label class="fname" for="%s"><img src="%s" alt="%s" /></label>',
+					$field['name'].$i,
+					$icon['ID'],
+					($selectedValue == $icon['ID']) ? 'checked="checked"' : '',
+					$field['name'],
+					$form->getTabIndex(),
+					$field['name'].$i,
+					htmlConvert($icon['imgUrl']),
+					htmlConvert($icon['name'])
+				);
+				$form->increaseTabIndex();
+			}
+			return $iconsStr;
+		}
+		
+		function getExtra() {
+			//print "?".$this->form->getValue($this->identifier, 'boardiconbar')."?";
+			$extra = sprintf(
+				'<input class="radio" id="%s" value="0" %sname="%s" type="radio" tabindex="%s" />&nbsp;<label class="fname" for="%s">Geen&nbsp;pictogram</label>',
+				$this->identifier.'0',
+				((!$this->form->hasValue($this->identifier, 'boardiconbar')) || ($this->form->getValue($this->identifier, 'boardiconbar') == 0)) ?
+					'checked="checked" ' : '',
+				$this->identifier,
+				$this->form->getTabIndex(),
+				$this->identifier.'0'
+			);
+			$this->form->increaseTabIndex();
+			return $extra;		
+		}
+
+	}
+	
+	class FormBoardTextField extends FormComponent {
+	
+		var $emoticons;
+		var $tbbBar;
+		var $tbbImg;
+	
+		function FormBoardTextField($name, $title, $description, $emoticons, $tbbBar, $tbbImg, $required = false) {
+			$this->FormComponent($title, $description, $name);
+			$this->required = $required;			
+		}
+		
+		function getInput() {
+			return "";
+		}
+	
+	}
+	
 ?>

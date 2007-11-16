@@ -21,4 +21,12 @@
 		<classname>MessageUserPanelPlugin</classname>
 	</plugin>
 
+	<plugin type="admin">
+		<name>Berichten beheer</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>MessageAdminPlugin.class.php</filename>
+		<classname>MessageAdminPlugin</classname>
+	</plugin>
+	
 </tbb-module>
