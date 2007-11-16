@@ -4,6 +4,7 @@
 		<group>tbbgroups</group>
 		<name>Standard Groups</name>
 		<version>0.1</version>
+		<description>Deze module breid het beheer van het board uit met een aantal standaard gebruikersgroepen</description>
 	</info>
 
 	<author>

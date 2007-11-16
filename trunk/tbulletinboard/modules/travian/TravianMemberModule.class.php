@@ -158,6 +158,11 @@
 				$table->addRow("Dorpen", $isRow['vill']);
 				
 			}
+			$selectQuery = sprintf("SELECT count(*) as sitterCount FROM tbb_travian_sitter WHERE userID='%s'", $user->getUserID());
+			$selectResult = $database->executeQuery($selectQuery);
+			if ($isRow = $selectResult->getRow()) {
+				$table->addRow("Sitters", $isRow['sitterCount']);
+			}
 		
 		}
 

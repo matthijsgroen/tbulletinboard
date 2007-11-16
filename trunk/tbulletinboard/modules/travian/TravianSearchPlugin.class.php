@@ -50,9 +50,11 @@
 			$raceSelect->addComponent(new FormOption("Gallisch", 3));
 			$form->addComponent($raceSelect);
 			
-			$villageSelect = new FormSelect("Dorp", "Aanvalsdorp", "village");
-
 			global $TBBcurrentUser;
+			$viewRace = $this->userTravianCache[$TBBcurrentUser->getUserID()]['race'];
+			
+			$villageSelect = new FormSelect("Dorp", "Aanvalsdorp", "village", 1, "villageSelectChange(element)");
+
 			global $TBBconfiguration;
 			$moduleDir = $this->getModuleDir();
 			$database = $TBBconfiguration->getDatabase();
@@ -66,31 +68,92 @@
 			$sorting->addColumnSort("villageName", true);
 			$travianTable->selectRows($userFilter, $sorting);
 			
+			$ownVillages = new FormOptionGroup("Eigen dorpen");
 			$defaultMax = 0;
+			
+			$presel = "";
+			if (isSet($_GET['presel'])) {
+				$form->setValue("village", $_GET['presel']);
+				$presel = $_GET['presel'];
+				$info = explode("|", $_GET['presel']);
+				$viewRace = $info[2];
+			}
+
+			$travianArray = array();
 			while ($village = $travianTable->getRow()) {
 				if ($defaultMax == 0) $defaultMax = $village->getValue("population");
-				$villageSelect->addComponent(new FormOption($village->getValue("villageName")." (".$village->getValue("population").")", $village->getValue("x")."|".$village->getValue("y")));
+				$value = $village->getValue("x")."|".$village->getValue("y")."|".$village->getValue("race");
+				$travianArray[$village->getValue("ID")] = $value;
+				if ($presel == $value) $defaultMax = $village->getValue("population");
+				$ownVillages->addComponent(new FormOption($village->getValue("villageName")." (".$village->getValue("population").")", 
+					$value));
 			}
+			$villageSelect->addComponent($ownVillages);
+			
+			require_once($moduleDir . "TravianSitter.bean.php");
+			$sitterTable = new TravianSitterTable($database);
+
+			$filter = new DataFilter();
+			$filter->addEquals("travianID", $this->userTravianCache[$TBBcurrentUser->getUserID()]['travianID']);
+			$sitterTable->selectRows($filter, new ColumnSorting());
+			if ($sitterTable->getSelectedRowCount() > 0) {
+				$sitterVillages = new FormOptionGroup("Sitter dorpen");
+				while ($villageInfo = $sitterTable->getRow()) {
+					$userFilter = new DataFilter();
+					
+					$userFilter->addEquals("playerID", $villageInfo->getValue("userTravianID"));
+
+					$sorting = new ColumnSorting();
+					$sorting->addColumnSort("villageName", true);
+					$travianTable->selectRows($userFilter, $sorting);
+			
+					while ($village = $travianTable->getRow()) {
+						$value = $village->getValue("x")."|".$village->getValue("y")."|".$village->getValue("race");
+						$travianArray[$village->getValue("ID")] = $value;
+						if ($presel == $value) $defaultMax = $village->getValue("population");
+
+						$sitterVillages->addComponent(new FormOption($village->getValue("villageName")." (".$village->getValue("population").")", 
+							$value));
+					}				
+				}				
+				$villageSelect->addComponent($sitterVillages);
+			}
+			
 			$form->addComponent($villageSelect);
+			$script = new Javascript();
+			$script->startFunction("villageSelectChange", array("selectbox"));
+			$script->addLine("var viewRace = '".$viewRace."';");
+			$script->addLine("var value = selectbox.options[selectbox.selectedIndex].value;");
+			$script->addLine("var selRace = value.substr(value.lastIndexOf(\"|\") + 1);");
+			$script->addLine("if (selRace != viewRace)");
+			$script->addLine("document.location.href = 'search.php?type=travian&presel='+value;");
+			$script->endBlock();
+			print $script->toString();			
+			
 					
 			$unitTypes = new FormRadioGroup("Traagste", "Langzaamste unit", "speed");
-			if ($this->userTravianCache[$TBBcurrentUser->getUserID()]['race'] == 1) {
+			if ($viewRace == 1) {
 				$unitList = array("Legionnaire" => 6, "Praetorian" => 5, "Imperian" => 7, "Equites Legati" => 16, 
 					"Equites Imperatoris" => 14, "Equites Caesaris" => 10, "Battering Ram" => 4, "Fire Catapult" => 3, "Senator" => 4, "Settler" => 5);
 			} else
-			if ($this->userTravianCache[$TBBcurrentUser->getUserID()]['race'] == 2) {
+			if ($viewRace == 2) {
 				$unitList = array("Clubswinger" => 7, "Spearman" => 7, "Axeman" => 6, "Scout" => 9, 
 					"Paladin" => 10, "Teutonic Knight" => 9, "Ram" => 4, "Catapult" => 3, "Chief" => 4, "Settler" => 5);
 			} else
-			if ($this->userTravianCache[$TBBcurrentUser->getUserID()]['race'] == 3) {
+			if ($viewRace == 3) {
 				$unitList = array("Phalanx" => 7, "Swordmen" => 6, "Scout" => 17, "Teutatis Thunder" => 19, 
 					"Druid Rider" => 16, "Haeduan" => 13, "Ram" => 4, "Trebuchet" => 3, "Chieftain" => 5, "Settler" => 5);
 			}
 			
 			$selected = true;
+			$index = 1;
 			foreach($unitList as $unitName => $speed) {
-				$unitTypes->addComponent(new FormRadioButton($unitName, "(".$speed." fields/hour)", "speed", $speed, $selected));
+				$unitTypes->addComponent(new FormRadioButton(
+					sprintf('<img src="%1$s/images/%2$s.gif" alt="icon" title="%3$s" /> %3$s', 
+					$this->getModuleOnlineDir(), ($index + (($viewRace-1) * 10)), $unitName), 
+					"(".$speed." fields/hour)", "speed", $speed, $selected));
 				$selected = false;
+				$index++;
 			}			
 			
 			$form->addComponent($unitTypes);
@@ -118,9 +181,9 @@
 		function executeSearch(&$searchResult, &$feedback) {
 			$searchResult->setSearchSubject("doelwit", "doelwitten");
 			
-			$searchResult->defineColumnNames("x", "y", "Ras", "Village", "Player", "Population", "Alliance", "Time");
-			$searchResult->defineColumnTypes("number", "number", "number", "text", "text", "number", "text", "number");
-			$searchResult->defineSortColumns(2, 5, 7);
+			$searchResult->defineColumnNames("Farm", "x", "y", "Ras", "Village", "Player", "Population", "Alliance", "Time");
+			$searchResult->defineColumnTypes("text", "number", "number", "number", "text", "text", "number", "text", "number");
+			$searchResult->defineSortColumns(3, 6, 8);
 			
 			/*			
 			
@@ -193,7 +256,10 @@
 					$mins = (floor($minutes) % 60);
 					$secs = floor(($minutes - floor($minutes)) * 60);
 					$time = floor($minutes / 60) . ":" . (($mins < 10) ? "0" : ""). $mins . ":" . (($secs < 10) ? "0" : ""). $secs;
-					$searchResult->addResultRow(9000.0 - $fieldDistance, 
+					$searchResult->addResultRow(9000.0 - $fieldDistance,
+						"",
+						sprintf('<img src="%1$s/farmtarget.php?id=%2$s" alt="" title="Groen = farm, Rood = do not farm" onclick="this.src=\'%1$s/farmtarget.php?id=%2$s&toggle=true&rnd=\'+Math.round(100*Math.random())" />',
+							$this->getModuleOnlineDir(), $resultRow->getValue("ID")),
 						$resultRow->getValue("x"), 
 						$resultRow->getValue("x"), 
 						$resultRow->getValue("y"), 
@@ -212,10 +278,10 @@
 						$time);
 				}
 			}
-
+			/*
 			$searchResult->addResultRow(1.5, 40, 40, -40, -40, "smurfendorp", "smurfendorp", 50, 50, "SMURF", "SMURF", 70, "1:10");
 			$searchResult->addResultRow(1.3, 24, 24, -65, -65, "dinges", "dinges", 150, 150, "SMURF", "SMURF", 35, "0:35");
-
+			*/
 			return true;
 		}
 		

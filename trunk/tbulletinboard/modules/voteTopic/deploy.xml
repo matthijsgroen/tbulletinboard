@@ -4,6 +4,7 @@
 		<group>voteTopic</group>
 		<name>Stemmen</name>
 		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogenlijkheid om onderwerpen te starten waarop gestemd kan worden door middel van een duim omhoog of omlaag</description>
 	</info>
 
 	<author>
