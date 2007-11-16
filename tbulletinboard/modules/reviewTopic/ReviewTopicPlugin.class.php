@@ -694,6 +694,8 @@
 				if ($canEdit) {
 					$toolbar->addItem('edit','', 'bewerken', 'edittopic.php?id='.$topic->getID(), '', $TBBconfiguration->imageOnlineDir.'edit.gif', 0, false, '');
 				}
+				$TBBconfiguration->getMessageToolbar($toolbar, $starter);
+
 				$underPost = "";
 				if ($reviewTopic->isEdited()) {
 					$editor = $reviewTopic->editedBy();
@@ -803,6 +805,8 @@
 				if ($canEdit) {
 				//	$toolbar->addItem('edit','', 'bewerken', 'editreply.php?topicID='.$topic->getID().'&amp;edit=yes&amp;postID='.$reaction->getID(), '', $TBBconfiguration->imageOnlineDir.'edit.gif', 0, false, '');
 				}
+				$TBBconfiguration->getMessageToolbar($toolbar, $starter);
+
 				$underPost = "";
 				if ($reaction->isEdited()) {
 					$editor = $reaction->editedBy();

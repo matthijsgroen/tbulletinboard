@@ -17,7 +17,7 @@
 			$this->defineDate("lastChange", "lastChange", true);
 			$this->defineInt("changeBy", "changeby", true);
 			$this->defineInt("reviewType", "reviewType", false);
-			$this->setHasIndex("reviewType");
+			$this->defineIndex("reviewType");
 			$this->defineFloat("score", "score", false);
 			$this->defineFloat("userScore", "userScore", true);
 		}

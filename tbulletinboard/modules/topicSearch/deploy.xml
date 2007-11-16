@@ -4,6 +4,7 @@
 		<group>topicSearch</group>
 		<name>Onderwerpen zoeken</name>
 		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogelijkheid om onderwerpen te zoeken op tekstinhoud</description>
 	</info>
 
 	<author>

@@ -5,10 +5,10 @@
 	global $ivLibDir;
 	require_once($ivLibDir . "Table.class.php");
 
-	class TravianUserPanelPlugin extends AdminPlugin {
+	class MessageUserPanelPlugin extends AdminPlugin {
 		var $privateVars;
 
-		function TravianUserPanelPlugin() {
+		function MessageUserPanelPlugin() {
 			$this->AdminPlugin();
 		}
 
@@ -16,17 +16,17 @@
 		}
 
 		function createMenu(&$menu) {
-			$menu->addGroup("travian", "Travian");
-			$menu->addItem("linkSitter", "travian", "Sitters opgeven", 
-				"panelplugin.php?id=".$this->getModulename()."&screen=match", '', '', 0, false, '');
+			$menu->addGroup("messages", "Berichten");
+			$menu->addItem("inbox", "messages", "Prive Berichten", 
+				"panelplugin.php?id=".$this->getModulename()."&screen=inbox", '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
-			$menu->itemIndex = "linkSitter";
+			$menu->itemIndex = "messages";
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Travian Sitters opgeven", "panelplugin.php?id=".$this->getModuleName()."&screen=match");
+			$location->addLocation("Berichten", "panelplugin.php?id=".$this->getModuleName()."&screen=inbox");
 		}
 
 		function getPageTitle() {

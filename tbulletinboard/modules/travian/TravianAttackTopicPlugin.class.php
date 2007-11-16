@@ -50,49 +50,48 @@
 
 			if ($currentStep == 0) {
 				global $formTitleTemplate;
-				includeFormComponents("TemplateField", "Submit", "RadioGroup", "RadioViewHideButton");
-				$form->addComponent(new FormTemplateField($formTitleTemplate, "Georganiseerde Travian Aanval starten"));
+				includeFormComponents("TemplateField", "Submit", "RadioGroup", "RadioViewHideButton", "TextField");
+				$form->addComponent(new FormTemplateField($formTitleTemplate, "Georganiseerde Travian Aanval starten (stap 1)"));
+				$form->addComponent(new FormTextField("title", "Titel", "Titel van de aanvalsactie", 80, true));
+
+				$form->addComponent(new FormTopicIconBar("icon", "Pictogram", "pictogram van het onderwerp"));
+				$form->addComponent(new FormBoardTextField("post", "Bericht", "", true, true, true));
+				
+				$boardFormFields = new BoardFormFields();
+				$form->addFieldGroup($boardFormFields);
+				$boardFormFields->activeForm = $form;
+
+				$boardFormFields->addIconBar("icon2", "Pictogram", "pictogram van het onderwerp");
+				$boardFormFields->addPostTextField("post2", "Bericht", "", true, true, true);
+
+				/*
+				$options = array(
+					array("value" => "yes", "caption" => "Maak URLs automatisch", "description" => "zet automatisch [url] en [/url] om een internet adres", "name" => "autoUrl", "checked" => true),
+					array("value" => "yes", "caption" => "Geen smiles in dit bericht", "description" => "", "name" => "noSmile", "checked" => false),
+					array("value" => "yes", "caption" => "Toon handtekening", "description" => "zet je handtekening onder dit bericht", "name" => "signature", "checked" => true)
+					//array("value" => "yes", "caption" => "Bericht bij reacties", "description" => "reakties op dit bericht per email ontvangen", "name" => "subscribe", "checked" => false),
+					//array("value" => "yes", "caption" => "Opslaan als concept", "description" => "Bericht niet plaatsen maar opslaan als concept", "name" => "concept", "checked" => false)
+				);
+				$formFields->addCheckboxes("Opties", "", $options);
+				*/
+
+								
 				$targetType = new FormRadioGroup("Doelwit", "", "targetType");
 				//$targetType->addComponent(new FormRadioViewHideButton($title, $description, $name, $value, $selected=true, $focus="", $enabled=true, $showMarkings = array(), $hideMarkings = array()));
-
+				$targetType->addComponent(new FormRadioViewHideButton("Doelwitten uit alliantie halen", "", "targetType", "alliance", true, "", true, array("alliance"), array()));
+				$targetType->addComponent(new FormRadioViewHideButton("Doelwitten lijst handmatig opstellen", "", "targetType", "list", false, "", true, array(), array("alliance")));
 				$form->addComponent($targetType);
-
-				$form->addComponent(new FormSubmit("Volgende", "", "", "nextStepButton"));
-
 				
-				/*
-				$formFields = new StandardFormFields();
-				$form->addFieldGroup($formFields);
-				$formFields->activeForm = $form;
-				$formFields->startGroup("Nieuwe recentie starten");
+				$form->startMarking("alliance");
+				$form->addComponent(new FormTextField("allianceName", "Alliantie", "Titel van de alliantie", 80, true));
+				$form->endMarking();
 
-				$options = array();
-				$reviewTypes = new ReviewTypesTable($database);
-				$reviewTypes->selectAll();
-				while ($reviewType = $reviewTypes->getRow()) {
-					$options[$reviewType->getValue("ID")] = $reviewType->getValue("name");
-				}
-				$formFields->addSelect("reviewType", "Soort recentie", "", $options, "");
-
-				$formFields->endGroup();
-				$formFields->addSubmit("Verder &raquo;", false);
-				*/
+				$form->addComponent(new FormSubmit("Volgende &raquo;", "", "", "nextStepButton"));
 			}
 			if ($currentStep == 1) {
-				/*
-				$reviewTypeID = $_POST['reviewType'];
-
-				$formFields = new StandardFormFields();
-				$form->addFieldGroup($formFields);
-				$formFields->activeForm = $form;
-				$reviewType = $this->getReviewType($reviewTypeID);
-				$formFields->startGroup("Nieuwe ".$reviewType->getValue("name")." recentie starten");
-				$form->addHiddenField("reviewType", $reviewTypeID);
-
-				$this->createReviewTopicForm($form, $reviewTypeID);
-				$formFields->endGroup();
-				$formFields->addSubmit("Plaatsen", false);
-				*/
+				global $formTitleTemplate;
+				includeFormComponents("TemplateField", "Submit");
+				$form->addComponent(new FormTemplateField($formTitleTemplate, "Georganiseerde Travian Aanval starten (stap 2)"));
 			}
 		}
 /*
@@ -173,8 +172,35 @@
 */
 
 		function handleAddTopicAction(&$feedback, &$board) {
+			if ($_POST['wizzStep'] == 1) {
+				if (trim($_POST['title']) == "") {
+					$feedback->addMessage("Geen Titel opgegeven!");
+					return false;
+				}
+				// check if the alliance supplied exists!
+				if ($_POST["targetType"] == "alliance") {
+					$allianceName = $_POST["allianceName"];
+					if (trim($allianceName) == "") {
+						$feedback->addMessage("Geen Alliantie naam opgegeven!");
+						return false;
+					}
+					global $TBBconfiguration;
+					$moduleDir = $this->getModuleDir();
+					$database = $TBBconfiguration->getDatabase();
+
+					require_once($moduleDir . "TravianPlace.bean.php");
+					$travianTable = new TravianPlaceTable($database);
+
+					$userFilter = new DataFilter();
+					$userFilter->addLike("allianceName", $allianceName);
+					if ($travianTable->countRows($userFilter) == 0) {
+						$feedback->addMessage("De alliantie ".htmlConvert($allianceName)." bestaat niet!");
+						return false;
+					}
+				}
+				return true;			
+			}
 			/*
-			if ($_POST['wizzStep'] == 1) return true;
 
 			if ($_POST['wizzStep'] == 2) {
 				global $TBBcurrentUser;
@@ -320,7 +346,7 @@
 		}
 
 		function hasMoreAddTopicSteps($currentStep) {
-			return ($currentStep < 1);
+			return ($currentStep < 2);
 		}
 
 		function setEditTopicForm(&$form, $currentStep, &$topic) {

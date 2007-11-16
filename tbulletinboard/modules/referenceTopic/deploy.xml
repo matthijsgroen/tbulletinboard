@@ -4,6 +4,7 @@
 		<group>referenceTopic</group>
 		<name>Verwijzingen</name>
 		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogelijkheid verwijzingen naar onderwerpen of sites te maken</description>
 	</info>
 
 	<author>

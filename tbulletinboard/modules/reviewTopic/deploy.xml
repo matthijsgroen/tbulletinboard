@@ -4,6 +4,7 @@
 		<group>reviewTopic</group>
 		<name>Recenties</name>
 		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogelijkheid om recenties te plaatsen</description>
 	</info>
 
 	<author>

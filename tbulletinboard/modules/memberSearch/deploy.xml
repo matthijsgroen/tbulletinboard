@@ -4,6 +4,7 @@
 		<group>memberSearch</group>
 		<name>Leden zoeken</name>
 		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogelijkheid om leden te zoeken</description>
 	</info>
 
 	<author>

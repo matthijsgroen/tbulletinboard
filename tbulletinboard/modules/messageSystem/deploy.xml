@@ -1,0 +1,24 @@
+<tbb-module>
+
+	<info>
+		<group>messageSystem</group>
+		<name>Berichten Module</name>
+		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogelijkheid leden berichten te sturen</description>
+	</info>
+
+	<author>
+		<name>Matthijs Groen</name>
+		<url>http://thaisi.thaboo.com/</url>
+		<email>matthijs.groen@gmail.com</email>
+	</author>
+
+	<plugin type="userpanel">
+		<name>Berichten overzicht</name>
+		<version>0.1</version>
+		<build>1</build>
+		<filename>MessageUserPanelPlugin.class.php</filename>
+		<classname>MessageUserPanelPlugin</classname>
+	</plugin>
+
+</tbb-module>

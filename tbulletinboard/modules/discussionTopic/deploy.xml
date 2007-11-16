@@ -4,6 +4,7 @@
 		<group>discussionTopic</group>
 		<name>Discussies</name>
 		<version>0.1</version>
+		<description>Deze module breid het board uit met de mogelijkheid discussies te starten</description>
 	</info>
 
 	<author>

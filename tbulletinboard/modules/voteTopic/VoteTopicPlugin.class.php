@@ -265,6 +265,17 @@
 
 			if (isSet($options['goto'])) {
 				if ($options['goto'] == 'lastpost') $pageNr = $nrPages - 1;
+				if (is_numeric($options['goto'])) {
+					if ($nrPages > 1) {
+						$database = $TBBconfiguration->getDatabase();
+						$reactionTable = new ReactionTable($database);
+						$reactionData = $reactionTable->getRowByKey($options['goto']);
+						$reaction = new TopicReaction($reactionData, $topic);
+						
+						$reactionIndex = $reaction->getIndex();
+						$pageNr = ceil(($reactionIndex + 1) / $TBBcurrentUser->getReactionsPerPage()) -1;
+					}			
+				}				
 			}
 			$highlights = array();
 			if (isSet($options['highlight'])) $highlights = $options['highlight'];
@@ -272,26 +283,46 @@
 <div class="center">
 	<div id="discussionTopic">
 <?php
-			$pageNavUrl = sprintf("topic.php?pageNr=%%s&amp;id=%s%s", $topic->getID(),
-				(count($highlights) > 0) ? "&amp;highlight=".implode("%%20", $highlights) : "");
-			$pageNavigation = new PageNavigation($nrPages, $pageNr+1, $pageNavUrl, 10);
-			$pageNavigation->showPagebar("topPageBar");
+			if (isSet($options['mode']) && ($options['mode'] == 'normal')) {
+				$pageNavUrl = sprintf("topic.php?pageNr=%%s&amp;id=%s%s", $topic->getID(),
+					(count($highlights) > 0) ? "&amp;highlight=".implode("%%20", $highlights) : "");
+				$pageNavigation = new PageNavigation($nrPages, $pageNr+1, $pageNavUrl, 10);
+				$pageNavigation->showPagebar("topPageBar");
 
-			$buttonBar = new ButtonBar();
-			if ($board->canAddTopics($TBBcurrentUser))
-				$buttonBar->addButton("newtopic", "Nieuw onderwerp", "Nieuw onderwerp starten", sprintf("addtopic.php?boardID=%s", $board->getID()));
-			if ($board->canWrite($TBBcurrentUser) && ((!$topic->isLocked()) || ($TBBcurrentUser->isActiveAdmin())))
-				$buttonBar->addButton("newreaction", "Plaats reactie", "Reactie plaatsen", sprintf("editreply.php?topicID=%s", $topic->getID()));
-			$buttonBar->showBar();
-
+				$buttonBar = new ButtonBar();
+				if ($board->canAddTopics($TBBcurrentUser))
+					$buttonBar->addButton("newtopic", "Nieuw onderwerp", "Nieuw onderwerp starten", sprintf("addtopic.php?boardID=%s", $board->getID()));
+				if ($board->canWrite($TBBcurrentUser) && ((!$topic->isLocked()) || ($TBBcurrentUser->isActiveAdmin())))
+					$buttonBar->addButton("newreaction", "Plaats reactie", "Reactie plaatsen", sprintf("editreply.php?topicID=%s", $topic->getID()));
+				$buttonBar->showBar();
+			}
+			$limit = 1000;
+			if (isSet($options['limit'])) $limit = $options['limit'];
+			$reversed = false;
+			if (isSet($options['direction']) && ($options['direction'] == "descending")) {
+				$reversed = true;
+				$topicPage = ($pageNr == ($nrPages -1));
+			}
+			$messageHeader = "Bericht";
+			if (($limit < 1000) && ($reversed)) {
+				$messageHeader = sprintf("Laatste %s reacties, nieuwste eerst", $limit);
+			}
 
 			$posts = new Table();
 			$posts->setClass("topicPosts");
-			$posts->setHeader("Auteur", "Bericht");
+			$posts->setHeader("Auteur", $messageHeader);
 			$posts->setHeaderClasses("author", "message");
-			$posts->setCellLimit(2);
-			$posts->setRowClasses("author", "message", "time", "posttools");
-			$posts->setAlignment("left", "left", "left", "left");
+			if ($options['toolbar']) {			
+				$posts->setCellLimit(2);
+				$posts->setRowClasses("author", "message", "time", "posttools");
+				$posts->setAlignment("left", "left", "left", "left");
+			} else {
+				$posts->setCellLimit(2);
+				$posts->setRowClasses("author", "message", "time", "posttools");
+				$posts->setAlignment("left", "left", "left", "left");
+				$posts->hideColumn(2);
+				$posts->hideColumn(3);
+			}
 
 			$voteTopic = new VoteTopic($topic, $this);
 			$reactions = array();
@@ -301,7 +332,13 @@
 			$emoticons = $voteTopic->smiliesOn() ? $TBBemoticonList : false;
 			if (!$TBBcurrentUser->showEmoticons()) $emoticons = false;
 
-			if ($pageNr == 0) {
+			$topicPage = ($pageNr == 0);
+			$showSignatures = ($TBBcurrentUser->showSignatures() && $TBBconfiguration->getSignaturesAllowed() && $boardProfile->allowSignatures());
+			if (isSet($options['userInfo']) && ($options['userInfo'] == "small")) {
+				$showSignatures = false;
+			}
+			
+			if ($topicPage) {
 				$starter = $voteTopic->getStarter();
 				$iconInfo = $topic->getIconInfo();
 
@@ -324,7 +361,7 @@
 						$TBBconfiguration->parseDate($voteTopic->lastChange())
 					);
 				}
-				if ($TBBcurrentUser->showSignatures() && $TBBconfiguration->getSignaturesAllowed() && $boardProfile->allowSignatures()) {
+				if ($showSignatures) {
 					if ($voteTopic->hasSignature()) {
 						$underPost .= sprintf('<div class="signature">%s</div>',
 							$starter->getSignatureHTML()
@@ -353,11 +390,11 @@
 				$negFilter->addEquals("vote", false);
 				$negCount = $voteTable->countRows($negFilter);
 				
-				$posts->addRow(
+				$topicRow = array(
 					sprintf(
 						'<span class="author">%s</span><br />%s',
 						htmlConvert($starter->getNickName()),
-						$TBBconfiguration->getUserInfoBlock($starter)
+						($options['userInfo'] == "complete") ? $TBBconfiguration->getUserInfoBlock($starter) : ""
 					),
 					sprintf(
 						'<h4>%s%s</h4><p class="messageText">%s<br />%s</p>%s',
@@ -371,17 +408,30 @@
 					$TBBconfiguration->parseDate($voteTopic->getTime()),
 					$toolbar->getMenuStr("ptoolbar")
 				);
+				if (!$reversed) $posts->addRow($topicRow);
+				
 				$this->privateVars['lastPostDate'] = $voteTopic->getTime();
 
-
-				$reactions = $voteTopic->getReactions(0, $TBBcurrentUser->getReactionsPerPage() - 1);
+				$getNrReactions = min($TBBcurrentUser->getReactionsPerPage(), $limit);
+				$start = ($pageNr * $TBBcurrentUser->getReactionsPerPage());
+				if ($reversed) {
+					$start = max(($nrPosts -($pageNr * $getNrReactions)) - $getNrReactions, 0);
+				}
+				$reactions = $voteTopic->getReactions($start, $getNrReactions);
 			} else {
-				$reactions = $voteTopic->getReactions(($pageNr * $TBBcurrentUser->getReactionsPerPage()) -1, $TBBcurrentUser->getReactionsPerPage());
+				$getNrReactions = min($TBBcurrentUser->getReactionsPerPage(), $limit);
+				$start = ($pageNr * $TBBcurrentUser->getReactionsPerPage()) -1;
+				if ($reversed) {
+					$start = max(($nrPosts -($pageNr * $getNrReactions)) - $getNrReactions, 0);
+				}
+				$reactions = $voteTopic->getReactions($start, $getNrReactions);
 			}
 			$startPost = ($nrPages-1) * $TBBcurrentUser->getReactionsPerPage();
 
 			for ($i = 0; $i < count($reactions); $i++) {
-				$reaction = $reactions[$i];
+				if (isSet($options['direction']) && ($options['direction'] == "descending")) {
+					$reaction = $reactions[count($reactions) - 1 - $i];
+				} else $reaction = $reactions[$i];
 				$starter = $reaction->getUser();
 				$iconInfo = $reaction->getIconInfo();
 				$canEdit = false;
@@ -402,7 +452,7 @@
 						$TBBconfiguration->parseDate($reaction->lastChange())
 					);
 				}
-				if ($TBBcurrentUser->showSignatures() && $TBBconfiguration->getSignaturesAllowed() && $boardProfile->allowSignatures()) {
+				if ($showSignatures) {
 					if ($reaction->hasSignature()) {
 						$underPost .= sprintf('<div class="signature">%s</div>',
 							$starter->getSignatureHTML()
@@ -429,7 +479,7 @@
 						$reaction->getID(),
 						(($i + $startPost) == ($nrPosts-2)) ? '<a name="lastpost" />' : '',
 						htmlConvert($starter->getNickName()),
-						$TBBconfiguration->getUserInfoBlock($starter)
+						($options['userInfo'] == "complete") ? $TBBconfiguration->getUserInfoBlock($starter) : ""
 					),
 					sprintf(
 						'<h4>%s%s%s</h4><p class="messageText">%s</p>%s',
@@ -444,9 +494,19 @@
 					$toolbar->getMenuStr("ptoolbar")
 				);
 			}
+			
+			if (($reversed) && ($topicPage) && (count($reactions) < $getNrReactions)) {
+				$posts->addRow($topicRow);
+			}
+			
 			$posts->showTable();
-			$buttonBar->showBar();
-			$pageNavigation->showPagebar("botPageBar");
+			if (isSet($options['mode']) && ($options['mode'] == 'normal')) {
+				$buttonBar->showBar();
+			}
+
+			if (isSet($options['mode']) && ($options['mode'] == 'normal')) {
+				$pageNavigation->showPagebar("botPageBar");
+			}
 ?>
 	</div>
 </div>
@@ -635,6 +695,12 @@
 			//todo: jump to correct post!
 			$TBBconfiguration->redirectUri('topic.php?id='.$topic->getID().'&goto=lastpost#lastpost');
 			return true;
+		}
+
+		function getFirstUnreadLink(&$topic) {
+			$reaction = $topic->getFirstUnreadReaction();
+			if ($reaction === false) return false;
+			return sprintf("topic.php?id=%1\$s&amp;goto=%2\$s#post%2\$s", $topic->getID(), $reaction->getID());
 		}
 
 		function deleteTopic($id) {
