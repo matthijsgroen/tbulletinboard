@@ -17,7 +17,7 @@
 		<span class="divider">|</span>
 		<a href="http://jigsaw.w3.org/css-validator/check/referer"><acronym title="Cascading style sheets">CSS</acronym></a>
 		<span class="divider">|</span>
-		<a href="plugininfo.php">Plugins</a>
+		<a href="plugininfo.php">Plug-ins</a>
 		<br />
 		pagina gemaakt in <?
 			list($micro1, $stamp1) = explode(" ", $pageTime);
