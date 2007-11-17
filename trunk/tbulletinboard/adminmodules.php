@@ -1,10 +1,21 @@
 <?php
 	/**
-	 * THAiSies Bulletin Board
-	 * 2003 Rewrite
+	 *	TBB2, an highly configurable and dynamic bulletin board
+	 *	Copyright (C) 2007  Matthijs Groen
 	 *
-	 *@author Matthijs Groen (thaisi at servicez.org)
-	 *@version 2.0
+	 *	This program is free software: you can redistribute it and/or modify
+	 *	it under the terms of the GNU General Public License as published by
+	 *	the Free Software Foundation, either version 3 of the License, or
+	 *	(at your option) any later version.
+	 *	
+	 *	This program is distributed in the hope that it will be useful,
+	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *	GNU General Public License for more details.
+	 *	
+	 *	You should have received a copy of the GNU General Public License
+	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	 *	
 	 */
 
 	require_once("folder.config.php");
@@ -129,18 +140,31 @@
 	$table->setHeader("ID", "group", "Soort plugin", "Naam", "Versie", "Actief", "active");
 	$table->setRowClasses("pluginID", "moduleID", "pluginType", "pluginName", "pluginVersion", "pluginActive", "active");
 	$table->allowSubgroups(0, true);
+	
+	if (isSet($GLOBALS['developmentMode'])) {
+		require_once($ivLibDir . "PackFile.class.php");
+		$dir = substr(__file__, 0, strrpos(__file__, "/")) . "/modules";
+	}	
+	
 
 	$currGroup = "";
 	while ($pluginRow = $pluginTable->getRow()) {
 		if ($currGroup != $pluginRow->getValue("group")) {
 			$moduleInfo = $moduleTable->getRow();
-			/*
-			$table->startSubgroup(true, $pluginRow->getValue("group"),
-				$pluginRow->getValue("group"), $moduleInfo->getValue("name"),
-				$moduleInfo->getValue("author"), $moduleInfo->getValue("version"), "", "group");
-			*/
-			$table->addGroup(sprintf("%s (v %s) by %s", $moduleInfo->getValue("name"), $moduleInfo->getValue("version"),
-				$moduleInfo->getValue("author")));
+
+			$download = "";
+			if (isSet($GLOBALS['developmentMode'])) {
+				$file = $moduleInfo->getValue("group");
+				if (is_dir($dir . "/" . $file) && (strpos($file, ".") !== 0)) {
+					$download = " [<a href=\"upload/modules/".$file.".tbbmod\">download</a>]";
+					$packFile = new PackFile("tbbmod");
+					$packFile->addFolder($dir . "/" . $file);
+					$packFile->save($dir."/../upload/modules/".$file.'.tbbmod');
+				}
+			}
+			
+			$table->addGroup(sprintf("%s (v %s) by %s %s", $moduleInfo->getValue("name"), $moduleInfo->getValue("version"),
+				$moduleInfo->getValue("author"), $download));
 
 			$currGroup = $pluginRow->getValue("group");
 		}
