@@ -27,6 +27,7 @@
 			$this->setPrimaryKey("ID");
 			$this->defineInt("tbbID", "tbbID", false);
 			$this->defineInt("travianID", "travianID", false);
+			$this->defineInt("allianceID", "allianceID", false);
 			$this->defineText("travianName", "travianName", 20, false);
 			$this->defineInt("pop", "pop", false);
 			$this->defineInt("vill", "vill", false);

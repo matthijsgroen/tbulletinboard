@@ -29,14 +29,21 @@
 			$menu->addGroup("travian", "Travian");
 			$menu->addItem("linkSitter", "travian", "Sitters opgeven", 
 				"panelplugin.php?id=".$this->getModulename()."&screen=sitters", '', '', 0, false, '');
+
+			$menu->addItem("travianDetails", "travian", "Details", 
+				"panelplugin.php?id=".$this->getModulename()."&screen=details", '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
-			$menu->itemIndex = "linkSitter";
+			if ($_GET['screen'] == "sitters") $menu->itemIndex = "linkSitter";
+			if ($_GET['screen'] == "details") $menu->itemIndex = "travianDetails";
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Travian Sitters opgeven", "panelplugin.php?id=".$this->getModuleName()."&screen=sitters");
+			if ($_GET['screen'] == "sitters")
+				$location->addLocation("Travian Sitters opgeven", "panelplugin.php?id=".$this->getModuleName()."&screen=sitters");
+			if ($_GET['screen'] == "details")
+				$location->addLocation("Travian Details opgeven", "panelplugin.php?id=".$this->getModuleName()."&screen=details");
 		}
 
 		function getPageTitle() {
@@ -48,13 +55,20 @@
 			global $TBBconfiguration;
 			global $TBBsession;
 			$database = $TBBconfiguration->getDatabase();
+			$moduleDir = $this->getModuleDir();
 			
-			$selectQuery = sprintf("SELECT * FROM tbb_travian_user WHERE tbbID='%s'", $TBBcurrentUser->getUserID());
-			$selectResult = $database->executeQuery($selectQuery);
-			if ($isRow = $selectResult->getRow()) {
+			require_once($moduleDir . "TravianUser.bean.php");
+			
+			//$selectQuery = sprintf("SELECT * FROM tbb_travian_user WHERE tbbID='%s'", $TBBcurrentUser->getUserID());
+			//$selectResult = $database->executeQuery($selectQuery);
+			$travianUserTable = new TravianPlayerTable($database);
+			$filter = new DataFilter();
+			$filter->addEquals("tbbID", $TBBcurrentUser->getUserID());
+			$travianUserTable->selectRows($filter, new ColumnSorting());
+			
+			if ($travianRow = $travianUserTable->getRow()) {
 			} else return;
 		
-			$moduleDir = $this->getModuleDir();
 			$step = 1;
 			if (isSet($_GET['actionName']) && isSet($_GET['actionID'])) {
 				$feedback = new Messages();
@@ -125,6 +139,8 @@
 				include $moduleDir . "showsitters.screen.php";
 			if (($_GET['screen'] == "sitters") && ($step == 2)) 
 				include $moduleDir . "sitterconfirm.screen.php";
+			if ($_GET['screen'] == "details") 
+				include $moduleDir . "accountdetails.screen.php";
 
 		}
 
