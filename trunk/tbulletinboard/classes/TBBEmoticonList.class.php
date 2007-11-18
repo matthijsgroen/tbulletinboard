@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	global $ivLibDir;
-	require_once($ivLibDir."EmoticonList.class.php");
+	global $libraryClassDir;
+	require_once($libraryClassDir."EmoticonList.class.php");
 	require_once($TBBclassDir."Emoticon.bean.php");
 
 	class TBBemoticonList extends EmoticonList {

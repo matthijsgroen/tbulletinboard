@@ -90,6 +90,7 @@
 			$onlineDir = $this->getModuleOnlineDir();
 			$hot = $topic->isHot();
 			$read = $topic->isRead();
+			//print "read: ".($read ? "yes" : "no")." hot: $hot = ".$topic->getTitle()."<br />";
 			if ($topic->isLocked() && $read) return $onlineDir."icon_lock.gif";
 			if ($topic->isLocked()) return $onlineDir."icon_newlock.gif";
 			if ($hot && $read) return $onlineDir."icon_hot.gif";

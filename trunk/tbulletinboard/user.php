@@ -22,7 +22,7 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 	$userID = 0;
 	if (isSet($_GET['id'])) $userID = $_GET['id'];
 	if (isSet($_POST['id'])) $userID = $_POST['id'];

@@ -1,22 +1,34 @@
 <?php
 	/**
-	 * THAiSies Bulletin Board
-	 * 2003 Rewrite
+	 *	TBB2, an highly configurable and dynamic bulletin board
+	 *	Copyright (C) 2007  Matthijs Groen
 	 *
-	 *@author Matthijs Groen (thaisi at servicez.org)
-	 *@version 2.0
+	 *	This program is free software: you can redistribute it and/or modify
+	 *	it under the terms of the GNU General Public License as published by
+	 *	the Free Software Foundation, either version 3 of the License, or
+	 *	(at your option) any later version.
+	 *	
+	 *	This program is distributed in the hope that it will be useful,
+	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *	GNU General Public License for more details.
+	 *	
+	 *	You should have received a copy of the GNU General Public License
+	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	 *	
 	 */
-	$ivLibDir = $GLOBALS['ivLibDir'];
+
+	$libraryClassDir = $GLOBALS['libraryClassDir'];
 	$TBBclassDir = $GLOBALS['TBBclassDir'];
 
-	require_once($ivLibDir . 'PageNavigation.class.php');
-	require_once($ivLibDir . 'TextParser.class.php');
-	require_once($ivLibDir . 'Table.class.php');
-	require_once($ivLibDir . 'Form.class.php');
-	require_once($ivLibDir . 'FormFields.class.php');
-	require_once($ivLibDir . 'formcomponents/TextField.class.php');
-	require_once($ivLibDir . 'Menu.class.php');
-	require_once($ivLibDir . 'DataObjects.class.php');
+	require_once($libraryClassDir . 'PageNavigation.class.php');
+	require_once($libraryClassDir . 'TextParser.class.php');
+	require_once($libraryClassDir . 'Table.class.php');
+	require_once($libraryClassDir . 'Form.class.php');
+	require_once($libraryClassDir . 'FormFields.class.php');
+	require_once($libraryClassDir . 'formcomponents/TextField.class.php');
+	require_once($libraryClassDir . 'Menu.class.php');
+	require_once($libraryClassDir . 'DataObjects.class.php');
 
 	require_once($TBBclassDir . 'ActionHandler.class.php');
 	require_once($TBBclassDir . 'TopicPlugin.class.php');

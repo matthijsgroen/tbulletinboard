@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 
 	class Skin {
 

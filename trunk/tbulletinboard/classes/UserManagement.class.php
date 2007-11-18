@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	require_once($ivLibDir . 'LibDateTime.class.php');
+	require_once($libraryClassDir . 'LibDateTime.class.php');
 
 	class UserManagement {
 

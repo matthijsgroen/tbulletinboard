@@ -1,10 +1,21 @@
 <?php
 	/**
-	 * THAiSies Bulletin Board
-	 * 2003 Rewrite
+	 *	TBB2, an highly configurable and dynamic bulletin board
+	 *	Copyright (C) 2007  Matthijs Groen
 	 *
-	 *@author Matthijs Groen (thaisi at servicez.org)
-	 *@version 2.0
+	 *	This program is free software: you can redistribute it and/or modify
+	 *	it under the terms of the GNU General Public License as published by
+	 *	the Free Software Foundation, either version 3 of the License, or
+	 *	(at your option) any later version.
+	 *	
+	 *	This program is distributed in the hope that it will be useful,
+	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *	GNU General Public License for more details.
+	 *	
+	 *	You should have received a copy of the GNU General Public License
+	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	 *	
 	 */
 
 	require_once("folder.config.php");
@@ -13,9 +24,9 @@
 	require_once($TBBclassDir.'BoardProfiles.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 	require_once($TBBclassDir.'Location.class.php');
-	require_once($ivLibDir.'Form.class.php');
-	require_once($ivLibDir.'Menu.class.php');
-	require_once($ivLibDir.'FormFields.class.php');
+	require_once($libraryClassDir.'Form.class.php');
+	require_once($libraryClassDir.'Menu.class.php');
+	require_once($libraryClassDir.'FormFields.class.php');
 
 	$boardID = (isSet($_GET['id']) && (is_numeric($_GET['id']))) ? $_GET['id'] : -1;
 	$boardID = (isSet($_POST['profileID']) && (is_numeric($_POST['profileID']))) ? $_POST['profileID'] : $boardID;

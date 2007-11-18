@@ -20,8 +20,8 @@
 
 	require_once("folder.config.php");
 	// Load the configuration
-	require_once($ivLibDir.'Table.class.php');
-	require_once($ivLibDir.'PackFile.class.php');
+	require_once($libraryClassDir.'Table.class.php');
+	require_once($libraryClassDir.'PackFile.class.php');
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
 	require_once($TBBclassDir.'Location.class.php');
@@ -59,7 +59,7 @@
 	$table->setHeader("Plugins");
 	$table->setAlignment("left");
 
-	require_once($ivLibDir."TextParser.class.php");
+	require_once($libraryClassDir."TextParser.class.php");
 	$textParser = new TextParser();
 
 	$currGroup = "";

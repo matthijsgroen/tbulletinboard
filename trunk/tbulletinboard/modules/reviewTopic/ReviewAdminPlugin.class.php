@@ -1,9 +1,28 @@
 <?php
+	/**
+	 *	TBB2, an highly configurable and dynamic bulletin board
+	 *	Copyright (C) 2007  Matthijs Groen
+	 *
+	 *	This program is free software: you can redistribute it and/or modify
+	 *	it under the terms of the GNU General Public License as published by
+	 *	the Free Software Foundation, either version 3 of the License, or
+	 *	(at your option) any later version.
+	 *	
+	 *	This program is distributed in the hope that it will be useful,
+	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *	GNU General Public License for more details.
+	 *	
+	 *	You should have received a copy of the GNU General Public License
+	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	 *	
+	 */
+
 
 	global $TBBclassDir;
 	require_once($TBBclassDir . "AdminPlugin.class.php");
-	global $ivLibDir;
-	require_once($ivLibDir . "Table.class.php");
+	global $libraryClassDir;
+	require_once($libraryClassDir . "Table.class.php");
 
 	class ReviewAdminPlugin extends AdminPlugin {
 		var $privateVars;
@@ -221,10 +240,10 @@
 			if (isSet($_POST['reviewTypeID'])) $reviewTypeID = $_POST['reviewTypeID'];
 
 
-			global $ivLibDir;
-			require_once($ivLibDir . "Form.class.php");
-			require_once($ivLibDir . "FormFields.class.php");
-			require_once($ivLibDir . 'formcomponents/FloatField.class.php');
+			global $libraryClassDir;
+			require_once($libraryClassDir . "Form.class.php");
+			require_once($libraryClassDir . "FormFields.class.php");
+			require_once($libraryClassDir . 'formcomponents/FloatField.class.php');
 
 			$moduleDir = $this->getModuleDir();
 			require_once($moduleDir."ReviewTypes.bean.php");
@@ -274,8 +293,8 @@
 		function getEditReviewTypeMenu($reviewID) {
 			$moduleID = $this->getModuleName();
 
-			global $ivLibDir;
-			require_once($ivLibDir . "Menu.class.php");
+			global $libraryClassDir;
+			require_once($libraryClassDir . "Menu.class.php");
 
 			$navMenu = new Menu();
 			$navMenu->addItem('common', '', 'Algemeen', '?view=Edit&amp;reviewTypeID='.$reviewID.'&amp;id='.$moduleID, '', '', 0, false, '');
@@ -424,9 +443,9 @@
 			global $TBBconfiguration;
 			$database = $TBBconfiguration->getDatabase();
 
-			global $ivLibDir;
-			require_once($ivLibDir . "Form.class.php");
-			require_once($ivLibDir . "FormFields.class.php");
+			global $libraryClassDir;
+			require_once($libraryClassDir . "Form.class.php");
+			require_once($libraryClassDir . "FormFields.class.php");
 			$moduleDir = $this->getModuleDir();
 			require_once($moduleDir."ReviewFields.bean.php");
 
@@ -692,9 +711,9 @@
 			global $TBBconfiguration;
 			$database = $TBBconfiguration->getDatabase();
 
-			global $ivLibDir;
-			require_once($ivLibDir."Form.class.php");
-			require_once($ivLibDir."FormFields.class.php");
+			global $libraryClassDir;
+			require_once($libraryClassDir."Form.class.php");
+			require_once($libraryClassDir."FormFields.class.php");
 			$moduleDir = $this->getModuleDir();
 			require_once($moduleDir."ReviewScore.bean.php");
 

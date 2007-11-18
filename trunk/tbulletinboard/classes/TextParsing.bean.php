@@ -21,8 +21,8 @@
 	/**
 	 *
 	 */
-	global $ivLibDir;
-	require_once($ivLibDir."DataObjects.class.php");
+	global $libraryClassDir;
+	require_once($libraryClassDir."DataObjects.class.php");
 	require_once($TBBclassDir."BoardTags.bean.php");
 
 	/**

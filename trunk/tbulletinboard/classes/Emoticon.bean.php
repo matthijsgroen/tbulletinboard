@@ -21,8 +21,8 @@
 	/**
 	 *
 	 */
-	require_once($ivLibDir."DataObjects.class.php");
-	require_once($ivLibDir."DataOrderHelper.class.php");
+	require_once($libraryClassDir."DataObjects.class.php");
+	require_once($libraryClassDir."DataOrderHelper.class.php");
 
 	/**
 	 * Usefull for editing schedules

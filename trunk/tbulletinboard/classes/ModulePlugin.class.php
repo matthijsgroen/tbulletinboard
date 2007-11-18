@@ -18,10 +18,10 @@
 	 *	
 	 */
 
-	global $ivLibDir;
+	global $libraryClassDir;
 
-	require_once($ivLibDir . 'XMLParser.class.php');
-	require_once($ivLibDir . 'PackFile.class.php');
+	require_once($libraryClassDir . 'XMLParser.class.php');
+	require_once($libraryClassDir . 'PackFile.class.php');
 	require_once($TBBclassDir . 'Plugin.bean.php');
 	require_once($TBBclassDir . 'Module.bean.php');
 

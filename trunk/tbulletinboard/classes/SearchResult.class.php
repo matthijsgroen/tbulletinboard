@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	require_once($ivLibDir."Table.class.php");
+	require_once($libraryClassDir."Table.class.php");
 	require_once($TBBclassDir."tbblib.php");
 	require_once($TBBclassDir."SearchCache.bean.php");
 

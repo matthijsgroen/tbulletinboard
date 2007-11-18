@@ -28,7 +28,7 @@
 	include($TBBincludeDir.'usermenu.php');
 	require_once($TBBclassDir.'Location.class.php');
 	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 
 	if (isSet($_GET['actionName']) && isSet($_GET['actionID'])) {

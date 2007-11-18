@@ -23,7 +23,7 @@
 	require_once($TBBconfigDir.'configuration.php');
 
 	require_once($TBBclassDir.'Board.class.php');
-	require_once($ivLibDir.'Form.class.php');
+	require_once($libraryClassDir.'Form.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 	require_once($TBBclassDir.'ModulePlugin.class.php');
 

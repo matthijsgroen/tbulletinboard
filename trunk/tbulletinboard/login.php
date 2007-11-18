@@ -48,8 +48,8 @@
 		$feedback->addMessage('Je bent succesvol uitgelogd!');
 	}
 
-	require_once($ivLibDir.'Form.class.php');
-	require_once($ivLibDir.'FormFields.class.php');
+	require_once($libraryClassDir.'Form.class.php');
+	require_once($libraryClassDir.'FormFields.class.php');
 	require_once($TBBclassDir.'Location.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Inloggen';
