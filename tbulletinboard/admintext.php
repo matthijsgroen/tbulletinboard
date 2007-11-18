@@ -22,7 +22,7 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
-	require_once($ivLibDir . "javascript/ToolbarHelper.class.php");
+	require_once($libraryClassDir . "javascript/ToolbarHelper.class.php");
 
 	if ($TBBsession->getMessage()) {
 		if ($TBBsession->getMessage() == "iconAdd") {
@@ -40,16 +40,16 @@
 	include($TBBincludeDir.'usermenu.php');
 
 	require_once($TBBclassDir.'Location.class.php');
-	require_once($ivLibDir.'Form.class.php');
-	require_once($ivLibDir.'FormFields.class.php');
-	require_once($ivLibDir.'formcomponents/RecordSelect.class.php');
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Form.class.php');
+	require_once($libraryClassDir.'FormFields.class.php');
+	require_once($libraryClassDir.'formcomponents/RecordSelect.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 	require_once($TBBclassDir.'Emoticon.bean.php');
 	require_once($TBBclassDir.'TBBEmoticonList.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 	require_once($TBBclassDir.'ActionHandler.class.php');
-	//require_once($ivLibDir . "ActionHandler.class.php");
-	require_once($ivLibDir . "DataOrderHelper.class.php");
+	//require_once($libraryClassDir . "ActionHandler.class.php");
+	require_once($libraryClassDir . "DataOrderHelper.class.php");
 
 	$actionHandler = new ActionHandler($feedback);
 	$actionHandler->definePostAction("delete");

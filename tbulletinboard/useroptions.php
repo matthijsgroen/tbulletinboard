@@ -25,9 +25,9 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($ivLibDir.'Form.class.php');
-	require_once($ivLibDir.'FormFields.class.php');
-	require_once($ivLibDir.'FileUpload.class.php');
+	require_once($libraryClassDir.'Form.class.php');
+	require_once($libraryClassDir.'FormFields.class.php');
+	require_once($libraryClassDir.'FileUpload.class.php');
 	require_once($TBBclassDir.'Location.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 	require_once($TBBclassDir.'Board.class.php');

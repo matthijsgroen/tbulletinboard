@@ -26,7 +26,7 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 	require_once($TBBclassDir.'Board.class.php');
 	require_once($TBBclassDir.'Location.class.php');
 	require_once($TBBclassDir.'TBBEmoticonList.class.php');

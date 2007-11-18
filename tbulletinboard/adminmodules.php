@@ -20,8 +20,8 @@
 
 	require_once("folder.config.php");
 	// Load the configuration
-	require_once($ivLibDir.'Table.class.php');
-	require_once($ivLibDir.'PackFile.class.php');
+	require_once($libraryClassDir.'Table.class.php');
+	require_once($libraryClassDir.'PackFile.class.php');
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
 	require_once($TBBclassDir.'Location.class.php');
@@ -142,7 +142,7 @@
 	$table->allowSubgroups(0, true);
 	
 	if (isSet($GLOBALS['developmentMode'])) {
-		require_once($ivLibDir . "PackFile.class.php");
+		require_once($libraryClassDir . "PackFile.class.php");
 		$dir = substr(__file__, 0, strrpos(__file__, "/")) . "/modules";
 	}	
 	

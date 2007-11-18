@@ -22,7 +22,7 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	require_once($ivLibDir.'Form.class.php');
+	require_once($libraryClassDir.'Form.class.php');
 	require_once($TBBclassDir.'Location.class.php');
 	require_once($TBBclassDir.'UserManagement.class.php');
 	require_once($TBBclassDir.'Text.class.php');

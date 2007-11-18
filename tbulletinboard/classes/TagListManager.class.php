@@ -19,7 +19,7 @@
 	 */
 
 	require_once($TBBclassDir."TextParsing.bean.php");
-	require_once($ivLibDir."TextTagList.class.php");
+	require_once($libraryClassDir."TextTagList.class.php");
 
 	class TBBTag extends TextTag {
 

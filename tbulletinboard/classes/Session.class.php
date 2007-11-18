@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	require_once($ivLibDir . 'Session.class.php');
-	require_once($ivLibDir . 'LibDateTime.class.php');
+	require_once($libraryClassDir . 'Session.class.php');
+	require_once($libraryClassDir . 'LibDateTime.class.php');
 	require_once($TBBclassDir . 'User.class.php');
 	require_once($TBBclassDir . 'User.bean.php');
 

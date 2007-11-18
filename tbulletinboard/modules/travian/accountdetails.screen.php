@@ -1,7 +1,26 @@
 <?php
+	/**
+	 *	TBB2, an highly configurable and dynamic bulletin board
+	 *	Copyright (C) 2007  Matthijs Groen
+	 *
+	 *	This program is free software: you can redistribute it and/or modify
+	 *	it under the terms of the GNU General Public License as published by
+	 *	the Free Software Foundation, either version 3 of the License, or
+	 *	(at your option) any later version.
+	 *	
+	 *	This program is distributed in the hope that it will be useful,
+	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 *	GNU General Public License for more details.
+	 *	
+	 *	You should have received a copy of the GNU General Public License
+	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	 *	
+	 */
 
-	global $ivLibDir;
-	require_once($ivLibDir . "Form.class.php");
+
+	global $libraryClassDir;
+	require_once($libraryClassDir . "Form.class.php");
 	includeFormComponents("NumberField", "TemplateField", "Submit", "Checkbox", "PlainText", "RadioGroup", "RadioButton", "CheckboxGroup");
 
 	global $TBBsession;
@@ -112,7 +131,7 @@
 						$detailInfo->setValue($tradeName, true);
 					} else $detailInfo->setValue($tradeName, false);
 				}
-				for ($index = 1; $index < 10; $index++) {
+				for ($index = 1; $index <= 10; $index++) {
 					if (isSet($_POST["unitType".$index]) && ($_POST["unitType".$index] != "")) {
 						$detailInfo->setValue("unitType".$index, $_POST["unitType".$index]);
 					} else $detailInfo->setNull("unitType".$index);
@@ -138,7 +157,7 @@
 	foreach($tradeArray as $tradeName) {
 		$form->setValue($tradeName, $detailInfo->getValue($tradeName));
 	}
-	for ($index = 1; $index < 10; $index++) {
+	for ($index = 1; $index <= 10; $index++) {
 		if (!$detailInfo->isNull("unitType".$index)) $form->setValue("unitType".$index, $detailInfo->getValue("unitType".$index));
 	}
 	$form->setValue("camping", $detailInfo->getValue("camping"));

@@ -28,8 +28,8 @@
 	include($TBBincludeDir.'usermenu.php');
 	require_once($TBBclassDir.'Location.class.php');
 	require_once($TBBclassDir.'Text.class.php');
-	require_once($ivLibDir.'Table.class.php');
-	require_once($ivLibDir.'Menu.class.php');
+	require_once($libraryClassDir.'Table.class.php');
+	require_once($libraryClassDir.'Menu.class.php');
 	require_once($TBBclassDir.'AvatarList.class.php');
 	require_once($TBBclassDir.'ActionHandler.class.php');
 

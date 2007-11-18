@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	global $ivLibDir;
-	require_once($ivLibDir . "FormFields.class.php");
+	global $libraryClassDir;
+	require_once($libraryClassDir . "FormFields.class.php");
 	global $TBBclassDir;
 	require_once($TBBclassDir.'TopicIconList.class.php');
 	require_once($TBBclassDir.'Board.class.php');

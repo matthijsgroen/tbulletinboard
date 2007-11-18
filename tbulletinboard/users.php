@@ -22,7 +22,7 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 	require_once($TBBclassDir.'ModulePlugin.class.php');
 	require_once($TBBclassDir.'SearchResult.class.php');
 
@@ -83,7 +83,7 @@
 		if (isSet($_GET['pageNr'])) $pageNr = $_GET['pageNr'] -1;
 
 		if ($resultCount > $pageLimit) {
-			require_once($ivLibDir.'PageNavigation.class.php');
+			require_once($libraryClassDir.'PageNavigation.class.php');
 			$pageBar = new PageNavigation(ceil($resultCount / $pageLimit), ($pageNr+1),
 				sprintf("users.php?pageNr=%%s&amp;result=%s&amp;sortType=%s&amp;sortColumn=%s", $resultID, $sortType, $sortColumn), 10);
 			$pageBar->showPagebar("searchPageBar");

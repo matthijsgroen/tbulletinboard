@@ -21,11 +21,11 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($ivLibDir.'Table.class.php');
-	require_once($ivLibDir.'Form.class.php');
-	require_once($ivLibDir.'FormFields.class.php');
-	require_once($ivLibDir.'formcomponents/RecordSelect.class.php');
-	require_once($ivLibDir.'formcomponents/PlainText.class.php');
+	require_once($libraryClassDir.'Table.class.php');
+	require_once($libraryClassDir.'Form.class.php');
+	require_once($libraryClassDir.'FormFields.class.php');
+	require_once($libraryClassDir.'formcomponents/RecordSelect.class.php');
+	require_once($libraryClassDir.'formcomponents/PlainText.class.php');
 
 	require_once($TBBclassDir.'Board.bean.php');
 	require_once($TBBclassDir.'ActionHandler.class.php');

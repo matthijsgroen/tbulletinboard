@@ -24,6 +24,6 @@
 	$TBBconfigDir = './config/';
 	$TBBincludeDir = './include/';
 	$TBBclassDir = './classes/'; // always configure the classdir before loading the classes;
-	$ivLibDir = './lib/';
+	$libraryClassDir = './lib/';
 
 ?>

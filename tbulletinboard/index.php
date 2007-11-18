@@ -196,7 +196,7 @@
 
 	// Topics overview.
 	if ($board->allowTopics() && ($board->canRead($TBBcurrentUser))) {
-		require_once($ivLibDir.'PageNavigation.class.php');
+		require_once($libraryClassDir.'PageNavigation.class.php');
 		$pageBar = new PageNavigation(ceil($board->getPrunedTopicCount($daysPrune) / $pageSize), ($pageNr+1), "index.php?pageNr=%s&amp;id=".$board->getID(), 10);
 
 ?>
@@ -225,7 +225,7 @@
 		$topicOverview->setRowClasses("check", "read", "icon", "subject", "starter", "nrreact", "nrread", "lastreaction");
 
 		$topGroups = false;
-		require_once($ivLibDir.'TextParser.class.php');
+		require_once($libraryClassDir.'TextParser.class.php');
 		$textParser = new TextParser();
 
 		$stickyTopics = $board->readStickyTopics();

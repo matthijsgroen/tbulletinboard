@@ -26,10 +26,10 @@
 	require_once($TBBclassDir.'SearchResult.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 
-	require_once($ivLibDir.'Table.class.php');
-	require_once($ivLibDir.'Menu.class.php');
-	require_once($ivLibDir.'Form.class.php');
-	require_once($ivLibDir.'FormFields.class.php');
+	require_once($libraryClassDir.'Table.class.php');
+	require_once($libraryClassDir.'Menu.class.php');
+	require_once($libraryClassDir.'Form.class.php');
+	require_once($libraryClassDir.'FormFields.class.php');
 
 	$boardID = 0;
 	if (isSet($_POST['boardID'])) $boardID = $_POST['boardID'];
@@ -149,7 +149,7 @@
 			if (isSet($_GET['pageNr'])) $pageNr = $_GET['pageNr'] -1;
 
 			if ($resultCount > $pageLimit) {
-				require_once($ivLibDir.'PageNavigation.class.php');
+				require_once($libraryClassDir.'PageNavigation.class.php');
 				$pageBar = new PageNavigation(ceil($resultCount / $pageLimit), ($pageNr+1),
 					sprintf("search.php?pageNr=%%s&amp;result=%s&amp;sortType=%s&amp;sortColumn=%s&amp;type=%s", $resultID, $sortType, $sortColumn, $searchType), 10);
 				$pageBar->showPagebar("searchPageBar");

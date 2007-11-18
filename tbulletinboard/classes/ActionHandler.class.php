@@ -18,9 +18,9 @@
 	 *	
 	 */
 
-	global $ivLibDir;
-	require_once($ivLibDir."Messages.class.php");
-	require_once($ivLibDir."DataArray.class.php");
+	global $libraryClassDir;
+	require_once($libraryClassDir."Messages.class.php");
+	require_once($libraryClassDir."DataArray.class.php");
 
 	class ActionHandler {
 

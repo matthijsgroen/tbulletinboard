@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	global $ivLibDir;
-	require_once($ivLibDir . 'LibDateTime.class.php');
+	global $libraryClassDir;
+	require_once($libraryClassDir . 'LibDateTime.class.php');
 	require_once($TBBclassDir . 'Location.class.php');
 	require_once($TBBclassDir . 'MemberGroups.class.php');
 	require_once($TBBclassDir . 'BoardProfiles.class.php');
@@ -299,7 +299,7 @@
 			$lastReaction = $data->getValue("lastReaction");
 			global $TBBcurrentUser;
 			if ($TBBcurrentUser->isGuest()) return false;
-			if ($lastReaction <= $TBBcurrentUser->getReadThreshold()) return true;
+			if (!$lastReaction->after($TBBcurrentUser->getReadThreshold())) return true;
 
 			global $TBBconfiguration;
 			$database = $TBBconfiguration->getDatabase();
@@ -312,6 +312,7 @@
 			$topicReadTable->selectRows($filter, new ColumnSorting());
 			if ($topicRead = $topicReadTable->getRow()) {
 				$lastRead = $topicRead->getValue("lastRead");
+				//print $lastRead->toString() . " - " . $lastReaction->toString() . " -";
 				return (!$lastRead->before($lastReaction));
 			}
 			return false;

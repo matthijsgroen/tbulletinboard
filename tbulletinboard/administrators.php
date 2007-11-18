@@ -27,8 +27,8 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 	require_once($TBBclassDir.'Location.class.php');
-	require_once($ivLibDir.'Messages.class.php');
-	require_once($ivLibDir.'Table.class.php');
+	require_once($libraryClassDir.'Messages.class.php');
+	require_once($libraryClassDir.'Table.class.php');
 	require_once($TBBclassDir.'Text.class.php');
 	require_once($TBBclassDir.'ActionHandler.class.php');
 

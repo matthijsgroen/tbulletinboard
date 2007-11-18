@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	global $ivLibDir;
-	require_once($ivLibDir.'TextParser.class.php');
+	global $libraryClassDir;
+	require_once($libraryClassDir.'TextParser.class.php');
 
 	class Location {
 

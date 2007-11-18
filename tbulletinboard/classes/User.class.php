@@ -21,7 +21,7 @@
 	/**
 	 * User. an TBB user, with its configuration and settings.
 	 */
-	require_once($ivLibDir . 'LibDateTime.class.php');
+	require_once($libraryClassDir . 'LibDateTime.class.php');
 	require_once($TBBclassDir . 'AvatarList.class.php');
 	require_once($TBBclassDir . 'UserSettings.bean.php');
 	require_once($TBBclassDir . 'User.bean.php');
