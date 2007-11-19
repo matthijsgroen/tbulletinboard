@@ -32,9 +32,10 @@
 		}
 	}
 
-	require_once($libraryClassDir . 'library.php');
-	require_once($TBBclassDir . 'Configuration.class.php');
-	require_once($TBBclassDir . 'Session.class.php');
+	require_once($TBBclassDir . 'library.php');
+	importClass("board.Configuration");
+	importClass("board.Session");
+	
 	require_once($TBBconfigDir . 'settings.php');
 
 	// set security settings
@@ -44,9 +45,10 @@
 	
 	date_default_timezone_set('CET');
 
-	require_once($libraryClassDir . 'MySQLDatabase.class.php');
+	//require_once($libraryClassDir . 'MySQLDatabase.class.php');
+	importClass("orm.MySQLDatabase");
+
 	$database = new MySQLDatabase("localhost", "menhir_data", "root", "msdb3181");
-	//$database = new MySQLDatabase("localhost", "menhir_data", "menhir_user", "traviantest");
 	$database->setTablePrefix("tbb_");
 	$database->connect();
 	//$database->setVersion3();
@@ -63,7 +65,7 @@
 
 	$formTitleTemplate = "<div class=\"formtitle\">%text%</div>";
 	// Prepare other classes
-	require_once($libraryClassDir.'Messages.class.php');
+	importClass("interface.Messages");
 	$feedback = new Messages();
 	$TBBname = $TBBconfiguration->getBoardName();
 
@@ -79,7 +81,7 @@
 	$TBBsession = new TBBSession(); // "/tbb/", "localhost"
 
 
-	require_once($libraryClassDir.'TextParser.class.php');
+	importClass("util.TextParser");
 	$textParser = new TextParser();
 
 ?>

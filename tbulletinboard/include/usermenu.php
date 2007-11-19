@@ -17,10 +17,9 @@
 	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	 *	
 	 */
-
-	require_once($libraryClassDir . 'Menu.class.php');
-	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($TBBclassDir.'ModulePlugin.class.php');
+	importClass("interface.Menu");
+	importClass("board.UserManagement");
+	importClass("board.ModulePlugin");
 
 	$topMenu = new Menu();
 

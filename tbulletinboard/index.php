@@ -22,10 +22,11 @@
 	// Load the configuration
 	
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'Board.class.php');
+	importClass("board.Board");
 
 	require_once($TBBclassDir.'tbblib.php');
-	require_once($TBBclassDir.'Skin.class.php');
+	importClass("board.Skin");
+
 	function handleMessage($name, $text) {
 		global $feedback;
 		global $TBBsession;
