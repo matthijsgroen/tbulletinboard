@@ -37,16 +37,18 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'formcomponents/RecordSelect.class.php');
-	require_once($libraryClassDir.'TextParser.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'TagListManager.class.php');
-	require_once($TBBclassDir.'TBBEmoticonList.class.php');
+
+	importClass("board.Location");
+	importClass("interface.Table");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.formcomponents.RecordSelect");
+	importClass("util.TextParser");
+
+	importClass("board.Text");
+	importClass("board.ActionHandler");
+	importClass("board.TagListManager");
+	importClass("board.TBBEmoticonList");
 
 	if (isSet($_GET['action']) && isSet($_GET['actionID'])) {
 		if ((($_GET['action'] == 'activate') || ($_GET['action'] == 'deactivate')) && ($_GET['actionID'] == $TBBsession->getActionID())) {

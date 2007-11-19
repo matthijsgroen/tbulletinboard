@@ -18,11 +18,7 @@
 	 *	
 	 */
 
-	/**
-	 *
-	 */
-	global $libraryClassDir;
-	require_once($libraryClassDir."DataObjects.class.php");
+	importClass("orm.DataObjects");
 
 	/**
 	 * Usefull for editing schedules

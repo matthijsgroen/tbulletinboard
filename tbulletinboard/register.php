@@ -21,7 +21,7 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir."User.bean.php");
+	importClass("board.User");
 
 	$isRegistered = 0;
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {
@@ -71,10 +71,10 @@
 		}
 	}
 
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("board.Location");
+	importClass("board.Text");
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Registreren';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');

@@ -18,12 +18,18 @@
 	 *	
 	 */
 
+	importClass("board.SearchPlugin");
+	importClass("board.BoardFormFields");
+	importBean("board.User");
+
 	//global $libraryClassDir;
 	//require_once($libraryClassDir . "FormFields.class.php");
+	/*
 	global $TBBclassDir;
 	require_once($TBBclassDir . "SearchPlugin.class.php");
 	require_once($TBBclassDir . "BoardFormFields.class.php");
 	require_once($TBBclassDir . "User.bean.php");
+	*/
 
 	class MemberSearchPlugin extends SearchPlugin {
 		

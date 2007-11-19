@@ -18,9 +18,7 @@
 	 *	
 	 */
 
-
-	global $libraryClassDir;
-	require_once($libraryClassDir . "Form.class.php");
+	importClass("interface.Form");
 	includeFormComponents("NumberField", "TemplateField", "Submit", "Checkbox", "PlainText", "RadioGroup", "RadioButton", "CheckboxGroup");
 
 	global $TBBsession;

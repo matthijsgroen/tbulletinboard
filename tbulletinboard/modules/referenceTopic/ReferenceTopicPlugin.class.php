@@ -18,17 +18,28 @@
 	 *	
 	 */
 
+	importClass("util.PageNavigation");
+	importClass("util.TextParser");
+	importClass("interface.Table");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.Menu");
+	importClass("orm.DataObjects");
+	importClass("board.Board");
+	importBean("board.Topic");
+	importBean("board.Reaction");
+	importClass("board.Buttonbar");
+	importClass("board.BoardFormFields");
+	importClass("board.TBBEmoticonList");
+	importClass("interface.Text");
+	require_once($moduleDir . "ReferenceTopic.bean.php");
+	require_once($moduleDir . "ReferenceTopic.class.php");
+	importClass("board.TopicPlugin");
+	importClass("board.ActionHandler");
+
+	/*
 	$libraryClassDir = $GLOBALS['libraryClassDir'];
 	$TBBclassDir = $GLOBALS['TBBclassDir'];
-
-	require_once($libraryClassDir . 'PageNavigation.class.php');
-	require_once($libraryClassDir . 'TextParser.class.php');
-	require_once($libraryClassDir . 'Table.class.php');
-	require_once($libraryClassDir . 'Form.class.php');
-	require_once($libraryClassDir . 'FormFields.class.php');
-	require_once($libraryClassDir . 'formcomponents/TextField.class.php');
-	require_once($libraryClassDir . 'Menu.class.php');
-	require_once($libraryClassDir . 'DataObjects.class.php');
 
 	require_once($TBBclassDir . 'ActionHandler.class.php');
 	require_once($TBBclassDir . 'TopicPlugin.class.php');
@@ -42,6 +53,7 @@
 
 	require_once($moduleDir . 'ReferenceTopic.bean.php');
 	require_once($moduleDir . 'ReferenceTopic.class.php');
+	*/
 
 	class ReferenceTopicPlugin extends TopicPlugin {
 

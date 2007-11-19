@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	require_once($libraryClassDir."javascript/Javascript.class.php");
+	importClass("util.Javascript");
 
 	/**
 	 * FormFieldGroup is a standard superclass for all FormFieldGroups.
@@ -555,8 +555,7 @@
 
 
 		function getFormInitScript() {
-			global $libraryClassDir;
-			require_once($libraryClassDir . "javascript/Javascript.class.php");
+			importClass("util.Javascript");
 			$hasItems = false;
 
 			$selectString = "";

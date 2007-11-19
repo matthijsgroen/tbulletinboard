@@ -22,7 +22,6 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
-	require_once($libraryClassDir . "javascript/ToolbarHelper.class.php");
 
 	if ($TBBsession->getMessage()) {
 		if ($TBBsession->getMessage() == "iconAdd") {
@@ -39,17 +38,17 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'formcomponents/RecordSelect.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($TBBclassDir.'Emoticon.bean.php');
-	require_once($TBBclassDir.'TBBEmoticonList.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	//require_once($libraryClassDir . "ActionHandler.class.php");
-	require_once($libraryClassDir . "DataOrderHelper.class.php");
+	importClass("util.ToolbarHelper");
+	importClass("board.Location");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.formcomponents.RecordSelect");
+	importClass("interface.Table");
+	importBean("board.Emoticon");
+	importClass("board.TBBEmoticonList");
+	importClass("board.Text");
+	importClass("board.ActionHandler");
+	importClass("orm.DataOrderHelper");
 
 	$actionHandler = new ActionHandler($feedback);
 	$actionHandler->definePostAction("delete");

@@ -22,12 +22,12 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("board.Location");
+	importClass("board.UserManagement");
+	importClass("board.Text");
+	importClass("board.ActionHandler");
 
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {
 		if (($_POST['actionName'] == 'sendPassword') && ($_POST['actionID'] == $TBBsession->getActionID())) {

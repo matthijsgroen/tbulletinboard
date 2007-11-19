@@ -20,15 +20,16 @@
 
 	require_once("folder.config.php");
 	// Load the configuration
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'PackFile.class.php');
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'Plugin.bean.php');
-	require_once($TBBclassDir.'ModulePlugin.class.php');
+
+	importClass("interface.Table");
+	importClass("util.PackFile");
+	importClass("board.Location");
+	importClass("board.Text");
+	importClass("board.ActionHandler");
+	importBean("board.Plugin");
+	importClass("board.ModulePlugin");
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Plugin Info';
 	include($TBBincludeDir.'htmltop.php');

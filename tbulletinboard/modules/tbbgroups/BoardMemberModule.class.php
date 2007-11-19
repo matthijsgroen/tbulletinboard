@@ -18,9 +18,14 @@
 	 *	
 	 */
 
+	importClass("board.MemberModule");
+	importClass("board.MemberGroups");
+
+	/*
 	global $TBBclassDir;
 	require_once($TBBclassDir.'MemberModule.class.php');
 	require_once($TBBclassDir.'MemberGroups.class.php');
+	*/
 
 	class BoardMemberModule extends MemberModule {
 

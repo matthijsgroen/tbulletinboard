@@ -18,9 +18,7 @@
 	 *	
 	 */
 
-	
-	global $libraryClassDir;
-	require_once($libraryClassDir."DataObjects.class.php");
+	importClass("orm.DataObjects");
 
 	class ReviewTypesTable extends DataTable {
 		var $privateVars;

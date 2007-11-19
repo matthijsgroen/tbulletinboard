@@ -22,14 +22,15 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
-	require_once($TBBclassDir.'ModulePlugin.class.php');
-	require_once($TBBclassDir.'SearchResult.class.php');
-	require_once($TBBclassDir.'Text.class.php');
 
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'Menu.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
+	importClass("board.ModulePlugin");
+	importClass("board.SearchResult");
+	importClass("board.Text");
+
+	importClass("interface.Table");
+	importClass("interface.Menu");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
 
 	$boardID = 0;
 	if (isSet($_POST['boardID'])) $boardID = $_POST['boardID'];

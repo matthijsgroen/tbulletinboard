@@ -18,11 +18,8 @@
 	 *	
 	 */
 
-
-	global $TBBclassDir;
-	require_once($TBBclassDir . "AdminPlugin.class.php");
-	global $libraryClassDir;
-	require_once($libraryClassDir . "Table.class.php");
+	importClass("board.AdminPlugin");
+	importClass("interface.Table");
 
 	class MessageUserPanelPlugin extends AdminPlugin {
 		var $privateVars;

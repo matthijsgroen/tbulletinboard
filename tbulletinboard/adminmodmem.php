@@ -26,10 +26,11 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
+	
+	importClass("board.Location");
+	importClass("interface.Form");
+	importClass("interface.Table");
+	importClass("board.ActionHandler");
 
 	if (isSet($_GET['actionName']) && isSet($_GET['actionID'])) {
 		if (($_GET['actionName'] == 'add') && ($_GET['actionID'] == $TBBsession->getActionID())) {

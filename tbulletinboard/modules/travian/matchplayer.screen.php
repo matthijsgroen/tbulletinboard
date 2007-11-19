@@ -18,12 +18,9 @@
 	 *	
 	 */
 
+	importClass("interface.Form");
+	includeFormComponents("TemplateField", "Submit", "TextField");
 
-	global $libraryClassDir;
-	require_once($libraryClassDir . "Form.class.php");
-	require_once($libraryClassDir . "formcomponents/TextField.class.php");
-	require_once($libraryClassDir . "formcomponents/Submit.class.php");
-	require_once($libraryClassDir . "formcomponents/TemplateField.class.php");
 	global $TBBsession;
 	global $formTitleTemplate;
 	

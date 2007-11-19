@@ -22,9 +22,9 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	require_once($TBBclassDir.'Board.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+	importClass("interface.Form");
+	importClass("board.Board");
+	importClass("board.Text");
 
 	$topicID = 0;
 	if (isSet($_GET['id'])) $topicID = $_GET['id'];
@@ -84,68 +84,6 @@
 		include($TBBincludeDir.'htmlbottom.php');
 		exit;
 	}
-
-/*
-	if (!$board->canAddTopics($TBBcurrentUser)) {
-		$text = new Text();
-		$text->addHTMLText("Er mogen geen nieuwe onderwerpen worden gestart in dit forum");
-		$text->showText();
-		include($TBBincludeDir.'htmlbottom.php');
-		exit;
-	}
-
-	$topicModules = $TBBconfiguration->getTopicModulesInfo();
-	$activeTopics = 0;
-	for ($i = 0; $i < count($topicModules); $i++) {
-		$topicModule = $topicModules[$i];
-		if ($topicModule['active'] == true) $activeTopics++;
-	}
-
-	if ((($activeTopics == 0) && (!$TBBcurrentUser->isActiveAdmin())) || (count($topicModules) == 0)) {
-		$text = new Text();
-		$text->addHTMLText("Er zijn geen onderwerp modules ge&iuml;nstalleerd of geactiveerd!");
-		$text->showText();
-		include($TBBincludeDir.'htmlbottom.php');
-		exit;
-	}
-
-	if ($wizzStep == 0) {
-?>
-	<div class="center">
-		<form id="locJump" action="addtopic.php" method="post">
-		<div id="locationJump">
-			<input type="hidden" name="boardID" value="<?=$board->getID(); ?>" />
-			<span class="locationTitle">Selecteer soort onderwerp:</span>
-			<select name="topModID" onchange="form.submit()">
-<?php
-	$topicModuleID = $topicModules[0]['ID']; // Selecteer de eerste de beste
-	for ($i = 0; $i < count($topicModules); $i++) {
-		$topicModule = $topicModules[$i];
-		printf("\t\t\t\t<option value=\"%s\"%s>%s</option>\n",
-			htmlConvert($topicModule['ID']),
-			$topicModule['default'] ? " selected=\"selected\"" : "",
-			htmlConvert($topicModule['name']));
-		if ($topicModule['default']) $topicModuleID = $topicModule['ID'];
-	}
-?>
-			</select>
-		</div>
-		</form>
-	</div>
-<?php
-	}
-	$topicModule = $TBBconfiguration->getTopicModule($topicModuleID);
-
-	$form = new Form("newTopic", "addtopic.php");
-	$form->addHiddenField("actionName", "addTopic");
-	$form->addHiddenField("actionID", $TBBsession->getActionID());
-	$form->addHiddenField("boardID", $board->getID());
-	$form->addHiddenField("modID", $topicModuleID);
-	$form->addHiddenField("wizzStep", $wizzStep+1);
-
-	$topicModule->setAddTopicForm($form, $wizzStep, $board);
-	$form->writeForm();
-*/
 
 	$form = new Form("editTopic", "edittopic.php");
 	$form->addHiddenField("actionName", "editTopic");

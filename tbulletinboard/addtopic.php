@@ -22,10 +22,10 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	require_once($TBBclassDir.'Board.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ModulePlugin.class.php');
+	importClass("board.Board");
+	importClass("interface.Form");
+	importClass("board.Text");
+	importClass("board.ModulePlugin");
 
 	$boardID = 0;
 	if (isSet($_GET['boardID'])) $boardID = $_GET['boardID'];

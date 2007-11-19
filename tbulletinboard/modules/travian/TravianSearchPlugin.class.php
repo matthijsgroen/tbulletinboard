@@ -18,11 +18,9 @@
 	 *	
 	 */
 
-	global $TBBclassDir;
-	require_once($TBBclassDir . "SearchPlugin.class.php");
-	require_once($TBBclassDir . "BoardFormFields.class.php");
-	global $libraryClassDir;
-	require_once($libraryClassDir . "FormFields.class.php");
+	importClass("board.SearchPlugin");
+	importClass("board.BoardFormFields");
+	importClass("interface.FormFields");
 
 	class TravianSearchPlugin extends SearchPlugin {
 		

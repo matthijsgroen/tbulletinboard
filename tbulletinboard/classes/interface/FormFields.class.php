@@ -21,8 +21,8 @@
 	/**
 	 * Import functionality to convert text to html.
 	 */
-	require_once($libraryClassDir."Language.class.php");
-	require_once($libraryClassDir."Form.class.php");
+	importClass("util.Language");
+	importClass("interface.Form");
 
 	/**
 	 * StandardFormFields is a class containing the most usefull and

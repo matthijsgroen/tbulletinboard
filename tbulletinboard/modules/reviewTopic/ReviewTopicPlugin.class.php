@@ -18,6 +18,34 @@
 	 *	
 	 */
 
+	importClass("util.PageNavigation");
+	importClass("util.TextParser");
+	importClass("interface.Table");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.Menu");
+	importClass("orm.DataObjects");
+	importClass("board.Board");
+	importBean("board.Topic");
+	importBean("board.Reaction");
+	importClass("board.Buttonbar");
+	importClass("board.BoardFormFields");
+	importClass("board.TBBEmoticonList");
+	importClass("board.TopicPlugin");
+	importClass("board.ActionHandler");
+
+	require_once($moduleDir . 'ReviewTypes.bean.php');
+	require_once($moduleDir . 'ReviewTopic.bean.php');
+	require_once($moduleDir . 'ReviewTopicFields.bean.php');
+	require_once($moduleDir . 'ReviewTopicScore.bean.php');
+	require_once($moduleDir . 'ReviewReaction.bean.php');
+	require_once($moduleDir . 'ReviewFields.bean.php');
+	require_once($moduleDir . 'ReviewFieldValues.bean.php');
+	require_once($moduleDir . 'ReviewReactionScore.bean.php');
+	require_once($moduleDir . 'ReviewReaction.class.php');
+	require_once($moduleDir . 'ReviewTopic.class.php');
+
+	/*
 	global $libraryClassDir;
 	global $TBBclassDir;
 
@@ -28,6 +56,7 @@
 	require_once($libraryClassDir . 'FormFields.class.php');
 	require_once($libraryClassDir . 'Menu.class.php');
 	require_once($libraryClassDir . 'DataObjects.class.php');
+
 	require_once($libraryClassDir . 'formcomponents/FloatField.class.php');
 	require_once($libraryClassDir . 'formcomponents/NumberField.class.php');
 	require_once($libraryClassDir . 'formcomponents/TextField.class.php');
@@ -42,17 +71,7 @@
 	require_once($TBBclassDir . 'Buttonbar.class.php');
 	require_once($TBBclassDir . 'BoardFormFields.class.php');
 	require_once($TBBclassDir . 'TBBEmoticonList.class.php');
-
-	require_once($moduleDir . 'ReviewTypes.bean.php');
-	require_once($moduleDir . 'ReviewTopic.bean.php');
-	require_once($moduleDir . 'ReviewTopicFields.bean.php');
-	require_once($moduleDir . 'ReviewTopicScore.bean.php');
-	require_once($moduleDir . 'ReviewReaction.bean.php');
-	require_once($moduleDir . 'ReviewFields.bean.php');
-	require_once($moduleDir . 'ReviewFieldValues.bean.php');
-	require_once($moduleDir . 'ReviewReactionScore.bean.php');
-	require_once($moduleDir . 'ReviewReaction.class.php');
-	require_once($moduleDir . 'ReviewTopic.class.php');
+	*/
 
 	class ReviewTopicPlugin extends TopicPlugin {
 
