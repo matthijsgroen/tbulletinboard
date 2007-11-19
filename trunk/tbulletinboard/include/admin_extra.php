@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	require_once($libraryClassDir . 'Menu.class.php');
-	require_once($TBBclassDir . 'ModulePlugin.class.php');
+	importClass("interface.Menu");	
+	importClass("board.ModulePlugin");
 
 	$menu = new Menu();
 	$menu->addGroup('modules', 'Modules');

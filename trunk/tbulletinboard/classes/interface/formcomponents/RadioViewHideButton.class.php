@@ -21,10 +21,9 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	global $libraryClassDir;
-	require_once($libraryClassDir."Form.class.php");
-	require_once($libraryClassDir."javascript/Javascript.class.php");
-	require_once($libraryClassDir."formcomponents/RadioButton.class.php");
+	importClass("interface.Form");
+	importClass("util.Javascript");
+	importClass("interface.formcomponents.RadioButton");
 
 	/**
 	 * Component to put plain text (html allowed) in forms

@@ -21,16 +21,15 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
+	importClass("interface.Form");
 	/**
 	 * Import Time and Date calculations class
 	 */
-	require_once($libraryClassDir."LibDateTime.class.php");
+	importClass("util.LibDateTime");
 	/**
 	 * Import for html conversion functionality
 	 */
-	require_once($libraryClassDir."library.php");
-	require_once($libraryClassDir."Language.class.php");
+	importClass("util.Language");
 
 	/**
 	 * Component to put a date inputfield in the form

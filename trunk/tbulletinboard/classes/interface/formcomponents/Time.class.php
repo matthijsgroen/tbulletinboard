@@ -21,12 +21,9 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
-	/**
-	 * Import Time and Date calculations class
-	 */
-	require_once($libraryClassDir."LibDateTime.class.php");
-	require_once($libraryClassDir."Language.class.php");
+	importClass("interface.Form");
+	importClass("util.LibDateTime");
+	importClass("util.Language");
 
 	/**
 	 * Component to a time input field in the form

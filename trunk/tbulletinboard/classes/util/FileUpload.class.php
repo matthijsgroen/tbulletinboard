@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	require_once($libraryClassDir . "FormFields.class.php");
-	require_once($libraryClassDir . "Messages.class.php");
+	importClass("interface.FormFields");	
+	importClass("interface.Messages");	
 
 	/**
 	 * FileUpload handles the upload of files.

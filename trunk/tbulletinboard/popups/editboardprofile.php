@@ -21,12 +21,14 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'Menu.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
+
+	importClass("board.BoardProfiles");	
+	importClass("board.Text");	
+	importClass("board.Location");	
+
+	importClass("interface.Form");	
+	importClass("interface.Menu");	
+	importClass("interface.FormFields");	
 
 	$boardID = (isSet($_GET['id']) && (is_numeric($_GET['id']))) ? $_GET['id'] : -1;
 	$boardID = (isSet($_POST['profileID']) && (is_numeric($_POST['profileID']))) ? $_POST['profileID'] : $boardID;

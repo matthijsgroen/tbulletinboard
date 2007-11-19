@@ -641,9 +641,11 @@
 			global $TBBconfiguration;
 			global $TBBcurrentUser;
 			global $textParser;
-			global $TBBclassDir;
+			//global $TBBclassDir;
 
-			require_once($TBBclassDir . 'TBBEmoticonList.class.php');
+			//require_once($TBBclassDir . 'TBBEmoticonList.class.php');
+			importClass("board.TBBEmoticonList");
+			
 			global $TBBemoticonList;
 
 			$boardProfile = $TBBconfiguration->getSignatureProfile();

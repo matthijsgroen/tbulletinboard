@@ -21,17 +21,19 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($libraryClassDir.'FileUpload.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'TextParser.class.php');
-	require_once($libraryClassDir.'formcomponents/PlainText.class.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'TagListManager.class.php');
-	require_once($TBBclassDir.'TBBEmoticonList.class.php');
+
+	importClass("util.FileUpload");	
+	importClass("interface.Form");	
+	importClass("interface.FormFields");	
+	importClass("interface.Table");	
+	importClass("util.TextParser");	
+	importClass("interface.formcomponents.PlainText");	
+
+	importClass("board.Location");	
+	importClass("board.Text");	
+	importClass("board.ActionHandler");	
+	importClass("board.TagListManager");	
+	importClass("board.TBBEmoticonList");	
 
 	// Declare the form
 	if (isSet($_GET["id"])) $iconId = $_GET["id"];

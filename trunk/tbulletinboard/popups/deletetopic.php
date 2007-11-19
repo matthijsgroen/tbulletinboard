@@ -21,10 +21,11 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir . 'Board.class.php');
-	require_once($libraryClassDir . 'Form.class.php');
-	require_once($libraryClassDir . 'FormFields.class.php');
-	require_once($libraryClassDir . 'formcomponents/PlainText.class.php');
+	
+	importClass("board.Board");	
+	importClass("interface.Form");	
+	importClass("interface.FormFields");	
+	importClass("interface.formcomponents.PlainText");	
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Onderwerp verwijderen';
 	include($TBBincludeDir . 'popuptop.php');

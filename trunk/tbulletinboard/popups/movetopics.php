@@ -21,11 +21,12 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir . 'Board.class.php');
-	require_once($libraryClassDir . 'Form.class.php');
-	require_once($libraryClassDir . 'FormFields.class.php');
-	require_once($libraryClassDir . 'formcomponents/ButtonBar.class.php');
-	require_once($libraryClassDir . 'formcomponents/Button.class.php');
+	
+	importClass("board.Board");	
+	importClass("interface.Form");	
+	importClass("interface.FormFields");	
+	importClass("interface.formcomponents.ButtonBar");	
+	importClass("interface.formcomponents.Button");	
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Onderwerpen verplaatsen';
 	include($TBBincludeDir . 'popuptop.php');

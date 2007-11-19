@@ -18,8 +18,8 @@
 	 *	
 	 */
 
-	require_once($libraryClassDir . 'Menu.class.php');
-
+	importClass("interface.Menu");	
+	
 	$adminMenu = new Menu();
 	$adminMenu->addItem('user', '', 'Persoonlijke instellingen', 'usercontrol.php', '', '', 0, false, '');
 	$adminMenu->addItem('system', '', 'Systeem instellingen', ($TBBcurrentUser->isAdministrator()) ? 'adminboard.php' : '', '', '', 0, false, '');

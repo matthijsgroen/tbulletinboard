@@ -117,8 +117,10 @@
 
 		function writePostTextField(&$form, $field) {
 			$extra = "";
-			global $TBBclassDir;
-			require_once($TBBclassDir . "TBBEmoticonList.class.php");
+			//global $TBBclassDir;
+			//require_once($TBBclassDir . "TBBEmoticonList.class.php");
+			importClass("board.TBBEmoticonList");	
+
 			global $TBBemoticonList;
 			$TBBemoticonList->readEmoticonsInfo();
 			$emoticons = $TBBemoticonList->getEmoticonPicker($field['name'], $form->id);

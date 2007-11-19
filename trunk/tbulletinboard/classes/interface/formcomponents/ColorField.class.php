@@ -21,7 +21,7 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
+	importClass("interface.Form");
 
 	define('iv_paletteloader', "iv_paletteloader");
 	$GLOBALS[iv_paletteloader] = "";

@@ -21,18 +21,19 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($libraryClassDir.'TextParser.class.php');
-	require_once($libraryClassDir.'Menu.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'formcomponents/RecordSelect.class.php');
-	require_once($libraryClassDir.'formcomponents/Submit.class.php');
-	require_once($TBBclassDir.'TagListManager.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($TBBclassDir.'ModulePlugin.class.php');
+
+	importClass("board.TagListManager");	
+	importClass("board.Text");	
+	importClass("util.TextParser");	
+	importClass("interface.Menu");	
+	importClass("interface.Form");	
+	importClass("interface.FormFields");	
+	importClass("interface.formcomponents.RecordSelect");	
+	importClass("interface.formcomponents.Submit");	
+	importClass("interface.Table");	
+	importClass("board.BoardProfiles");	
+	importClass("board.ActionHandler");	
+	importClass("board.ModulePlugin");	
 
 	$pageTitle = 'Profiel boards';
 	include($TBBincludeDir.'popuptop.php');

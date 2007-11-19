@@ -22,16 +22,15 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	require_once($libraryClassDir.'TextParser.class.php');
-	require_once($libraryClassDir.'Menu.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'FileUpload.class.php');
-
-	require_once($TBBclassDir.'TagListManager.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-
+	importClass("board.TagListManager");	
+	importClass("board.Text");	
+	importClass("util.TextParser");	
+	importClass("interface.Menu");	
+	importClass("interface.Form");	
+	importClass("interface.FormFields");	
+	importClass("util.FileUpload");	
+	importClass("interface.Table");	
+	importClass("board.ActionHandler");	
 
 	$pageTitle = 'Systeem avatar uploaden';
 	include($TBBincludeDir.'popuptop.php');
