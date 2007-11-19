@@ -21,9 +21,9 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir . 'configuration.php');
-	require_once($TBBclassDir . 'Board.class.php');
-	require_once($TBBclassDir . 'ActionHandler.class.php');
-	require_once($TBBclassDir . 'TopicRead.bean.php');
+	importClass("board.Board");
+	importClass("board.ActionHandler");
+	importBean("board.TopicRead");
 	require_once($TBBclassDir . 'tbblib.php');
 
 	$topicID = 0;
