@@ -22,4 +22,25 @@
 	$GLOBALS['iv_cal_daynames'] = array("ma", "di", "wo", "do", "vr", "za", "zo");
 	$boardVersion = "2.0.11 &alpha;lpha version";
 	
+	/*
+	$uploadPath = '/home/tbb/public_html/upload/';
+	$uploadOnlinePath = 'upload/';
+	
+	// database settings
+	$dbServer = "localhost";
+	$dbDatabase = "tbb_data";
+	$dbUser = "tbb_user";
+	$dbPassword = "tbbdevelopment";
+	*/
+
+	$uploadPath = '/var/www/tbb2/upload/';
+	$uploadOnlinePath = 'upload/';
+	
+	// database settings
+	$dbServer = "localhost";
+	$dbDatabase = "tbb2";
+	$dbUser = "root";
+	$dbPassword = "msdb3181";
+
+		
 ?>
