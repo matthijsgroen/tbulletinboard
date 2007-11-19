@@ -26,15 +26,16 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'FileUpload.class.php');
-	require_once($TBBclassDir.'AvatarList.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'BoardFormFields.class.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
+
+	importClass("board.Location");
+	importClass("board.Text");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("util.FileUpload");
+	importClass("board.AvatarList");
+	importClass("board.ActionHandler");
+	importClass("board.BoardFormFields");
+	importClass("board.BoardProfiles");
 
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {
 		if (($_POST['actionName'] == 'changeSignature') && ($_POST['actionID'] == $TBBsession->getActionID())) {

@@ -26,10 +26,11 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+
+	importClass("board.Location");
+	importClass("board.BoardProfiles");
+	importClass("interface.Table");
+	importClass("board.Text");
 
 	if (isSet($_GET['actionName']) && isSet($_GET['actionID'])) {
 		if (($_GET['actionName'] == 'delProfile') && ($_GET['actionID'] == $TBBsession->getActionID())) {

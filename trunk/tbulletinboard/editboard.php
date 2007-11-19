@@ -21,15 +21,15 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($TBBclassDir.'Board.bean.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($TBBclassDir.'MemberGroups.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("board.Board");
+	importClass("board.ActionHandler");
+	importClass("board.BoardProfiles");
+	importClass("board.MemberGroups");
+	importClass("board.Text");
+	importBean("board.Board");
 
-	require_once($TBBclassDir.'Board.class.php');
 	$parentID = 0;
 	if (isSet($_GET['parent'])) $parentID = trim($_GET['parent']);
 	if (isSet($_POST['parent'])) $parentID = trim($_POST['parent']);

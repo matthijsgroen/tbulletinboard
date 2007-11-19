@@ -197,7 +197,8 @@
 
 	// Topics overview.
 	if ($board->allowTopics() && ($board->canRead($TBBcurrentUser))) {
-		require_once($libraryClassDir.'PageNavigation.class.php');
+		importClass("util.PageNavigation");
+		
 		$pageBar = new PageNavigation(ceil($board->getPrunedTopicCount($daysPrune) / $pageSize), ($pageNr+1), "index.php?pageNr=%s&amp;id=".$board->getID(), 10);
 
 ?>
@@ -210,7 +211,7 @@
 	<? } ?>
 	<div id="topicList">
 <?php
-		require_once($TBBclassDir.'Buttonbar.class.php');
+		importClass("board.Buttonbar");
 
 		$buttonBar = new ButtonBar();
 		if ($board->canAddTopics($TBBcurrentUser))
@@ -226,7 +227,7 @@
 		$topicOverview->setRowClasses("check", "read", "icon", "subject", "starter", "nrreact", "nrread", "lastreaction");
 
 		$topGroups = false;
-		require_once($libraryClassDir.'TextParser.class.php');
+		importClass("util.TextParser");
 		$textParser = new TextParser();
 
 		$stickyTopics = $board->readStickyTopics();

@@ -22,11 +22,11 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
+	importClass("interface.Form");
+	importClass("board.Location");
+	importClass("board.UserManagement");
+	importClass("board.Text");
+	importClass("board.ActionHandler");
 
 	if (isSet($_GET['code'])) {
 		if ($TBBuserManagement->resetPassword($_GET['code'])) {

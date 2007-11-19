@@ -26,14 +26,15 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($TBBclassDir.'TopicIconList.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($libraryClassDir.'FileUpload.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
+
+	importClass("board.Location");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("board.TopicIconList");
+	importClass("interface.Table");
+	importClass("board.Text");
+	importClass("util.FileUpload");
+	importClass("board.ActionHandler");
 
 	$topicIconList = new TopicIconList();
 

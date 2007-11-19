@@ -21,13 +21,14 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($TBBclassDir.'ModulePlugin.class.php');
-	require_once($TBBclassDir.'SearchResult.class.php');
 
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+	importClass("board.UserManagement");
+	importClass("interface.Table");
+	importClass("board.ModulePlugin");
+	importClass("board.SearchPlugin");
+	importClass("board.Location");
+	importClass("board.Text");
+
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Gebruikers';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');

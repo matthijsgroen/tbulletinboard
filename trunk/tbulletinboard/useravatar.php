@@ -26,12 +26,13 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'Menu.class.php');
-	require_once($TBBclassDir.'AvatarList.class.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
+
+	importClass("board.Location");
+	importClass("board.Text");
+	importClass("interface.Table");
+	importClass("interface.Menu");
+	importClass("board.AvatarList");
+	importClass("board.ActionHandler");
 
 	$avatarList = new AvatarList();
 

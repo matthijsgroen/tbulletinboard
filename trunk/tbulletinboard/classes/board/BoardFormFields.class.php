@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importClass("form.FormFields");
+	importClass("interface.FormFields");
 	importClass("board.TopicIconList");
 	importClass("board.Board");
 

@@ -21,13 +21,15 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'UserManagement.class.php');
-	require_once($libraryClassDir.'Table.class.php');
+
+	importClass("board.UserManagement");
+	importClass("interface.Table");
+	importBean("board.User");
+
 	$userID = 0;
 	if (isSet($_GET['id'])) $userID = $_GET['id'];
 	if (isSet($_POST['id'])) $userID = $_POST['id'];
 
-	require_once($TBBclassDir.'User.bean.php');
 	$database = $TBBconfiguration->getDatabase();
 	$userProfile = $TBBuserManagement->getUserByID($userID);
 	if (!$userProfile->isGuest()) {
@@ -36,8 +38,8 @@
 		$userName = "Gebruiker niet gevonden";
 	}
 
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+	importClass("board.Location");
+	importClass("board.Text");
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - ' . $userName;
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');

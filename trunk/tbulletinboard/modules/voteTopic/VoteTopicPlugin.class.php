@@ -18,28 +18,25 @@
 	 *	
 	 */
 
-	$libraryClassDir = $GLOBALS['libraryClassDir'];
-	$TBBclassDir = $GLOBALS['TBBclassDir'];
-
-	require_once($libraryClassDir . 'PageNavigation.class.php');
-	require_once($libraryClassDir . 'TextParser.class.php');
-	require_once($libraryClassDir . 'Table.class.php');
-	require_once($libraryClassDir . 'Form.class.php');
-	require_once($libraryClassDir . 'FormFields.class.php');
-	require_once($libraryClassDir . 'Menu.class.php');
-	require_once($libraryClassDir . 'DataObjects.class.php');
-	require_once($TBBclassDir . 'Board.class.php');
-	require_once($TBBclassDir . 'Topic.bean.php');
-	require_once($TBBclassDir . 'Reaction.bean.php');
-	require_once($TBBclassDir . 'Buttonbar.class.php');
-	require_once($TBBclassDir . 'BoardFormFields.class.php');
-	require_once($TBBclassDir . 'TBBEmoticonList.class.php');
+	importClass("util.PageNavigation");
+	importClass("util.TextParser");
+	importClass("interface.Table");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.Menu");
+	importClass("orm.DataObjects");
+	importClass("board.TopicPlugin");
+	importClass("board.Board");
+	importBean("board.Topic");
+	importBean("board.Reaction");
+	importClass("board.Buttonbar");
+	importClass("board.BoardFormFields");
+	importClass("board.TBBEmoticonList");
 	require_once($moduleDir . "VoteReaction.bean.php");
 	require_once($moduleDir . "VoteReaction.class.php");
 	require_once($moduleDir . "VoteTopic.class.php");
 	require_once($moduleDir . "VoteTopic.bean.php");
 	require_once($moduleDir . "VoteTopicVote.bean.php");
-	require_once($TBBclassDir . 'TopicPlugin.class.php');
 
 	class FormTopicVoteButton extends FormComponent {
 

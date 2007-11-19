@@ -21,7 +21,7 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'AvatarList.class.php');
+	importClass("board.AvatarList");
 
 	$avatarList = new AvatarList();
 	if (!isSet($_GET['id'])) die('id parameter required');

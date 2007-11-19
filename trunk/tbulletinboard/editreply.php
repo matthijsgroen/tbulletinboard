@@ -21,8 +21,9 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'Board.class.php');
-	require_once($TBBclassDir.'Text.class.php');
+
+	importClass("board.Board");
+	importClass("board.Text");
 
 	$topicID = 0;
 	if (isSet($_GET['topicID'])) $topicID = $_GET['topicID'];

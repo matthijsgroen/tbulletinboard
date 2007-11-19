@@ -18,9 +18,7 @@
 	 *	
 	 */
 
-
-	global $libraryClassDir;
-	require_once($libraryClassDir . "Form.class.php");
+	importClass("interface.Form");
 
 	global $formTitleTemplate;
 	includeFormComponents("TextField", "TemplateField", "Submit");

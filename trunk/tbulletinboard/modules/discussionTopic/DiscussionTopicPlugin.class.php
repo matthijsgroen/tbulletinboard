@@ -18,6 +18,26 @@
 	 *	
 	 */
 
+	importClass("util.PageNavigation");
+	importClass("util.TextParser");
+	importClass("interface.Table");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.Menu");
+	importClass("orm.DataObjects");
+	importClass("board.Board");
+	importBean("board.Topic");
+	importBean("board.Reaction");
+	importClass("board.Buttonbar");
+	importClass("board.BoardFormFields");
+	importClass("board.TBBEmoticonList");
+	require_once($moduleDir . "DiscussionReaction.bean.php");
+	require_once($moduleDir . "DiscussionReaction.class.php");
+	require_once($moduleDir . "DiscussionTopic.class.php");
+	require_once($moduleDir . "DiscussionTopic.bean.php");
+	importClass("board.TopicPlugin");
+
+	/*
 	$libraryClassDir = $GLOBALS['libraryClassDir'];
 	$TBBclassDir = $GLOBALS['TBBclassDir'];
 
@@ -39,6 +59,7 @@
 	require_once($moduleDir . "DiscussionTopic.class.php");
 	require_once($moduleDir . "DiscussionTopic.bean.php");
 	require_once($TBBclassDir . 'TopicPlugin.class.php');
+	*/
 
 	class DiscussionTopicPlugin extends TopicPlugin {
 

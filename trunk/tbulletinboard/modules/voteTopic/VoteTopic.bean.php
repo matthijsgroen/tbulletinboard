@@ -18,6 +18,7 @@
 	 *	
 	 */
 
+	importClass("orm.DataObjects");
 
 	class VoteTopicTable extends DataTable {
 		var $privateVars;

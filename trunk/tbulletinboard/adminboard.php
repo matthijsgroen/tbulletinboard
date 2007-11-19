@@ -26,12 +26,13 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	require_once($TBBclassDir.'Location.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($TBBclassDir.'Board.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
+
+	importClass("board.Location");
+	importClass("board.Text");
+	importClass("board.BoardProfiles");
+	importClass("board.Board");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
 
 	if ($TBBcurrentUser->isMaster()) {
 		if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {

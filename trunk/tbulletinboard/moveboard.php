@@ -21,18 +21,18 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($libraryClassDir.'Table.class.php');
-	require_once($libraryClassDir.'Form.class.php');
-	require_once($libraryClassDir.'FormFields.class.php');
-	require_once($libraryClassDir.'formcomponents/RecordSelect.class.php');
-	require_once($libraryClassDir.'formcomponents/PlainText.class.php');
 
-	require_once($TBBclassDir.'Board.bean.php');
-	require_once($TBBclassDir.'ActionHandler.class.php');
-	require_once($TBBclassDir.'BoardProfiles.class.php');
-	require_once($TBBclassDir.'MemberGroups.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($TBBclassDir.'Board.class.php');
+	importClass("interface.Table");
+	importClass("interface.Form");
+	importClass("interface.FormFields");
+	importClass("interface.formcomponents.RecordSelect");
+	importClass("interface.formcomponents.PlainText");
+	importBean("board.Board");
+	importClass("board.Board");
+	importClass("board.ActionHandler");
+	importClass("board.BoardProfiles");
+	importClass("board.MemberGroups");
+	importClass("board.Text");
 
 	$boardID = 0;
 	if (isSet($_GET['id'])) $boardID = trim($_GET['id']);
