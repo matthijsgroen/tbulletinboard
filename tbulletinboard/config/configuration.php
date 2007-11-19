@@ -31,37 +31,36 @@
 			$_POST[$key] = stripslashes($value);
 		}
 	}
-
 	require_once($TBBclassDir . 'library.php');
 	importClass("board.Configuration");
 	importClass("board.Session");
-	
 	require_once($TBBconfigDir . 'settings.php');
 
-	// set security settings
-	//ini_set('session.use_only_cookies', true);
-	//ini_set('session.use_trans_sid', false);
-	//ini_set('url_rewriter.tags', '');
+	/*****************************************
+	 * Account settings part
+	 */
 	
+	// set security settings
 	date_default_timezone_set('CET');
-
-	//require_once($libraryClassDir . 'MySQLDatabase.class.php');
 	importClass("orm.MySQLDatabase");
 
-	$database = new MySQLDatabase("localhost", "menhir_data", "root", "msdb3181");
+	$database = new MySQLDatabase($dbServer, $dbDatabase, $dbUser, $dbPassword);
 	$database->setTablePrefix("tbb_");
 	$database->connect();
-	//$database->setVersion3();
+
+	$developmentMode = true;
 	
 	$TBBconfiguration = new Configuration($database);
 	//$TBBconfiguration->smtpServer = 'smtp.athome.nl';
 	$TBBconfiguration->onlineTimeout = 10;
 	$TBBconfiguration->imageOnlineDir = 'images/';
-	$TBBconfiguration->uploadDir = '/var/www/tbb2/upload/';
-	$developmentMode = true;
+	$TBBconfiguration->uploadDir = $uploadPath;
+	$TBBconfiguration->uploadOnlineDir = $uploadOnlinePath;
 
-	//$TBBconfiguration->uploadDir = '/home/menhir/public_html/upload/';
-	$TBBconfiguration->uploadOnlineDir = 'upload/';
+	/*****************************************
+	 * End account settings
+	 */
+
 
 	$formTitleTemplate = "<div class=\"formtitle\">%text%</div>";
 	// Prepare other classes
