@@ -21,7 +21,7 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
+	importClass("interface.Form");
 
 	/**
 	 * Component to put plain text (html allowed) in forms
@@ -71,8 +71,7 @@
 		function getInput() {
 			$onChangeString = $this->onchange;
 			if(is_object($this->form)) {
-				global $libraryClassDir;
-				require_once($libraryClassDir."javascript/Javascript.class.php");
+				importClass("util.Javascript");
 
 				$onChangeScript = new JavaScript();
 				$onChangeScript->startFunction("field".$this->form->id.$this->identifier."IsChanged", array("element"));

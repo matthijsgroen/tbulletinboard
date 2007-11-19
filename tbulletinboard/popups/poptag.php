@@ -21,10 +21,11 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($TBBclassDir.'TagListManager.class.php');
-	require_once($TBBclassDir.'Text.class.php');
-	require_once($libraryClassDir.'TextParser.class.php');
-	require_once($libraryClassDir.'Menu.class.php');
+
+	importClass("board.TagListManager");	
+	importClass("board.Text");	
+	importClass("util.TextParser");	
+	importClass("interface.Menu");	
 
 	$pageTitle = 'Tag informatie';
 	include($TBBincludeDir.'popuptop.php');

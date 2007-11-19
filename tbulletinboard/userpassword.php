@@ -29,7 +29,7 @@
 	
 	importClass("board.Location");
 	importClass("interface.Form");
-	importClass("interface.FormFormFields");
+	importClass("interface.FormFields");
 	importClass("board.Text");
 
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID']) && $TBBsession->isLoggedIn()) {

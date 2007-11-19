@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	require_once($libraryClassDir . 'Menu.class.php');
+	importClass("interface.Menu");	
 
 	$menu = new Menu();
 	$menu->addItem('stats', '', 'Algemeen', 'adminboard.php', '', '', 0, true, '');

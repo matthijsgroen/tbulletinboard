@@ -21,8 +21,8 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
-	require_once($libraryClassDir."formcomponents/Button.class.php");
+	importClass("interface.Form");
+	importClass("interface.formcomponents.Button");
 
 	/**
 	 * Component to put button (html allowed) in forms

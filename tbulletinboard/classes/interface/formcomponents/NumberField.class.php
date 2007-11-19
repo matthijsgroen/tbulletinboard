@@ -21,7 +21,7 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."formcomponents/TextField.class.php");
+	importClass("interface.formcomponents.TextField");
 
 	/**
 	 * Component to put plain text (html allowed) in forms

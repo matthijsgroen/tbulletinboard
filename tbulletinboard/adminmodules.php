@@ -143,7 +143,7 @@
 	$table->allowSubgroups(0, true);
 	
 	if (isSet($GLOBALS['developmentMode'])) {
-		require_once($libraryClassDir . "PackFile.class.php");
+		importClass("util.PackFile");
 		$dir = substr(__file__, 0, strrpos(__file__, "/")) . "/modules";
 	}	
 	

@@ -21,14 +21,15 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	require_once($libraryClassDir . 'Form.class.php');
-	require_once($libraryClassDir . 'FormFields.class.php');
-	require_once($libraryClassDir . 'PackFile.class.php');
-	require_once($libraryClassDir . 'FileUpload.class.php');
-	require_once($libraryClassDir . 'formcomponents/PlainText.class.php');
 
-	require_once($TBBclassDir . 'Board.class.php');
-	require_once($TBBclassDir . 'ModulePlugin.class.php');
+	importClass("board.Board");	
+	importClass("board.ModulePlugin");	
+	importClass("interface.Form");	
+	importClass("interface.FormFields");	
+	importClass("util.FileUpload");	
+	
+	importClass("util.PackFile");	
+	importClass("interface.formcomponents.PlainText");	
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Nieuwe module installeren';
 	include($TBBincludeDir . 'popuptop.php');

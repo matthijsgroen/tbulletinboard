@@ -18,10 +18,8 @@
 	 *	
 	 */
 
-
-	global $libraryClassDir;
-	require_once($libraryClassDir . "javascript/Javascript.class.php");
-	require_once($libraryClassDir . "Language.class.php");
+	importClass("util.Javascript");
+	importClass("util.Language");
 
 	/**
 	 * Generates javascripts for toolbars

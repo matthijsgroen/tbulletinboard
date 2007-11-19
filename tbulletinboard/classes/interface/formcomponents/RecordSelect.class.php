@@ -21,7 +21,7 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
+	importClass("interface.Form");
 
 	/**
 	 * Component to put a form into a form to select records

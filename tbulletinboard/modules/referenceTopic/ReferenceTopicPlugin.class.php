@@ -31,7 +31,7 @@
 	importClass("board.Buttonbar");
 	importClass("board.BoardFormFields");
 	importClass("board.TBBEmoticonList");
-	importClass("interface.Text");
+	importClass("board.Text");
 	require_once($moduleDir . "ReferenceTopic.bean.php");
 	require_once($moduleDir . "ReferenceTopic.class.php");
 	importClass("board.TopicPlugin");

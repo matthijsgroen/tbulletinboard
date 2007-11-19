@@ -21,7 +21,7 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
+	importClass("interface.Form");
 
 	/**
 	 * Component to put a link (html allowed) in forms

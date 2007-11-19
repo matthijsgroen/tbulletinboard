@@ -21,8 +21,8 @@
 	/**
 	 * Import the FormComponent superclass
 	 */
-	require_once($libraryClassDir."Form.class.php");
-	require_once($libraryClassDir."formcomponents/Select.class.php");
+	importClass("interface.Form");
+	importClass("interface.formcomponents.Select");
 
 	class FormValueChoiceList extends FormContainer {
 
