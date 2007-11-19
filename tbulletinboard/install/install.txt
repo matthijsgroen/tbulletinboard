@@ -1,0 +1,77 @@
+Installatie
+-----------
+1. Kopieer de php files naar een omgeving waarin PHP 5 draait.
+2. Bewerk de config/settings.php file naar de instellingen voor jouw server
+3. Gebruik de tbb2-1.0-complete.sql dump als basis voor de database
+4. Ga naar het forum, registreer je account
+5. Ga naar het database beheer programma en voeg in de tabel 'tbb_administrators' je nieuwe userID als 'master' toe.
+6. Je kunt nu volledig het forum configureren.
+
+
+Datamodel
+---------
+// core
+tbb_administrators
+tbb_avatar
+tbb_banlist
+tbb_board
+tbb_boardcache
+tbb_boardsettings
+tbb_boardtags
+tbb_boardtopic
+tbb_emoticons
+tbb_globalsettings
+tbb_group
+tbb_ignorelist
+tbb_kicklist
+tbb_message_global
+tbb_moderators
+tbb_module
+tbb_plugin
+tbb_reaction
+tbb_searchcache
+tbb_sendpassword
+tbb_session
+tbb_skins
+tbb_structurecache
+tbb_textparsing
+tbb_topic
+tbb_topicicons
+tbb_topicread
+tbb_topicsubscribe
+tbb_users
+tbb_usersettings
+
+
+// discussie onderwerp plugin
+tbb_tm_discreaction
+tbb_tm_disctopic
+
+// referentie onderwerp plugin
+tbb_tm_referencetopic
+
+// review onderwer plugin
+tbb_tm_reviewfields
+tbb_tm_reviewfieldvalues
+tbb_tm_reviewreaction
+tbb_tm_reviewreactionscores
+tbb_tm_reviewscores
+tbb_tm_reviewtopic
+tbb_tm_reviewtopicfields
+tbb_tm_reviewtopicscores
+tbb_tm_reviewtypes
+
+// vote onderwerp plugin
+tbb_tm_votereaction
+tbb_tm_votetopic
+tbb_tm_votevote
+
+// travian module
+tbb_travian_details
+tbb_travian_farm
+tbb_travian_sitter
+tbb_travian_user
+x_world
+
+
+
