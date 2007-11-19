@@ -47,8 +47,6 @@
 	$database = new MySQLDatabase($dbServer, $dbDatabase, $dbUser, $dbPassword);
 	$database->setTablePrefix("tbb_");
 	$database->connect();
-
-	$developmentMode = true;
 	
 	$TBBconfiguration = new Configuration($database);
 	//$TBBconfiguration->smtpServer = 'smtp.athome.nl';

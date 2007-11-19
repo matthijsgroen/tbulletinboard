@@ -32,13 +32,15 @@
 	$dbUser = "tbb_user";
 	$dbPassword = "tbbdevelopment";
 	*/
+	
+	$developmentMode = true;
 
 	$uploadPath = '/var/www/tbb2/upload/';
 	$uploadOnlinePath = 'upload/';
 	
 	// database settings
 	$dbServer = "localhost";
-	$dbDatabase = "tbb2";
+	$dbDatabase = "tbb_blank";
 	$dbUser = "root";
 	$dbPassword = "msdb3181";
 
