@@ -142,7 +142,7 @@
 	$table->setRowClasses("pluginID", "moduleID", "pluginType", "pluginName", "pluginVersion", "pluginActive", "active");
 	$table->allowSubgroups(0, true);
 	
-	if (isSet($GLOBALS['developmentMode'])) {
+	if (isSet($GLOBALS['developmentMode']) && ($GLOBALS['developmentMode'] === true)) {
 		importClass("util.PackFile");
 		$dir = substr(__file__, 0, strrpos(__file__, "/")) . "/modules";
 	}	
@@ -154,7 +154,7 @@
 			$moduleInfo = $moduleTable->getRow();
 
 			$download = "";
-			if (isSet($GLOBALS['developmentMode'])) {
+			if (isSet($GLOBALS['developmentMode']) && ($GLOBALS['developmentMode'] === true)) {
 				$file = $moduleInfo->getValue("group");
 				if (is_dir($dir . "/" . $file) && (strpos($file, ".") !== 0)) {
 					$download = " [<a href=\"upload/modules/".$file.".tbbmod\">download</a>]";
