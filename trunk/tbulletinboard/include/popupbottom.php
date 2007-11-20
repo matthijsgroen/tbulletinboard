@@ -19,16 +19,16 @@
 	 */
 
 ?>
-
 	<div id="copyright">
-		THAiSies Bulletin Board 2.0&alpha;, &copy; 2003 IVinity<br />
+		THAiSies Bulletin Board <?=$boardVersion ?>, &copy; 2003-2007 Matthijs Groen
+
+		<br />
 		pagina gemaakt in <?
 			list($micro1, $stamp1) = explode(" ", $pageTime);
 			list($micro2, $stamp2) = explode(" ", microTime());
 
 			print (($stamp2 - $stamp1) + ($micro2 - $micro1));
 
-		?>s, queries: <?=$procCounter ?></div>
-	</div>
+		?>s, queries: <?=$GLOBALS['queriesExecuted'] ?></div>
 </body>
 </html>
