@@ -34,8 +34,8 @@
 
 			$this->defineInt("ID", "ID", false);
 			$this->setPrimaryKey("ID");
-			$this->defineEnum("viewMode", "viewmode", array(0 => "open", 1 => "hidden", 2 => "standard", 3 => "openHidden"), false);
-			$this->defineEnum("secLevel", "seclevel", array(0 => "low", 1 => "medium", 2 => "high", 3 => "none"), false);
+			$this->defineEnum("viewMode", "viewmode", array("open" => "open", "hidden" => "hidden", "standard" => "standard", "openHidden" => "openHidden"), false);
+			$this->defineEnum("secLevel", "seclevel", array("low" => "low", "medium" => "medium", "high" => "high", "none" => "none"), false);
 			$this->defineText("name", "name", 50, false);
 
 			$this->defineBool("incCount", "inc_count");

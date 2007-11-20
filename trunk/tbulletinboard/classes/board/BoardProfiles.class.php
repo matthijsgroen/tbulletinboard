@@ -23,13 +23,7 @@
 	importBean("board.BoardTags");
 	importBean("board.BoardTopics");
 	importBean("board.Board");
-	/*
-	require_once($TBBclassDir."TagListManager.class.php");
-	require_once($TBBclassDir."BoardSettings.bean.php");
-	require_once($TBBclassDir."BoardTags.bean.php");
-	require_once($TBBclassDir."BoardTopics.bean.php");
-	require_once($TBBclassDir."Board.bean.php");
-	*/
+
 
 	class BoardProfile {
 
@@ -306,6 +300,10 @@
 			$data->setValue("incCount", $incCount);
 			$data->setValue("signatures", $signatures);
 			$data->store();
+			//print $data->getStoreQuery();
+			importClass("board.Board");
+			global $TBBboardList;
+			$TBBboardList->updateStructureCache();
 
 			/*
 			$insertQuery = sprintf("REPLACE INTO %sboardsettings(ID, viewmode, seclevel, name, inc_count, signatures) ".
