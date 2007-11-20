@@ -175,7 +175,7 @@
 		 *@param string $parameter the value of the parameter given to the tag
 		 */
 		function TagNode(&$textParser, $parentNodes, &$tag, $parameter) {
-			$this->ParseNode(&$textParser, $parentNodes);
+			$this->ParseNode($textParser, $parentNodes);
 			$this->tag = $tag;
 			$this->parameter = $parameter;
 		}
@@ -241,7 +241,7 @@
 		 *@param string $text the plain text for this node
 		 */
 		function TextNode(&$textParser, $parentNodes, $text) {
-			$this->ParseNode(&$textParser, $parentNodes);
+			$this->ParseNode($textParser, $parentNodes);
 			$this->text = $text;
 		}
 
