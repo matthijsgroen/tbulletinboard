@@ -182,6 +182,12 @@
 			$filter->addGreaterThan("lastActive", $lastSeen);
 			$filter->addNull("userID");
 			$resultCount = $userSessionTable->countRows($filter);
+			
+			$filter = new DataFilter();
+			$lastSeen = new LibDateTime();
+			$lastSeen->sub(LibDateTime::day(), 1);
+			$filter->addLessThan("lastActive", $lastSeen);
+			$userSessionTable->deleteRows($filter);
 
 			// Add the users to the cache
 			$this->privateVars['onlineGuests'] = $resultCount;
