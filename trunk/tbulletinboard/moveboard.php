@@ -53,7 +53,7 @@
 			$action->check($TBBcurrentUser->isAdministrator(), 'Deze actie is alleen voor administrators!');
 
 			$action->isNumeric('newParentID', 'geen geldige ParentID');
-			$action->notEmpty('moveWhat', 'Niet opgegeven wat verplaatst moet worden!');
+			$action->isEmpty('moveWhat', 'Niet opgegeven wat verplaatst moet worden!');
 			if ($action->correct) {
 				if ($_POST['moveWhat'] == 'all') {
 					// move entire board to other parent
