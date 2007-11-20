@@ -47,7 +47,8 @@
 			$onlineGuests = $TBBuserManagement->getOnlineGuests($TBBcurrentUser);
 			$guestsLine = "";
 			if ($onlineGuests > 0) {
-				$guestsLine = sprintf("%s %s en ", $onlineGuests, ($onlineGuests != 1) ? "gasten" : "gast");
+				$guestsLine = sprintf("%s %s %s", $onlineGuests, ($onlineGuests != 1) ? "gasten" : "gast", 
+					(count($onlineUsers) > 0) ? "en " : "");
 			}			
 			if (count($onlineUsers) > 0) {
 				printf("<span class=\"nrOnline\">%s%s %s online:</span> ",
@@ -60,6 +61,6 @@
 					printf("<a href=\"user.php?id=%s\">%s</a>", $user->getUserID(), htmlConvert($user->getNickname()));
 					if ($i < count($onlineUsers)-1) print "<span class=\"userDivider\">, </span>";
 				}
-			} else { printf("<span class=\"nrOnline\">%s geen ingelogde leden online</span>", $guestsLine); }
+			} else { printf("<span class=\"nrOnline\">%s online</span>", $guestsLine); }
 		?>
 	</div>
