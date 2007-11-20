@@ -47,14 +47,12 @@
 		if (($_POST['actionName'] == 'addBoard') && ($_POST['actionID'] == $TBBsession->getActionID())) {
 			$action = new ActionHandler($feedback, $_POST);
 			$action->check($TBBcurrentUser->isAdministrator(), 'Deze actie is alleen voor administrators!');
-			/*
 			$action->notEmpty('boardName', 'Geen naam gegeven!');
 			$action->isNumeric('position', 'Ongeldige positie!');
 			$action->isNumeric('boardSettings', 'Ongeldige positie!');
 			$action->isNumeric('readGroup', 'Ongeldige positie!');
 			$action->isNumeric('writeGroup', 'Ongeldige positie!');
 			$action->isNumeric('topicGroup', 'Ongeldige positie!');
-			*/
 			if ($action->correct) {
 				$parent->addSubBoard(
 						trim($_POST['boardName']),
@@ -73,14 +71,12 @@
 		if (($_POST['actionName'] == 'editBoard') && ($_POST['actionID'] == $TBBsession->getActionID())) {
 			$action = new ActionHandler($feedback, $_POST);
 			$action->check($TBBcurrentUser->isAdministrator(), 'Deze actie is alleen voor administrators!');
-			/*
 			$action->notEmpty('boardName', 'Geen naam gegeven!');
 			$action->isNumeric('position', 'Ongeldige positie!');
 			$action->isNumeric('boardSettings', 'Ongeldige positie!');
 			$action->isNumeric('readGroup', 'Ongeldige positie!');
 			$action->isNumeric('writeGroup', 'Ongeldige positie!');
 			$action->isNumeric('topicGroup', 'Ongeldige positie!');
-			*/
 			if ($action->correct) {
 				$boardBean = $board->p_getDBdata();
 				$boardBean->setValue("name", $_POST['boardName']);
