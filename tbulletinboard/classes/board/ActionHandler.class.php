@@ -27,11 +27,13 @@
 		var $feedback;
 		var $actions;
 		var $inAction;
+		var $material;
 
-		function ActionHandler(&$feedback) {
+		function ActionHandler(&$feedback, $material) {
 			$this->correct = true;
 			$this->feedback = $feedback;
 			$this->inAction = "";
+			$this->material = $material;
 		}
 
 		function defineGetAction($name) {
@@ -101,13 +103,13 @@
 		function notEmpty($varName, $errMessage) {
 			if (!$this->correct) return;
 
-			if (!isSet($_GET[$varName])) {
+			if (!isSet($this->material[$varName])) {
 				if (strLen(trim($errMessage)) > 0)
 					$this->feedback->addMessage($errMessage);
 				$this->correct = false;
 				return false;
 			}
-			if (strLen(trim($_GET[$varName])) == 0) {
+			if (strLen(trim($this->material[$varName])) == 0) {
 				if (strLen(trim($errMessage)) > 0)
 					$this->feedback->addMessage($errMessage);
 				$this->correct = false;
@@ -119,13 +121,13 @@
 		function isNumeric($varName, $errMessage) {
 			if (!$this->correct) return;
 
-			if (!isSet($_GET[$varName])) {
+			if (!isSet($this->material[$varName])) {
 				if (strLen(trim($errMessage)) > 0)
 					$this->feedback->addMessage($errMessage);
 				$this->correct = false;
 				return false;
 			}
-			if (!is_numeric($_GET[$varName])) {
+			if (!is_numeric($this->material[$varName])) {
 				if (strLen(trim($errMessage)) > 0)
 					$this->feedback->addMessage($errMessage);
 				$this->correct = false;
