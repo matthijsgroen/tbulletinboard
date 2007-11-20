@@ -149,6 +149,46 @@
 			return $onlineUsers;
 		}
 
+		function getOnlineGuests($user) {
+			global $TBBconfiguration;
+			if (isSet($this->privateVars['onlineGuests'])) {
+				return $this->privateVars['onlineGuests'];
+			}
+			importBean("board.UserSession");
+			
+			$database = $TBBconfiguration->getDatabase();
+
+			$userSessionTable = new UserSessionTable($database);
+			
+			$filter = new DataFilter();
+			$filter->addEquals("sessionID", session_id());
+			$userSessionTable->selectRows($filter, new ColumnSorting());
+			if ($sessionRow = $userSessionTable->getRow()) {
+			} else {
+				$sessionRow = $userSessionTable->addRow();				
+			}					
+			$sessionRow->setValue("lastActive", new LibDateTime());
+			$sessionRow->setValue("sessionID", session_id());
+			if ($user->isGuest()) {
+				$sessionRow->setNull("userID");
+			} else {
+				$sessionRow->setValue("userID", $user->getUserID());
+			}
+			$sessionRow->store();
+
+			$filter = new DataFilter();
+			$lastSeen = new LibDateTime();
+			$lastSeen->sub(LibDateTime::minute(), $TBBconfiguration->onlineTimeout);
+			$filter->addGreaterThan("lastActive", $lastSeen);
+			$filter->addNull("userID");
+			$resultCount = $userSessionTable->countRows($filter);
+
+			// Add the users to the cache
+			$this->privateVars['onlineGuests'] = $resultCount;
+			return $resultCount;
+		}
+
+
 		function getAdministrators() {
 			global $TBBconfiguration;
 			if ($this->privateVars['adminRead']) {
