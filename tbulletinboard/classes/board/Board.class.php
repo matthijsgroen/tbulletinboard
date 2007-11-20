@@ -34,26 +34,6 @@
 	importBean("board.Reaction");	
 	importBean("board.StructureCache");	
 	importBean("board.BoardCache");	
-	
-	/*	
-	global $libraryClassDir;
-	require_once($libraryClassDir . 'LibDateTime.class.php');
-	require_once($TBBclassDir . 'Location.class.php');
-	require_once($TBBclassDir . 'MemberGroups.class.php');
-	require_once($TBBclassDir . 'BoardProfiles.class.php');
-	require_once($TBBclassDir . 'TopicIconList.class.php');
-	require_once($TBBclassDir . 'User.bean.php');
-	require_once($TBBclassDir . 'TopicRead.bean.php');
-	require_once($TBBclassDir . 'Board.bean.php');
-	require_once($TBBclassDir . 'Topic.bean.php');
-	require_once($TBBclassDir . 'Reaction.bean.php');
-	require_once($TBBclassDir . 'ModulePlugin.class.php');
-	require_once($TBBclassDir . 'TopicIconList.class.php');
-	require_once($TBBclassDir . 'Reaction.bean.php');
-	require_once($TBBclassDir . 'StructureCache.bean.php');
-	require_once($TBBclassDir . 'BoardCache.bean.php');
-	require_once($TBBclassDir . 'UserManagement.class.php');
-	*/
 
 	class TopicReaction {
 
