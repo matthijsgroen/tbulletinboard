@@ -150,7 +150,8 @@
 			if (isSet($_GET['pageNr'])) $pageNr = $_GET['pageNr'] -1;
 
 			if ($resultCount > $pageLimit) {
-				require_once($libraryClassDir.'PageNavigation.class.php');
+				importClass("util.PageNavigation");
+				//require_once($libraryClassDir.'PageNavigation.class.php');
 				$pageBar = new PageNavigation(ceil($resultCount / $pageLimit), ($pageNr+1),
 					sprintf("search.php?pageNr=%%s&amp;result=%s&amp;sortType=%s&amp;sortColumn=%s&amp;type=%s", $resultID, $sortType, $sortColumn, $searchType), 10);
 				$pageBar->showPagebar("searchPageBar");
