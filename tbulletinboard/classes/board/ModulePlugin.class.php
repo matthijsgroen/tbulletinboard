@@ -297,12 +297,12 @@
 			if ($info === false) return false;
 
 			$className = $info->getValue("classname");
-			if (isSet($_GLOBALS['developmentMode'])) {
-				$moduleDir = $TBBconfiguration->uploadDir.'modules/'.$modulename.'/';
-				$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'modules/'.$modulename.'/';
-			} else {
+			if (isSet($GLOBALS['developmentMode']) && ($GLOBALS['developmentMode'] === true)) {
 				$moduleDir = $TBBconfiguration->uploadDir.'../modules/'.$modulename.'/';
 				$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'../modules/'.$modulename.'/';
+			} else {
+				$moduleDir = $TBBconfiguration->uploadDir.'modules/'.$modulename.'/';
+				$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'modules/'.$modulename.'/';
 			}
 
 			require_once($moduleDir.$info->getValue("filename"));
