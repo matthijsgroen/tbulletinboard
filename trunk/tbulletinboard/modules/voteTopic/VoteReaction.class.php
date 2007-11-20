@@ -32,8 +32,7 @@
 		}
 
 		function getIconInfo() {
-			global $TBBclassDir;
-			require_once($TBBclassDir.'TopicIconList.class.php');
+			importClass("board.TopicIconList");
 
 			$data = $this->privateVars['discData'];
 			$iconID = $data->getValue("icon");

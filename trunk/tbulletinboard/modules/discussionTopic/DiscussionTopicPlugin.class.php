@@ -241,12 +241,11 @@
 			global $TBBcurrentUser;
 			global $TBBconfiguration;
 
-			global $libraryClassDir;
-			require_once($libraryClassDir."TextParser.class.php");
-			require_once($libraryClassDir . 'PageNavigation.class.php');
-			require_once($libraryClassDir . 'Table.class.php');
-			global $TBBclassDir;
-			require_once($TBBclassDir . 'Buttonbar.class.php');
+			importClass("util.TextParser");
+			importClass("util.PageNavigation");
+			importClass("interface.Table");
+			importClass("board.Buttonbar");
+
 			$moduleDir = $this->getModuleDir();
 			require_once($moduleDir . 'DiscussionTopic.class.php');
 

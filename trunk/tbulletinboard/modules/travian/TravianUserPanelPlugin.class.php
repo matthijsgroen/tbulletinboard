@@ -138,7 +138,7 @@
 					require_once($moduleDir . "TravianSitter.bean.php");
 					$travianSitterTable = new TravianSitterTable($database);
 					$connection = $travianSitterTable->addRow();
-					$connection->setValue("userTravianID", $isRow['travianID']);
+					$connection->setValue("userTravianID", $travianRow->getValue('travianID'));
 					$connection->setValue("userID", $TBBcurrentUser->getUserID());
 					$connection->setValue("travianID", $travianUserID);
 					$connection->setValue("travianName", $travianName);
