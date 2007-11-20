@@ -20,6 +20,9 @@
 
 	function importClass($classPath) {
 		global $TBBclassDir;
+		if (!isSet($TBBclassDir)) {
+			die("\$TBBclassDir not defined!");
+		}
 		$path = $TBBclassDir . str_replace(".", "/", $classPath) . ".class.php";
 		if (!file_exists($path)) {
 			$trace = debug_backtrace();
