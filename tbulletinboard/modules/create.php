@@ -25,9 +25,10 @@
 	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	 *	
 	 */
+	$TBBclassDir = "../classes/";
+	require_once($TBBclassDir . "library.php");
+	importClass("util.PackFile");
 
-	$libraryClassDir = "../lib/";
-	require_once($libraryClassDir . "PackFile.class.php");
 	$dir = substr(__file__, 0, strrpos(__file__, "/"));
 
 	print 'scanning: '.$dir."<br />";
