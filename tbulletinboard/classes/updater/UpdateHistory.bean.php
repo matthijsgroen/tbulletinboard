@@ -18,31 +18,27 @@
 	 *	
 	 */
 
-	$GLOBALS['ivTableSpace'] = 0;
-	$GLOBALS['calendar_daynames'] = array("ma", "di", "wo", "do", "vr", "za", "zo");
-	$boardVersion = "2.0.11 &alpha;lpha version";
-	
-	/*
-	// Online instance Menhir
-	$uploadPath = '/home/menhir/public_html/upload/';
-	$uploadOnlinePath = 'upload/';
-	
-	// database settings
-	$dbServer = "localhost";
-	$dbDatabase = "menhir_data";
-	$dbUser = "menhir_user";
-	$dbPassword = "traviantest";
-	/* -- */
+	importClass("orm.DataObjects");
 
-	// Local development Matthijs
-	$developmentMode = true;
-	$uploadPath = '/var/www/tbb2/upload/';
-	$uploadOnlinePath = 'upload/';
-	// database settings
-	$dbServer = "localhost";
-	$dbDatabase = "tbb2";
-	$dbUser = "root";
-	$dbPassword = "msdb3181";
-	/* -- */
-		
+	/**
+	 * Usefull for editing schedules
+	 */
+	class UpdateHistoryTable extends DataTable {
+
+		var $privateVars;
+
+		function UpdateHistoryTable(&$database) {
+			$this->DataTable($database, $database->getTablePrefix() . "update_history");
+
+			$this->defineInt("ID", "ID", false);
+			$this->setPrimaryKey("ID");
+			$this->defineText("module", "module", 250, false);
+			$this->defineText("name", "name", 250, false);
+			$this->defineText("author", "author", 250, false);
+			$this->defineDate("patchDate", "patchDate", false);
+			$this->defineDate("executeDate", "executeDate", false);
+
+		}
+	}
+
 ?>

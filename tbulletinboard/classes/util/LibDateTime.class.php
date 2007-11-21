@@ -61,8 +61,70 @@
 		function setDayNames() {
 			global $GLOBALS;
 			if (func_num_args() != 7) return;
-			$GLOBALS['iv_cal_daynames'] = func_get_args();
+			$GLOBALS['calendar_daynames'] = func_get_args();
 		}
+
+		function initializeByLinuxTimestamp($timestamp) {
+			$data = getDate($timestamp);
+			$dateTime = new LibDateTime($data["hours"], $data["minutes"], $data["seconds"],
+				$data["mon"], $data["mday"], $data["year"]);
+			$this->copyValuesFrom($dateTime);
+		}
+
+		function initializeByString($string) {
+			$hasTime = false;
+			$time = array(0, 0, 0);
+			$hasDate = false;
+			$date = array(1, 1, date("Y"));
+			$parts = explode(" ", $string);
+			foreach($parts as $part) {
+				if (subStr_count($part, ":") == 1) { // time!
+					list($hour, $minute) = explode(":", $part);
+					$hasTime = true;
+					$time = array($hour, $minute, 0);
+				}
+				if (subStr_count($part, ":") == 2) { // time with seconds!
+					list($hour, $minute, $seconds) = explode(":", $part);
+					$hasTime = true;
+					$time = array($hour, $minute, $seconds);
+				}
+				if (subStr_count($part, "-") == 1) { // date!
+					list($day, $month) = explode("-", $part);
+					$hasDate = true;
+					$date = array($day, $month, date("Y"));
+				}
+				if (subStr_count($part, "-") == 2) { // date!
+					list($day, $month, $year) = explode("-", $part);
+					if(strlen($day) == 4) {
+						$tempYear = $year;
+						$year = $day;
+						$day = $tempYear;
+					} else if((strlen($day) == 2) && (strlen($year) == 2) && $day > 31 && $year < 32) {
+						$tempYear = $year;
+						$year = $day;
+						$day = $tempYear;
+					}
+					$hasDate = true;
+					$date = array($day, $month, $year);
+				}
+				if (subStr_count($part, "-") == 4) { // timestamp!
+					$this->setTimestamp($part);
+					return true;
+				}
+			}
+			if (($hasTime == false) && ($hasDate == false)) return false;
+			list($day, $month, $year) = $date;
+			$this->set(DateTime::year(), $year);
+			$this->set(DateTime::month(), $month);
+			$this->set(DateTime::dayOfMonth(), $day);
+
+			list($hour, $minutes, $seconds) = $time;
+			$this->set(DateTime::hour(), $hour);
+			$this->set(DateTime::minute(), $minutes);
+			$this->set(DateTime::second(), $seconds);
+			return true;
+		}
+
 
 		/**
 		 * Returns a LibDateTime timestamp. This is no Linux timestamp, and can not be
@@ -213,12 +275,18 @@
 		 *@param LibDateTime other date time to get the element values from
 		 *@param string $elements,... names of elements to copy
 		 */
-		function copyValuesFrom(&$otherLibDateTime) {
-			if (func_num_args() == 1) return;
-			for ($i = 1; $i < func_num_args(); $i++) {
-				$element = func_get_arg($i);
-				$this->set($element, $otherLibDateTime->get($element));
+		function copyValuesFrom(&$otherDateTime) {
+			$copyElementList = array();
+			if (func_num_args() == 1) {
+				$copyElementList = array(LibDateTime::year(), LibDateTime::month(), LibDateTime::dayOfMonth(), 
+					LibDateTime::hour(), LibDateTime::minute(), LibDateTime::second());
+			} else {
+				for ($i = 1; $i < func_num_args(); $i++) {
+					$copyElementList[] = func_get_arg($i);
+				}
 			}
+			foreach($copyElementList as $copyElement)
+				$this->set($copyElement, $otherDateTime->get($copyElement));
 		}
 
 		/**
@@ -228,13 +296,13 @@
 		function cloneLibDateTime() {
 			$newLibDateTime = new LibDateTime();
 
-			$newLibDateTime->p_set(ivYear, $this->get(ivYear));
-			$newLibDateTime->p_set(ivMonth, $this->get(ivMonth));
-			$newLibDateTime->p_set(ivDay, $this->get(ivDay));
-			$newLibDateTime->p_set(ivHour, $this->get(ivHour));
-			$newLibDateTime->p_set(ivMinute, $this->get(ivMinute));
-			$newLibDateTime->p_set(ivSecond, $this->get(ivSecond));
-			$newLibDateTime->p_calculate(ivYear);
+			$newLibDateTime->p_set(LibDateTime::year(), $this->get(LibDateTime::year()));
+			$newLibDateTime->p_set(LibDateTime::month(), $this->get(LibDateTime::month()));
+			$newLibDateTime->p_set(LibDateTime::dayOfMonth(), $this->get(LibDateTime::dayOfMonth()));
+			$newLibDateTime->p_set(LibDateTime::hour(), $this->get(LibDateTime::hour()));
+			$newLibDateTime->p_set(LibDateTime::minute(), $this->get(minute));
+			$newLibDateTime->p_set(LibDateTime::second(), $this->get(LibDateTime::second()));
+			$newLibDateTime->p_calculate(LibDateTime::year());
 
 			return $newLibDateTime;
 		}
@@ -514,7 +582,7 @@
 					// Day of the month without leading zeros
 					case 'j': $value = "".$this->get(LibDateTime::month()); break;
 					// A full textual representation of the day of the week
-					case 'l': $value = "".$GLOBALS['iv_cal_daynames'][$this->get(LibDateTime::dayOfWeek())]; break;
+					case 'l': $value = "".$GLOBALS['calendar_daynames'][$this->get(LibDateTime::dayOfWeek())]; break;
 					// Whether it's a leap year. 1 if it is a leap year, 0 otherwise.
 					case 'L': $value = ($this->isLeapYear()) ? "1" : "0"; break;
 					// Numeric representation of a month, with leading zeros
@@ -631,11 +699,11 @@
 		}
 
 		/**
-		* Compare function for sorting an array with LibDateTime Objects
-		**/
+		 * Compare function for sorting an array with LibDateTime Objects
+		 **/
 		function compare($a, $b) {
-       if ($a->isEqual($b)) return 0;
-       return ($a->after($b)) ? +1 : -1;
+			if ($a->isEqual($b)) return 0;
+			return ($a->after($b)) ? +1 : -1;
 		}
 
 		// element name constants. Usable as LibDateTime::second()
@@ -650,13 +718,5 @@
 		static function month() { return "month"; }
 		static function year() { return "year"; }
 	}
-
-	define("ivDay",LibDateTime::day());
-	define("ivMonth",LibDateTime::month());
-	define("ivYear",LibDateTime::year());
-	define("ivHour",LibDateTime::hour());
-	define("ivMinute",LibDateTime::minute());
-	define("ivSecond",LibDateTime::second());
-	define("ivWeek",LibDateTime::week());
-
+
 ?>
