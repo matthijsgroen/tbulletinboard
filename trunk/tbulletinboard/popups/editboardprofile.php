@@ -47,7 +47,7 @@
 			if ($correct) {
 				$secLevel = ($TBBcurrentUser->isMaster()) ? $_POST['seclevel'] : 0;
 				$countPosts = ($_POST['incCount'] == "0");
-				$signatures = ($_POST['signatures'] == "0");
+				$signatures = ($_POST['signatures'] == "1");
 				$newID = $GLOBALS['TBBboardProfileList']->addBoardProfile($boardName, $_POST['viewMode'], $secLevel, $countPosts, $signatures);
 				if ($newID !== false) {
 					$TBBsession->actionHandled();

@@ -1222,10 +1222,10 @@
 	}
 
 	function includeFormComponents() {
-		global $libraryClassDir;
 		$arg_list = func_get_args();
 		for ($i = 0; $i < count($arg_list); $i++) {
-		    require_once($libraryClassDir . "formcomponents/" . $arg_list[$i] . ".class.php");
+			importClass("interface.formcomponents.".$arg_list[$i]);
+		    //require_once($libraryClassDir . "formcomponents/" . $arg_list[$i] . ".class.php");
 		}
 	}
 ?>

@@ -95,13 +95,13 @@
 			return $inputField;
 		}
 
-		function hasValue() {
+		function hasValue($postData = null) {
 			if (!$this->form->hasValue($this->privateVars['name'], $this->privateVars['type'])) return false;
 			$value = $this->form->getValue($this->privateVars['name'], $this->privateVars['type']);
 			return ($value !== "");
 		}
 
-		function hasValidValue() {
+		function hasValidValue($postData = null) {
 			return true;
 		}
 

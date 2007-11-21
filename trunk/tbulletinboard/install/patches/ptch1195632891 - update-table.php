@@ -18,31 +18,16 @@
 	 *	
 	 */
 
-	$GLOBALS['ivTableSpace'] = 0;
-	$GLOBALS['calendar_daynames'] = array("ma", "di", "wo", "do", "vr", "za", "zo");
-	$boardVersion = "2.0.11 &alpha;lpha version";
-	
-	/*
-	// Online instance Menhir
-	$uploadPath = '/home/menhir/public_html/upload/';
-	$uploadOnlinePath = 'upload/';
-	
-	// database settings
-	$dbServer = "localhost";
-	$dbDatabase = "menhir_data";
-	$dbUser = "menhir_user";
-	$dbPassword = "traviantest";
-	/* -- */
+	$patchName = "update-table";
+	$patchFunc = false; // false by no function, name of function otherwise
+	$patchAuthor = "Matthijs Groen"; // 100 = IV, 131 = Matthijs, 120 = Guido, 126 = Urvin
 
-	// Local development Matthijs
-	$developmentMode = true;
-	$uploadPath = '/var/www/tbb2/upload/';
-	$uploadOnlinePath = 'upload/';
-	// database settings
-	$dbServer = "localhost";
-	$dbDatabase = "tbb2";
-	$dbUser = "root";
-	$dbPassword = "msdb3181";
-	/* -- */
-		
 ?>
+CREATE TABLE IF NOT EXISTS `tbb_update_history` (
+	`ID` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	`module` VARCHAR( 255 ) NOT NULL ,
+	`name` VARCHAR( 255 ) NOT NULL ,
+	`author` VARCHAR( 255 ) NOT NULL ,
+	`patchDate` DATETIME NOT NULL ,
+	`executeDate` DATETIME NOT NULL
+) ENGINE = MYISAM ;
