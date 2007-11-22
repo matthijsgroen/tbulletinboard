@@ -60,6 +60,8 @@
 				}
 			}
 			// Obtain a list of columns
+			$patchtime = array();
+			$patchname = array();
 			foreach ($this->patchList as $key => $row) {
 			   $patchtime[$key]  = $row['time'];
 			   $patchname[$key] = $row['name'];
@@ -111,8 +113,9 @@
 		function executePatches() {
 			$this->createNewPatchList();
 			foreach($this->newPatchList as $patchInfo) {
-				$this->executePatch($patchInfo);
-			}		
+				if (!$this->executePatch($patchInfo)) return false;
+			}
+			return true;
 		}
 		
 		private function executePatch($patchInfo) {
@@ -151,7 +154,7 @@
 					}
 				}
 
-				printf("Q(%s) \n", count($queryList));
+				//printf("Q(%s) \n", count($queryList));
 				//print htmlSpecialChars($queryList[1]);
 				//return false;
 				$i = 1;
