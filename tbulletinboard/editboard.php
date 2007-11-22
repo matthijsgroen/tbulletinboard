@@ -49,10 +49,10 @@
 			$action->check($TBBcurrentUser->isAdministrator(), 'Deze actie is alleen voor administrators!');
 			$action->notEmpty('boardName', 'Geen naam gegeven!');
 			$action->isNumeric('position', 'Ongeldige positie!');
-			$action->isNumeric('boardSettings', 'Ongeldige positie!');
-			$action->isNumeric('readGroup', 'Ongeldige positie!');
-			$action->isNumeric('writeGroup', 'Ongeldige positie!');
-			$action->isNumeric('topicGroup', 'Ongeldige positie!');
+			$action->isNumeric('boardSettings', 'Geen geldig boardprofiel gekozen!');
+			$action->isNumeric('readGroup', 'Geen geldige leesgroep gekozen!');
+			$action->isNumeric('writeGroup', 'Geen geldige schrijfgroep gekozen!');
+			$action->isNumeric('topicGroup', 'Geen geldige onderwerpengroep gekozen!');
 			if ($action->correct) {
 				$parent->addSubBoard(
 						trim($_POST['boardName']),
@@ -254,7 +254,20 @@
 		$formFields->addSubmit('Aanmaken', true);
 	}
 
-	$addForm->writeForm();
+	if ((count($profiles) == 0) || (count($groups) == 0)) {
+		$text = new Text();
+		if (count($profiles) == 0) 
+			$text->addHTMLText("Om een nieuw board aan te maken moet er een board profiel aanwezig zijn. ".
+			"Op dit moment zijn er nog geen profielen ingevoerd. "."<a href=\"boardprofiles.php\">Een profiel instellen</a>");
+		if (count($groups) == 0) 
+			$text->addHTMLText("Om een nieuw board aan te maken moet er minimaal 1 groep aanwezig zijn. ".
+			"Op dit moment zijn er nog geen groepen gedefin&iuml;eerd "."<a href=\"admingroups.php\">Een groep aanmaken</a>");
+		$text->showText();
+
+	
+	} else {
+		$addForm->writeForm();
+	}
 
 
 	include($TBBincludeDir.'htmlbottom.php');
