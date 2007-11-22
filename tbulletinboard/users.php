@@ -28,6 +28,7 @@
 	importClass("board.SearchPlugin");
 	importClass("board.Location");
 	importClass("board.Text");
+	importClass("board.SearchResult");
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Gebruikers';
 	include($TBBincludeDir.'htmltop.php');
