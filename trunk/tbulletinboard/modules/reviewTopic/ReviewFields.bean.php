@@ -29,7 +29,7 @@
 			$this->setPrimaryKey("ID");
 			$this->setAutoIncrement("ID");
 			$this->defineInt("reviewType", "reviewType", false);
-			$this->setHasIndex("reviewType");
+			$this->defineIndex("reviewType");
 			$this->defineText("name", "name", 20, false);
 			$this->defineText("prefix", "prefix", 10, false);
 			$this->defineText("postfix", "postfix", 10, false);

@@ -35,8 +35,8 @@
 			$this->defineDate("dateValue", "dateValue", true);
 			$this->defineTime("timeValue", "timeValue", true);
 
-			$this->setHasIndex("topicID");
-			$this->setHasIndex("fieldID");
+			$this->defineIndex("topicID");
+			$this->defineIndex("fieldID");
 		}
 	}
 
