@@ -60,7 +60,7 @@
 	$table->setHeader("Plugins");
 	$table->setAlignment("left");
 
-	require_once($libraryClassDir."TextParser.class.php");
+	importClass("util.TextParser");
 	$textParser = new TextParser();
 
 	$currGroup = "";
