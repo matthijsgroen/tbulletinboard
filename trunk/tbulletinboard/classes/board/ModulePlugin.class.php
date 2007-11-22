@@ -232,6 +232,12 @@
 			}
 			return true;
 		}
+		
+		function getModulePath($modulename) {
+			if (!$this->hasModule($modulename)) return false;
+			global $TBBconfiguration;
+			return $TBBconfiguration->uploadDir.'modules/'.$modulename.'/';
+		}
 
 		function getNrPluginsOf($modulename) {
 			if (!$this->hasModule($modulename)) return false;
