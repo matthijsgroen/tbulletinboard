@@ -31,8 +31,8 @@
 			$this->defineInt("reactionID", "reactionID", false);
 			$this->defineInt("scoreID", "scoreID", false);
 			$this->defineInt("value", "value", false);
-			$this->setHasIndex("reactionID");
-			$this->setHasIndex("scoreID");
+			$this->defineIndex("reactionID");
+			$this->defineIndex("scoreID");
 		}
 	}
 
