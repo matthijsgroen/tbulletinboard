@@ -50,6 +50,8 @@
 					global $feedback;
 					$feedback->addMessage('Je bent op een andere lokatie aangemeld!');
 					$GLOBALS['TBBcurrentUser'] = new User(); // Reset..
+					$this->setValue("tbbSessID", uniqId("tbbS"));
+					$this->setUserID("");
 				}
 			}
 			if (!$this->hasValue("tbbSessID")) {
