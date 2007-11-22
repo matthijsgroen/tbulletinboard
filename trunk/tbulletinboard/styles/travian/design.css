@@ -18,14 +18,20 @@
 @import url("discussion.css");
 @import url("menus.css");
 
+html, body { 
+	height: 100%; 
+	margin: 0px;
+	padding: 0px;
+}
+
 body * { font-family: verdana, sans-serif; color: rgb(0, 0, 0); }
 body {
 	background-color: #FFFFFF;
 	color: rgb(35, 35, 35);
 	margin: 0px;
 	padding: 0px;
-	background-image: url("images/obelix.jpg");
-	background-position: 0px 50%;
+	background-image: url("images/asterix.jpg");
+	background-position: 0px 100%;
 	background-repeat: no-repeat;
 }
 body#popup {

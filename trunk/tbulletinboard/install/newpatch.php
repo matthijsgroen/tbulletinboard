@@ -51,5 +51,6 @@
 	$newPatchForm->writeForm();
 
 ?>
+	<a href="newpatch.php">Pagina vernieuwen.</a>
 </body>
 </html>

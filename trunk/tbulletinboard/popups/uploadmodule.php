@@ -92,6 +92,22 @@
 				$state = 'error';
 			}
 		}
+		if ($_POST['actionName'] == 'close') {
+			importClass("util.Javascript");
+			$script = new Javascript();
+			$script->refreshOpenerFrame();
+			$script->closeWindow();
+			print $script->toString();
+		}
+		if ($_POST['actionName'] == 'updateDatabase') {
+			importClass("updater.ModuleUpdater");
+			$moduleName = $_POST['groupName'];
+			$database = $TBBconfiguration->getDatabase();
+			$updater = new ModuleUpdater($moduleName, $modAdmin->getModulePath($moduleName)."patches/", $database);
+			$stateFlag = $updater->executePatches();
+			$state = "updateComplete";
+			if (!$stateFlag) $state = "updateError";
+		}
 	}
 
 	if ($state == 'upload') {
@@ -117,6 +133,8 @@
 		// deploy.xml ontleden
 		$packFile->saveFile("deploy.xml", $uploadFolder);
 		$packContents = $modAdmin->getPackContents($uploadFolder . "deploy.xml");
+		importClass("util.TextParser");
+		$textParser = new TextParser();
 
 		$formFields->addText("Module", "",
 			sprintf(
@@ -124,7 +142,7 @@
 				"Plugins: <strong>%s</strong><br />",
 				$packContents['info']['name'],  $packContents['info']['version'],
 				count($packContents['plugins'])));
-		$formFields->addText("Beschrijving", "", $packContents['info']['description']);
+		$formFields->addText("Beschrijving", "", $textParser->parseMessageText($packContents['info']['description'], false, false));
 		$formFields->addText("Auteur", "",
 			sprintf(
 				"Naam: <strong>%s</strong><br />". "Url: <strong>%s</strong><br />".
@@ -167,13 +185,54 @@
 		$formFields->activeForm = $form;
 		$form->addFieldGroup($formFields);
 		$form->addHiddenField('actionID', $TBBsession->getActionID());
-		$form->addHiddenField('actionName', 'installDatabase');
 		$form->addHiddenField('groupName', $_POST['groupName']);
 		$formFields->startGroup("Module installatie");
-		$formFields->addText("Installatie", "", "De module is nu succesvol in het systeem geregistreerd. Klik op volgende om de database bij te werken.");
-		$formFields->addSubmit("Volgende &raquo;", true);
+		$formFields->addText("Installatie", "", "De module is nu succesvol in het systeem geregistreerd.");
+		importClass("updater.ModuleUpdater");
+		$moduleName = $_POST['groupName'];
+		$database = $TBBconfiguration->getDatabase();
+		$updater = new ModuleUpdater($moduleName, $modAdmin->getModulePath($moduleName)."patches/", $database);
+		$updates = $updater->getNewPatchCount();
+		if ($updates > 0) {
+			$formFields->addText("Database", "", sprintf("De database moet worden bijgewerkt met %s patch(es). Klik op volgende om de database bij te werken.", $updates));
+			$form->addHiddenField('actionName', 'updateDatabase');
+			$formFields->addSubmit("Volgende &raquo;", true);
+		} else {
+			$form->addHiddenField('actionName', 'close');
+			$formFields->addSubmit("Afronden", true);
+		}
+
 		$formFields->endGroup();
-	}	else {
+	} else
+	if ($state == "updateComplete") {
+		$form = new Form("uploadmodule", "uploadmodule.php");
+		$formFields = new StandardFormFields();
+		$formFields->activeForm = $form;
+		$form->addFieldGroup($formFields);
+		$form->addHiddenField('actionID', $TBBsession->getActionID());
+		$form->addHiddenField('groupName', $_POST['groupName']);
+		$formFields->startGroup("Module installatie");
+		$formFields->addText("Klaar", "", "De installatie is voltooid en de module kan na activatie in gebruik worden genomen.");
+		$form->addHiddenField('actionName', 'close');
+		$formFields->addSubmit("Afronden", true);
+		$formFields->endGroup();
+
+	} else
+	if ($state == "updateError") {
+		$form = new Form("uploadmodule", "uploadmodule.php");
+		$formFields = new StandardFormFields();
+		$formFields->activeForm = $form;
+		$form->addFieldGroup($formFields);
+		$form->addHiddenField('actionID', $TBBsession->getActionID());
+		$form->addHiddenField('groupName', $_POST['groupName']);
+		$formFields->startGroup("Module installatie");
+		$formFields->addText("Fout!", "", "Het bijwerken of installeren van de module is vastgelopen op een fout.");
+		$formFields->addText("Melding", "", $updater->getErrorMessage());
+		$formFields->addText("Advies", "", "Probeer een nieuwere versie te installeren. Wellicht is het probleem daarin verholpen.");
+		$form->addHiddenField('actionName', 'close');
+		$formFields->addSubmit("Afronden", true);
+		$formFields->endGroup();
+	} else {
 		$form = new Form("empty", "uploadmodule.php");
 	}
 	$feedback->showMessages();
