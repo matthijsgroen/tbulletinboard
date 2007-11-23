@@ -33,8 +33,8 @@
 
 		function createMenu(&$menu) {
 			$menu->addGroup("travian", "Travian");
-			$menu->addItem("linkPlayer", "travian", "Spelers koppelen", 
-				"adminplugin.php?id=".$this->getModulename()."&screen=match", '', '', 0, false, '');
+			$menu->addItem("linkPlayer", "travian", "Beheer", 
+				"adminplugin.php?id=".$this->getPluginID()."&screen=match", '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
@@ -42,11 +42,11 @@
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Travian speler koppelen", "adminplugin.php?id=".$this->getModuleName()."&screen=match");
+			$location->addLocation("Beheer", "adminplugin.php?id=".$this->getPluginID()."&screen=match");
 		}
 
 		function getPageTitle() {
-			return "Speler koppelen";
+			return "Beheer";
 		}
 
 		function getPage() {
@@ -63,7 +63,8 @@
 					$database = $TBBconfiguration->getDatabase();
 				
 					$tbbUserName = $_POST['boardnick'];
-					require_once($TBBclassDir . "User.bean.php");
+					//require_once($TBBclassDir . "User.bean.php");
+					importBean("board.User");
 					$userTable = new UserTable($database);
 
 					$userFilter = new DataFilter();
@@ -73,7 +74,7 @@
 					if ($userRow = $userTable->getRow()) {
 						//$feedback->addMessage("TBB member found " . $userRow->getValue("nickname"));
 					} else {
-						$feedback->addMessage("TBB member not found");
+						$feedback->addMessage("Forum gebruiker niet gevonden");
 						$correct = false;
 					}
 					if ($correct) {
@@ -95,7 +96,7 @@
 							}
 						
 						} else {
-							$feedback->addMessage("Player not found");
+							$feedback->addMessage("Speler niet gevonden");
 							$correct = false;
 						}
 					}
@@ -108,7 +109,8 @@
 					$database = $TBBconfiguration->getDatabase();
 				
 					$boarUserID = $_POST['boaruserID'];
-					require_once($TBBclassDir . "User.bean.php");
+					//require_once($TBBclassDir . "User.bean.php");
+					importBean("board.User");
 					$userTable = new UserTable($database);
 
 					$userRow = $userTable->getRowByKey($boarUserID);
@@ -140,7 +142,7 @@
 					$connection->setValue("allianceName", $playerRow->getValue("allianceName"));
 					$connection->setValue("allianceID", $playerRow->getValue("allianceID"));
 					$connection->store();
-					$feedback->addMessage("Travian player account attached to forum user");					
+					$feedback->addMessage("Travian speler gekoppeld aan Forum gebruiker");					
 				
 					$TBBsession->actionHandled();
 				}

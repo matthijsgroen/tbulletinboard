@@ -31,8 +31,8 @@
 	$adminPlugins = $TBBModuleManager->getPluginInfoType("admin");
 	for ($i = 0; $i < count($adminPlugins); $i++) {
 		$pluginInfo = $adminPlugins[$i];
-		$plugin = $TBBModuleManager->getPlugin($pluginInfo->getValue("group"), "admin");
-		if ($plugin->isActive()) $plugin->createMenu($menu);
+		$adminplugin = $TBBModuleManager->getPluginByID($pluginInfo->getValue("ID"));
+		if ($adminplugin->isActive()) $adminplugin->createMenu($menu);
 	}
 
 ?>

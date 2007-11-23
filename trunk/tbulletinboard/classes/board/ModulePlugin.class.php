@@ -62,7 +62,22 @@
 		function getPluginName() {
 			return $this->privateVars['pluginName'];
 		}
+		
+		function setPluginID($name) {
+			$this->privateVars['pluginID'] = $name;
+		}
 
+		function getPluginID() {
+			return $this->privateVars['pluginID'];
+		}
+		
+		function setPluginType($type) {
+			$this->privateVars['pluginType'] = $type;
+		}
+		
+		function getPluginType() {
+			return $this->privateVars['pluginType'];
+		}
 
 		function setActive($active) {
 			$this->privateVars['moduleActive'] = $active;
@@ -287,22 +302,32 @@
 			$result = array();
 			while ($pluginRow = $pluginTable->getRow()) {
 				$modulename = $pluginRow->getValue("group");
-				$this->privateVars['pluginCache'][$plugintype][$modulename] = $pluginRow;
+				$this->privateVars['pluginCache'][$plugintype][$modulename][] = $pluginRow;
 				$result[] = $pluginRow;
 			}
 			return $result;
 		}
 
 		function getPlugin($modulename, $plugintype) {
-			if (isSet($this->privateVars['pluginObjectCache'][$plugintype]) &&
-					isSet($this->privateVars['pluginObjectCache'][$plugintype][$modulename]))  {
-				return $this->privateVars['pluginObjectCache'][$plugintype][$modulename];
-			}
 			global $TBBconfiguration;
 			$info = $this->getPluginInfo($modulename, $plugintype);
 			if ($info === false) return false;
+			return $this->getPluginByInfo($info);
+		}
+		
+		function getPluginByID($pluginID) {
+			global $TBBconfiguration;
+			$database = $TBBconfiguration->getDatabase();
+			$pluginTable = new PluginTable($database);
+			$info = $pluginTable->getRowByKey($pluginID);
+			if ($info === false) return false;
+			return $this->getPluginByInfo($info);
+		}
 
+		private function getPluginByInfo($info) {
+			global $TBBconfiguration;
 			$className = $info->getValue("classname");
+			$modulename = $info->getValue("group");
 			if (isSet($GLOBALS['developmentMode']) && ($GLOBALS['developmentMode'] === true)) {
 				$moduleDir = $TBBconfiguration->uploadDir.'../modules/'.$modulename.'/';
 				$moduleOnlineDir = $TBBconfiguration->uploadOnlineDir.'../modules/'.$modulename.'/';
@@ -319,10 +344,8 @@
 			$obj->setModuleOnlineDir($moduleOnlineDir);
 			$obj->setPluginName($info->getValue("name"));
 			$obj->setActive($info->getValue("active"));
-			if (!isSet($this->privateVars['pluginObjectCache'][$plugintype])) {
-				$this->privateVars['pluginObjectCache'][$plugintype] = array();
-			}
-			$this->privateVars['pluginObjectCache'][$plugintype][$modulename] = $obj;
+			$obj->setPluginID($info->getValue("ID"));
+			$obj->setPluginType($info->getValue("type"));
 			return $obj;
 		}
 

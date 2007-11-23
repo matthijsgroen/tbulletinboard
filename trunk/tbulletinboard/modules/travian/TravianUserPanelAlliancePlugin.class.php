@@ -21,10 +21,10 @@
 	importClass("board.AdminPlugin");	
 	importClass("interface.Table");	
 
-	class TravianUserPanelPlugin extends AdminPlugin {
+	class TravianUserPanelAlliancePlugin extends AdminPlugin {
 		var $privateVars;
 
-		function TravianUserPanelPlugin() {
+		function TravianUserPanelAlliancePlugin() {
 			$this->AdminPlugin();
 		}
 
@@ -43,29 +43,22 @@
 
 			
 			$menu->addGroup("travian", "Travian");
-			$menu->addItem("linkSitter", "travian", "Sitters opgeven", 
-				"panelplugin.php?id=".$this->getPluginID()."&screen=sitters", '', '', 0, false, '');
-
-			$menu->addItem("travianDetails", "travian", "Details", 
-				"panelplugin.php?id=".$this->getPluginID()."&screen=details", '', '', 0, false, '');
+			$menu->addItem("allianceCheck", "travian", "AlliantieCheck", 
+				"panelplugin.php?id=".$this->getPluginID()."&screen=allianceCheck", '', '', 0, false, '');
 
 		}
 
 		function selectMenuItem(&$menu) {
-			if ($_GET['screen'] == "sitters") $menu->itemIndex = "linkSitter";
-			if ($_GET['screen'] == "details") $menu->itemIndex = "travianDetails";
+			if ($_GET['screen'] == "allianceCheck") $menu->itemIndex = "allianceCheck";
 		}
 
 		function getLocation(&$location) {
-			if ($_GET['screen'] == "sitters")
-				$location->addLocation("Travian Sitters opgeven", "panelplugin.php?id=".$this->getPluginID()."&screen=sitters");
-			if ($_GET['screen'] == "details")
-				$location->addLocation("Travian Details opgeven", "panelplugin.php?id=".$this->getPluginID()."&screen=details");
+			if ($_GET['screen'] == "allianceCheck")
+				$location->addLocation("Travian alliantie controle", "panelplugin.php?id=".$this->getPluginID()."&screen=allianceCheck");
 		}
 
 		function getPageTitle() {
-			if ($_GET['screen'] == "sitters") return "Sitters opgeven";
-			if ($_GET['screen'] == "details") return "Details opgeven";
+			return "Sitters opgeven";
 		}
 
 		function getPage() {

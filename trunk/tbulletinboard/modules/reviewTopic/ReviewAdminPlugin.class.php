@@ -33,7 +33,7 @@
 
 		function createMenu(&$menu) {
 			$menu->addGroup("topics", "Onderwerpen");
-			$menu->addItem("reviewAdmin", "topics", "Recenties instellen", "adminplugin?id=".$this->getModulename(), '', '', 0, false, '');
+			$menu->addItem("reviewAdmin", "topics", "Recenties instellen", "adminplugin?id=".$this->getPluginID(), '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
@@ -41,7 +41,7 @@
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Recentie instellingen", "adminplugin.php?id=".$this->getModuleName());
+			$location->addLocation("Recentie instellingen", "adminplugin.php?id=".$this->getPluginID());
 		}
 
 		function getPageTitle() {

@@ -35,14 +35,8 @@
 	$adminPlugins = $TBBModuleManager->getPluginInfoType("userpanel");
 	for ($i = 0; $i < count($adminPlugins); $i++) {
 		$pluginInfo = $adminPlugins[$i];
-		$plugin = $TBBModuleManager->getPlugin($pluginInfo->getValue("group"), "userpanel");
-		if ($plugin->isActive()) $plugin->createMenu($menu);
+		$panelplugin = $TBBModuleManager->getPluginByID($pluginInfo->getValue("ID"));
+		if ($panelplugin->isActive()) $panelplugin->createMenu($menu);
 	}
 
-//	$menu->addGroup('messages', 'Berichten');
-//	$menu->addItem('pms', 'messages', 'Priv&eacute;', 'usermessages.php');
-//	$menu->addItem('drafts', 'messages', 'Concepten', '');
-//	$menu->addItem('drafts', 'messages', 'Concepten', 'userdrafts.php');
-//	$menu->addItem('listen', 'messages', 'Automatische Reacties', '');
-//	$menu->addItem('listen', 'messages', 'Automatische Reacties', 'usertopicsubscribe.php');
 ?>
