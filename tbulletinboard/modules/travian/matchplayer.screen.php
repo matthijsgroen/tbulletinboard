@@ -32,5 +32,7 @@
 	$form->addComponent(new FormTextField("traviannick", "Travian", "Playername in Travian", 255, true));
 	$form->addComponent(new FormSubmit("Zoeken", "", "", "submitButton")); //$caption, $title, $description, $name, $onclick = ""
 	print $form->writeForm();
-
+	
 ?>
+	<a target="_blank" href="<?=$this->getModuleOnlineDir() ?>updateworld.job.php">Travian Dump handmatig bijwerken</a>
+	<a target="_blank" href="<?=$this->getModuleOnlineDir() ?>updateuser.job.php">Travian speler info handmatig synchroniseren</a>

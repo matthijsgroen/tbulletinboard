@@ -25,20 +25,24 @@
 	
 	importClass("board.ModulePlugin");
 
-	$moduleID = -1;
-	if (isSet($_GET['id'])) $moduleID = $_GET['id'];
-	if (isSet($_POST['id'])) $moduleID = $_POST['id'];
-	if ($moduleID != -1) {
-		$module = $TBBModuleManager->getPlugin($moduleID, "admin");
+	$pluginID = -1;
+	if (isSet($_GET['id'])) $pluginID = $_GET['id'];
+	if (isSet($_POST['id'])) $pluginID = $_POST['id'];
+	if ($pluginID != -1) {
+		$plugin = $TBBModuleManager->getPluginByID($pluginID);
 	}
 
-	if (!is_Object($module)) {
+	if (!is_Object($plugin)) {
 		$TBBconfiguration->redirectUri('adminextra.php');
 	}
+	
+	if ($plugin->getPluginType() != "admin") {
+		$TBBconfiguration->redirectUri('usercontrol.php');
+	}
 
-	$module->handlePageActions($feedback);
+	$plugin->handlePageActions($feedback);
 
-	$pageTitle = $TBBconfiguration->getBoardName() . ' - '. $module->getPageTitle();
+	$pageTitle = $TBBconfiguration->getBoardName() . ' - '. $plugin->getPageTitle();
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 	importClass("board.Location");
@@ -49,7 +53,7 @@
 	$here = new Location();
 	$here->addLocation($TBBconfiguration->getBoardName(), 'index.php');
 	$here->addLocation('Plugin instellingen', 'adminmodules.php');
-	$module->getLocation($here);
+	$plugin->getLocation($here);
 	$here->showLocation();
 
 	if (!$TBBsession->isLoggedIn()) {
@@ -73,11 +77,11 @@
 	$adminMenu->showMenu('configMenu');
 
 	include($TBBincludeDir.'admin_extra.php');
-	$module->selectMenuItem($menu);
+	$plugin->selectMenuItem($menu);
 	$menu->showMenu('adminMenu');
 ?>
 	<div class="adminContent">
-		<? $module->getPage(); ?>
+		<? $plugin->getPage(); ?>
 	</div>
 <?php
 	writeJumpLocationField(-1, "plugincontrol");
