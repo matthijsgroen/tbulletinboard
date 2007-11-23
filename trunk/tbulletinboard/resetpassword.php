@@ -23,9 +23,9 @@
 	require_once($TBBconfigDir.'configuration.php');
 
 	importClass("interface.Form");
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("board.UserManagement");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("board.ActionHandler");
 
 	if (isSet($_GET['code'])) {

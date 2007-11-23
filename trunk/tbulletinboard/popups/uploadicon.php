@@ -23,7 +23,7 @@
 	require_once($TBBconfigDir.'configuration.php');
 
 	importClass("board.TagListManager");	
-	importClass("board.Text");	
+	importClass("interface.Text");	
 	importClass("util.TextParser");	
 	importClass("interface.Menu");	
 	importClass("interface.Form");	

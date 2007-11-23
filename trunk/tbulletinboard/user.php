@@ -38,8 +38,8 @@
 		$userName = "Gebruiker niet gevonden";
 	}
 
-	importClass("board.Location");
-	importClass("board.Text");
+	importClass("interface.Location");
+	importClass("interface.Text");
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - ' . $userName;
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');

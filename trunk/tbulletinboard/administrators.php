@@ -27,10 +27,10 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 	
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Messages");
 	importClass("interface.Table");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("board.ActionHandler");
 
 	if (isSet($_GET['actionName']) && isSet($_GET['actionID']) && ($TBBcurrentUser->isMaster())) {

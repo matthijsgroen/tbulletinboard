@@ -24,9 +24,9 @@
 
 	importClass("interface.Form");
 	importClass("interface.FormFields");
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("board.UserManagement");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("board.ActionHandler");
 
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {

@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importClass("board.SearchPlugin");
+	importClass("board.search.SearchPlugin");
 	importClass("board.BoardFormFields");
 	importBean("board.User");
 

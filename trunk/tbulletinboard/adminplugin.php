@@ -23,7 +23,7 @@
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
 	
-	importClass("board.ModulePlugin");
+	importClass("board.plugin.ModulePlugin");
 
 	$pluginID = -1;
 	if (isSet($_GET['id'])) $pluginID = $_GET['id'];
@@ -45,8 +45,8 @@
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - '. $plugin->getPageTitle();
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
-	importClass("board.Location");
-	importClass("board.Text");
+	importClass("interface.Location");
+	importClass("interface.Text");
 
 	$feedback->showMessages();
 

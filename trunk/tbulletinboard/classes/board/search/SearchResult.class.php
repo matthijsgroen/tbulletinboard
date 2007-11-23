@@ -19,7 +19,7 @@
 	 */
 
 	importClass("interface.Table");
-	importBean("board.SearchCache");
+	importBean("board.search.SearchCache");
 	require_once($TBBclassDir."tbblib.php");
 	
 	/*

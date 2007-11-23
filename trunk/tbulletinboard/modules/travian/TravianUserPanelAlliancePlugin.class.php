@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importClass("board.AdminPlugin");	
+	importClass("board.plugin.AdminPlugin");	
 	importClass("interface.Table");	
 
 	class TravianUserPanelAlliancePlugin extends AdminPlugin {
@@ -43,22 +43,22 @@
 
 			
 			$menu->addGroup("travian", "Travian");
-			$menu->addItem("allianceCheck", "travian", "AlliantieCheck", 
-				"panelplugin.php?id=".$this->getPluginID()."&screen=allianceCheck", '', '', 0, false, '');
+			$menu->addItem("travianmap", "travian", "Kaartje", 
+				"panelplugin.php?id=".$this->getPluginID()."&screen=travianmap", '', '', 0, false, '');
 
 		}
 
 		function selectMenuItem(&$menu) {
-			if ($_GET['screen'] == "allianceCheck") $menu->itemIndex = "allianceCheck";
+			if ($_GET['screen'] == "travianmap") $menu->itemIndex = "travianmap";
 		}
 
 		function getLocation(&$location) {
-			if ($_GET['screen'] == "allianceCheck")
-				$location->addLocation("Travian alliantie controle", "panelplugin.php?id=".$this->getPluginID()."&screen=allianceCheck");
+			if ($_GET['screen'] == "travianmap")
+				$location->addLocation("Travian kaart", "panelplugin.php?id=".$this->getPluginID()."&screen=travianmap");
 		}
 
 		function getPageTitle() {
-			return "Sitters opgeven";
+			return "Travian Kaart";
 		}
 
 		function getPage() {
@@ -67,91 +67,18 @@
 			global $TBBsession;
 			$database = $TBBconfiguration->getDatabase();
 			$moduleDir = $this->getModuleDir();
+			$step = 1;
 			
 			require_once($moduleDir . "TravianUser.bean.php");
-			
-			//$selectQuery = sprintf("SELECT * FROM tbb_travian_user WHERE tbbID='%s'", $TBBcurrentUser->getUserID());
-			//$selectResult = $database->executeQuery($selectQuery);
 			$travianUserTable = new TravianPlayerTable($database);
 			$filter = new DataFilter();
 			$filter->addEquals("tbbID", $TBBcurrentUser->getUserID());
 			$travianUserTable->selectRows($filter, new ColumnSorting());
-			
 			if ($travianRow = $travianUserTable->getRow()) {
 			} else return;
-		
-			$step = 1;
-			if (isSet($_GET['actionName']) && isSet($_GET['actionID'])) {
-				$feedback = new Messages();
-				if (($_GET['actionName'] == 'removeSitter') && ($_GET['actionID'] == $TBBsession->getActionID())) {
-					require_once($moduleDir . "TravianSitter.bean.php");
-					$travianSitterTable = new TravianSitterTable($database);
-					$travianSitterTable->deleteRowByKey($_GET['sitterID']);
-					
-					$feedback->addMessage("Sitter verwijderd!");
-					$TBBsession->actionHandled();
-				}
-				
-				$feedback->showMessages();
-			}
-			if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {
-				global $TBBclassDir;
-				$feedback = new Messages();
-				if (($_POST['actionName'] == 'addSitter') && ($_POST['actionID'] == $TBBsession->getActionID())) {
-					$correct = true;
-					$travianNickname = $_POST['traviannick'];
-					require_once($moduleDir . "TravianPlace.bean.php");
-					$travianPlaceTable = new TravianPlaceTable($database);
-
-					$locationFilter = new DataFilter();
-					$locationFilter->addEquals("playerName", $travianNickname);
-					$travianPlaceTable->selectRows($locationFilter, new ColumnSorting());
-
-					if ($playerRow = $travianPlaceTable->getRow()) {
-						$population = $playerRow->getValue("population");
-						$villages = 1;
-						while ($otherVillages = $travianPlaceTable->getRow()) {
-							$villages++;
-							$population += $playerRow->getValue("population");
-						}
-					
-					} else {
-						$feedback->addMessage("Speler niet gevonden");
-						$correct = false;
-					}
-					if ($correct) {
-						$step = 2;					
-						$TBBsession->actionHandled();
-					}
-				}
-				if (($_POST['actionName'] == 'addConfirm') && ($_POST['actionID'] == $TBBsession->getActionID())) {
-					$database = $TBBconfiguration->getDatabase();
-				
-					$travianUserID = $_POST['travianuserID'];
-					$travianName = $_POST['travianName'];
-
-					require_once($moduleDir . "TravianSitter.bean.php");
-					$travianSitterTable = new TravianSitterTable($database);
-					$connection = $travianSitterTable->addRow();
-					$connection->setValue("userTravianID", $travianRow->getValue('travianID'));
-					$connection->setValue("userID", $TBBcurrentUser->getUserID());
-					$connection->setValue("travianID", $travianUserID);
-					$connection->setValue("travianName", $travianName);
-					$connection->store();
-					$feedback->addMessage("Opgeslagen dat $travianName jouw sitter is");
-				
-					$TBBsession->actionHandled();
-				}
-				
-				$feedback->showMessages();
-			}
-
-			if (($_GET['screen'] == "sitters") && ($step == 1)) 
-				include $moduleDir . "showsitters.screen.php";
-			if (($_GET['screen'] == "sitters") && ($step == 2)) 
-				include $moduleDir . "sitterconfirm.screen.php";
-			if ($_GET['screen'] == "details") 
-				include $moduleDir . "accountdetails.screen.php";
+			
+			if (($_GET['screen'] == "travianmap") && ($step == 1)) 
+				include $moduleDir . "travianmap.screen.php";
 
 		}
 

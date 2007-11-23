@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importClass("board.ModulePlugin");
+	importClass("board.plugin.ModulePlugin");
 
 	/**
 	 * This is the base class for MemberModules. All implementations should

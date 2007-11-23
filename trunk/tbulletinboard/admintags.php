@@ -38,14 +38,14 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Table");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
 	importClass("interface.formcomponents.RecordSelect");
 	importClass("util.TextParser");
 
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("board.ActionHandler");
 	importClass("board.TagListManager");
 	importClass("board.TBBEmoticonList");

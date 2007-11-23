@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importClass("board.AdminPlugin");
+	importClass("board.plugin.AdminPlugin");
 	importClass("interface.Table");
 
 	class TravianAdminPlugin extends AdminPlugin {

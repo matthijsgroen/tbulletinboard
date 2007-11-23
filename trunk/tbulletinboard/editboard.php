@@ -27,7 +27,7 @@
 	importClass("board.ActionHandler");
 	importClass("board.BoardProfiles");
 	importClass("board.MemberGroups");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importBean("board.Board");
 
 	$parentID = 0;

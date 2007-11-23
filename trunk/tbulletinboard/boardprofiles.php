@@ -27,10 +27,10 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("board.BoardProfiles");
 	importClass("interface.Table");
-	importClass("board.Text");
+	importClass("interface.Text");
 
 	if (isSet($_GET['actionName']) && isSet($_GET['actionID'])) {
 		if (($_GET['actionName'] == 'delProfile') && ($_GET['actionID'] == $TBBsession->getActionID())) {

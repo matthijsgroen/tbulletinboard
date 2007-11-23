@@ -23,8 +23,8 @@
 	require_once($TBBconfigDir.'configuration.php');
 
 	importClass("board.BoardProfiles");	
-	importClass("board.Text");	
-	importClass("board.Location");	
+	importClass("interface.Text");	
+	importClass("interface.Location");	
 
 	importClass("interface.Form");	
 	importClass("interface.Menu");	

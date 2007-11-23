@@ -27,12 +27,12 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
 	importClass("board.TopicIconList");
 	importClass("interface.Table");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("util.FileUpload");
 	importClass("board.ActionHandler");
 

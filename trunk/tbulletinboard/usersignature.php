@@ -27,8 +27,8 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 
-	importClass("board.Location");
-	importClass("board.Text");
+	importClass("interface.Location");
+	importClass("interface.Text");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
 	importClass("util.FileUpload");

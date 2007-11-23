@@ -28,7 +28,7 @@
 
 	importClass("interface.Table");
 	importClass("board.Board");
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("board.TBBEmoticonList");
 
 	$feedback->showMessages();

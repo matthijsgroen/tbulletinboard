@@ -29,8 +29,8 @@
 	importClass("util.TextParser");	
 	importClass("interface.formcomponents.PlainText");	
 
-	importClass("board.Location");	
-	importClass("board.Text");	
+	importClass("interface.Location");	
+	importClass("interface.Text");	
 	importClass("board.ActionHandler");	
 	importClass("board.TagListManager");	
 	importClass("board.TBBEmoticonList");	

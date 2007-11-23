@@ -25,11 +25,11 @@
 
 	importClass("interface.Table");
 	importClass("util.PackFile");
-	importClass("board.Location");
-	importClass("board.Text");
+	importClass("interface.Location");
+	importClass("interface.Text");
 	importClass("board.ActionHandler");
-	importBean("board.Plugin");
-	importClass("board.ModulePlugin");
+	importBean("board.plugin.Plugin");
+	importClass("board.plugin.ModulePlugin");
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Plugin Info';
 	include($TBBincludeDir.'htmltop.php');

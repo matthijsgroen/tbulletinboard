@@ -27,13 +27,13 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 	
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
 	importClass("board.MemberGroups");
 	importClass("interface.Table");
-	importClass("board.Text");
-	importClass("board.ModulePlugin");
+	importClass("interface.Text");
+	importClass("board.plugin.ModulePlugin");
 
 	$wizzStep = 0; // step in the addgroup wizard.
 	$modID = 0;

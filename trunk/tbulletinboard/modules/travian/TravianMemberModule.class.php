@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importClass("board.MemberModule");
+	importClass("board.plugin.MemberModule");
 	importClass("board.MemberGroups");
 
 	class TravianMemberModule extends MemberModule {

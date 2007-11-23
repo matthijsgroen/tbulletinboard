@@ -73,8 +73,8 @@
 
 	importClass("interface.Form");
 	importClass("interface.FormFields");
-	importClass("board.Location");
-	importClass("board.Text");
+	importClass("interface.Location");
+	importClass("interface.Text");
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Registreren';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
