@@ -20,18 +20,18 @@
 
     
     // Preferences
-    /*
     $mysqlhost = 'localhost';
     $mysqluser = 'menhir_user';
     $mysqlpass = 'traviantest';
     $mysqldb = 'menhir_data';
     $path = '/home/menhir/public_html/upload/modules/travian/data';
-    */
+    /* -- *
     $mysqlhost = 'localhost';
     $mysqluser = 'root';
     $mysqlpass = 'msdb3181';
     $mysqldb = 'tbb2';
     $path = '/var/www/tbb2/upload/modules/travian/';
+    /* -- */
     
     // Create database connection and select database
     $db = @mysql_connect($mysqlhost, $mysqluser, $mysqlpass) OR die('Can not connect to DB-Server!');

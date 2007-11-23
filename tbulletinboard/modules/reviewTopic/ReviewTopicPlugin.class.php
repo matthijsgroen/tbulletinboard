@@ -31,7 +31,7 @@
 	importClass("board.Buttonbar");
 	importClass("board.BoardFormFields");
 	importClass("board.TBBEmoticonList");
-	importClass("board.TopicPlugin");
+	importClass("board.plugin.TopicPlugin");
 	importClass("board.ActionHandler");
 
 	require_once($moduleDir . 'ReviewTypes.bean.php');

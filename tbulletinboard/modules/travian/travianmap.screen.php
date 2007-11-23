@@ -87,7 +87,12 @@
 		<div id="control" class="controll">
 			<table>
 			<tbody>
-			<tr><td><a href="javascript:zoomIn()">+</a></td><td><a href="javascript:moveUp()">&uarr;</a></td><td></td></tr>
+			<tr><td><a href="javascript:zoomIn()">+</a></td><td><a href="javascript:moveUp()">&uarr;</a></td><td></td>
+				<td rowspan="3">
+					Met deze tool kan je je eigen en andere allianties naast elkaar leggen. <br />Hoe donker de kleur, hoe groter
+					de village is.<br /> Via de controls hier links kan je inzoomen op de kaart.<br />
+					
+				</td></tr>
 			<tr><td><a href="javascript:moveLeft()">&larr;</a></td><td></td><td><a href="javascript:moveRight()">&rarr;</a></td></tr>
 			<tr><td><a href="javascript:zoomOut()">-</a></td><td><a href="javascript:moveDown()">&darr;</a></td><td></td></tr>
 			</tbody>
@@ -104,7 +109,7 @@
 		<?php
 		$allianceID = $travianRow->getValue("allianceID");
 		if ($allianceID != 0) { ?>
-			var allyList = new PlayerList("<?=$travianRow->getValue("allianceName") ?>", "player", "", "005000", "DDFFDD");
+			var allyList = new PlayerList("<?=$travianRow->getValue("allianceName") ?>", "player", "", "005400", "c1dfa1");
 			lists[0] = allyList;
 			<?php
 				$minX = false;

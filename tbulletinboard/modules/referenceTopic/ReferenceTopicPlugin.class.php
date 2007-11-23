@@ -34,7 +34,7 @@
 	importClass("interface.Text");
 	require_once($moduleDir . "ReferenceTopic.bean.php");
 	require_once($moduleDir . "ReferenceTopic.class.php");
-	importClass("board.TopicPlugin");
+	importClass("board.plugin.TopicPlugin");
 	importClass("board.ActionHandler");
 
 	/*

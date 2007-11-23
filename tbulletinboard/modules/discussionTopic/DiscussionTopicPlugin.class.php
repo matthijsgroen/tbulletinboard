@@ -35,7 +35,7 @@
 	require_once($moduleDir . "DiscussionReaction.class.php");
 	require_once($moduleDir . "DiscussionTopic.class.php");
 	require_once($moduleDir . "DiscussionTopic.bean.php");
-	importClass("board.TopicPlugin");
+	importClass("board.plugin.TopicPlugin");
 
 	/*
 	$libraryClassDir = $GLOBALS['libraryClassDir'];
