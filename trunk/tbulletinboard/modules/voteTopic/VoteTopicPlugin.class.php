@@ -25,7 +25,7 @@
 	importClass("interface.FormFields");
 	importClass("interface.Menu");
 	importClass("orm.DataObjects");
-	importClass("board.TopicPlugin");
+	importClass("board.plugin.TopicPlugin");
 	importClass("board.Board");
 	importBean("board.Topic");
 	importBean("board.Reaction");
