@@ -72,7 +72,7 @@
 			// Delete the searchresults of 24 hours ago
 			$cleanFilter = new DataFilter();
 			$cleanDate = new LibDateTime();
-			$cleanDate->sub(ivHour, 4);
+			$cleanDate->sub(LibDateTime::hour(), 4);
 			$cleanFilter->addLessThan("date", $cleanDate);
 			$searchCacheTable->deleteRows($cleanFilter);
 			return $cacheRow->getValue("ID");
