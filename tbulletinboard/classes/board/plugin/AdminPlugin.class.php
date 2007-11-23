@@ -18,42 +18,37 @@
 	 *	
 	 */
 
-	importClass("board.ModulePlugin");
-	importClass("board.Board");
+	class AdminPlugin extends ModulePlugin {
 
-	class SearchPlugin extends ModulePlugin {
-
-		function SearchPlugin() {
+		function AdminPlugin() {
 			$this->ModulePlugin();
 		}
 
-		function getSearchName() {
-			return $this->getModuleName();
-		}
-		
-		function hasAccess(&$user) {
-			return false;
+		function handlePageActions(&$feedback) {
 		}
 
-		function buildSearchForm(&$form, $step, $boardID) {
+		function getPageTitle() {
 		}
 
-		function hasMoreSearchFormSteps($wizzStep) {
-			return false;
+		function getPage() {
 		}
 
-		function handleSearchForm(&$feedback, &$form, $step) {
-			return false;
+		function getLocation(&$location) {
 		}
 
-		function executeSearch(&$searchResult, &$feedback) {
-			return true;
+		function handlePopupActions(&$feedback) {
 		}
 
-		function getSearchLocations($parentID) {
-			global $TBBboardList;
-			global $TBBcurrentUser;
-			return $TBBboardList->getReadableBoardIDs($parentID, $TBBcurrentUser);
+		function createMenu(&$menu) {
+		}
+
+		function selectMenuItem(&$menu) {
+		}
+
+		function getPopupTitle() {
+		}
+
+		function getPopupPage() {
 		}
 
 	}

@@ -29,8 +29,8 @@
 	importClass("interface.Form");
 	importClass("interface.FormFields");
 	importClass("util.FileUpload");
-	importClass("board.Location");
-	importClass("board.Text");
+	importClass("interface.Location");
+	importClass("interface.Text");
 	importClass("board.AvatarList");
 	importClass("board.ActionHandler");
 	importClass("board.BoardFormFields");

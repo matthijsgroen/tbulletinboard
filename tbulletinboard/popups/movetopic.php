@@ -23,7 +23,7 @@
 	require_once($TBBconfigDir.'configuration.php');
 
 	importClass("board.Board");	
-	importClass("board.ModulePlugin");	
+	importClass("board.plugin.ModulePlugin");	
 	importClass("interface.Form");	
 	importClass("interface.FormFields");	
 

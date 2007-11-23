@@ -23,9 +23,9 @@
 	require_once($TBBconfigDir.'configuration.php');
 	require_once($TBBclassDir.'tbblib.php');
 
-	importClass("board.ModulePlugin");
-	importClass("board.SearchResult");
-	importClass("board.Text");
+	importClass("board.plugin.ModulePlugin");
+	importClass("board.search.SearchResult");
+	importClass("interface.Text");
 
 	importClass("interface.Table");
 	importClass("interface.Menu");

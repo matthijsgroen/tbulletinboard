@@ -21,7 +21,7 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	importClass("board.ModulePlugin");	
+	importClass("board.plugin.ModulePlugin");	
 
 	$moduleID = -1;
 	if (isSet($_GET['id'])) $moduleID = $_GET['id'];

@@ -20,8 +20,8 @@
 
 	importClass("util.XMLParser");
 	importClass("util.PackFile");
-	importBean("board.Plugin");
-	importBean("board.Module");
+	importBean("board.plugin.Plugin");
+	importBean("board.plugin.Module");
 
 
 	class ModulePlugin {
@@ -260,10 +260,12 @@
 		}
 
 		function getPluginInfo($modulename, $plugintype) {
+			/*
 			if (isSet($this->privateVars['pluginCache'][$plugintype]) &&
 					isSet($this->privateVars['pluginCache'][$plugintype][$modulename]))  {
 				return $this->privateVars['pluginCache'][$plugintype][$modulename];
 			}
+			*/
 			global $TBBconfiguration;
 			$database = $TBBconfiguration->getDatabase();
 			$pluginTable = new PluginTable($database);
@@ -276,11 +278,11 @@
 				$this->privateVars['pluginCache'][$plugintype] = array();
 			}
 			if ($pluginTable->getSelectedRowCount() < 1) {
-				$this->privateVars['pluginCache'][$plugintype][$modulename] = false;
+				//$this->privateVars['pluginCache'][$plugintype][$modulename] = false;
 				return false;
 			}
 			if ($pluginRow = $pluginTable->getRow()) {
-				$this->privateVars['pluginCache'][$plugintype][$modulename] = $pluginRow;
+				//$this->privateVars['pluginCache'][$plugintype][$modulename] = $pluginRow;
 				return $pluginRow;
 			}
 			return false;
@@ -302,6 +304,10 @@
 			$result = array();
 			while ($pluginRow = $pluginTable->getRow()) {
 				$modulename = $pluginRow->getValue("group");
+				if (!isSet($this->privateVars['pluginCache'][$plugintype][$modulename])) {
+					$this->privateVars['pluginCache'][$plugintype][$modulename] = array();
+				}
+
 				$this->privateVars['pluginCache'][$plugintype][$modulename][] = $pluginRow;
 				$result[] = $pluginRow;
 			}

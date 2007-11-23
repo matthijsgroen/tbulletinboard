@@ -24,7 +24,7 @@
 
 	importClass("interface.Form");
 	importClass("board.Board");
-	importClass("board.Text");
+	importClass("interface.Text");
 
 	$topicID = 0;
 	if (isSet($_GET['id'])) $topicID = $_GET['id'];

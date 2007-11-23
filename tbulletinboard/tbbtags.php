@@ -27,11 +27,11 @@
 	include($TBBincludeDir.'usermenu.php');
 
 	importClass("interface.Form");
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Table");
 	importClass("util.TextParser");
 	importClass("board.Board");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("board.TagListManager");
 	importClass("board.TBBEmoticonList");
 	importClass("board.ActionHandler");

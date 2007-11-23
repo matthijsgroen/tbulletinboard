@@ -39,14 +39,14 @@
 	include($TBBincludeDir.'usermenu.php');
 
 	importClass("util.ToolbarHelper");
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
 	importClass("interface.formcomponents.RecordSelect");
 	importClass("interface.Table");
 	importBean("board.Emoticon");
 	importClass("board.TBBEmoticonList");
-	importClass("board.Text");
+	importClass("interface.Text");
 	importClass("board.ActionHandler");
 	importClass("orm.DataOrderHelper");
 

@@ -19,7 +19,7 @@
 	 */
 
 	importClass("interface.Menu");	
-	importClass("board.ModulePlugin");
+	importClass("board.plugin.ModulePlugin");
 
 	$menu = new Menu();
 	$menu->addGroup('modules', 'Modules');

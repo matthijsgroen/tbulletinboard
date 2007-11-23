@@ -27,10 +27,10 @@
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 	
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
-	importClass("board.Text");
+	importClass("interface.Text");
 
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID']) && $TBBsession->isLoggedIn()) {
 		if (($_POST['actionName'] == 'changePassword') && ($_POST['actionID'] == $TBBsession->getActionID())) {

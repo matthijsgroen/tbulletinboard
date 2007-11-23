@@ -32,7 +32,7 @@
 	importClass("board.ActionHandler");
 	importClass("board.BoardProfiles");
 	importClass("board.MemberGroups");
-	importClass("board.Text");
+	importClass("interface.Text");
 
 	$boardID = 0;
 	if (isSet($_GET['id'])) $boardID = trim($_GET['id']);

@@ -19,11 +19,11 @@
 	 */
 
 	importClass("util.LibDateTime");
-	importClass("board.Location");
+	importClass("interface.Location");
 	importClass("board.MemberGroups");
 	importClass("board.BoardProfiles");
 	importClass("board.TopicIconList");
-	importClass("board.ModulePlugin");
+	importClass("board.plugin.ModulePlugin");
 	importClass("board.TopicIconList");
 	importClass("board.UserManagement");
 

@@ -19,7 +19,7 @@
 	 */
 	importClass("interface.Menu");
 	importClass("board.UserManagement");
-	importClass("board.ModulePlugin");
+	importClass("board.plugin.ModulePlugin");
 
 	$topMenu = new Menu();
 

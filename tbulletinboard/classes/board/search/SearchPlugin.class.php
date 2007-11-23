@@ -18,40 +18,44 @@
 	 *	
 	 */
 
-	class Text {
+	importClass("board.plugin.ModulePlugin");
+	importClass("board.Board");
 
-		var $privateVars;
+	class SearchPlugin extends ModulePlugin {
 
-		function Text() {
-			$this->privateVars = array();
-			$this->privateVars['text'] = array();
+		function SearchPlugin() {
+			$this->ModulePlugin();
 		}
 
-		function addHTMLText($text) {
-			$this->privateVars['text'][] = array('type' => 'html', 'content' => $text);
+		function getSearchName() {
+			return $this->getModuleName();
+		}
+		
+		function hasAccess(&$user) {
+			return false;
 		}
 
-		function addHTMLheader($text) {
-			$this->privateVars['text'][] = array('type' => 'htmlheader', 'content' => $text);
+		function buildSearchForm(&$form, $step, $boardID) {
 		}
 
-		function showText() {
-?>
-		<div class="center">
-<?php
-			for ($i = 0; $i < count($this->privateVars['text']); $i++) {
-				$textPart = $this->privateVars['text'][$i];
-				if ($textPart['type'] == 'html') {
-					print "<div class=\"text\"><p>".$textPart['content']."</p></div>";
-				}
-				if ($textPart['type'] == 'htmlheader') {
-					print "<h3 class=\"textheader\">".$textPart['content']."</h3>";
-				}
-			}
-?>
-		</div>
-<?php
+		function hasMoreSearchFormSteps($wizzStep) {
+			return false;
 		}
+
+		function handleSearchForm(&$feedback, &$form, $step) {
+			return false;
+		}
+
+		function executeSearch(&$searchResult, &$feedback) {
+			return true;
+		}
+
+		function getSearchLocations($parentID) {
+			global $TBBboardList;
+			global $TBBcurrentUser;
+			return $TBBboardList->getReadableBoardIDs($parentID, $TBBcurrentUser);
+		}
+
 	}
 
 ?>

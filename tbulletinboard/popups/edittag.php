@@ -24,11 +24,11 @@
 
 
 
-	importClass("board.Location");	
+	importClass("interface.Location");	
 	importClass("interface.Form");	
 	importClass("interface.FormFields");	
 	importClass("interface.Table");	
-	importClass("board.Text");	
+	importClass("interface.Text");	
 	importClass("util.TextParser");	
 	importClass("board.ActionHandler");	
 	importClass("board.TagListManager");	

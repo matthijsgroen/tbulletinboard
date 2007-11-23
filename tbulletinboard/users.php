@@ -24,11 +24,11 @@
 
 	importClass("board.UserManagement");
 	importClass("interface.Table");
-	importClass("board.ModulePlugin");
-	importClass("board.SearchPlugin");
-	importClass("board.Location");
-	importClass("board.Text");
-	importClass("board.SearchResult");
+	importClass("board.plugin.ModulePlugin");
+	importClass("board.search.SearchPlugin");
+	importClass("interface.Location");
+	importClass("interface.Text");
+	importClass("board.search.SearchResult");
 
 	$pageTitle = $TBBconfiguration->getBoardName() . ' - Gebruikers';
 	include($TBBincludeDir.'htmltop.php');

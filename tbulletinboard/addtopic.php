@@ -24,8 +24,8 @@
 
 	importClass("board.Board");
 	importClass("interface.Form");
-	importClass("board.Text");
-	importClass("board.ModulePlugin");
+	importClass("interface.Text");
+	importClass("board.plugin.ModulePlugin");
 
 	$boardID = 0;
 	if (isSet($_GET['boardID'])) $boardID = $_GET['boardID'];

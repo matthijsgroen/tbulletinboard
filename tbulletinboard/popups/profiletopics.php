@@ -23,7 +23,7 @@
 	require_once($TBBconfigDir.'configuration.php');
 
 	importClass("board.TagListManager");	
-	importClass("board.Text");	
+	importClass("interface.Text");	
 	importClass("util.TextParser");	
 	importClass("interface.Menu");	
 	importClass("interface.Form");	
@@ -33,7 +33,7 @@
 	importClass("interface.Table");	
 	importClass("board.BoardProfiles");	
 	importClass("board.ActionHandler");	
-	importClass("board.ModulePlugin");	
+	importClass("board.plugin.ModulePlugin");	
 
 	$pageTitle = 'Profiel boards';
 	include($TBBincludeDir.'popuptop.php');

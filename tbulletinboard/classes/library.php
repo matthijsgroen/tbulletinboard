@@ -26,14 +26,22 @@
 		$path = $TBBclassDir . str_replace(".", "/", $classPath) . ".class.php";
 		if (!file_exists($path)) {
 			$trace = debug_backtrace();
-			die("'".$classPath . "' not found in <b>" . $trace[0]["file"]."</b> on line <b>" . $trace[0]["line"]."</b>");
+			die("Class '".$classPath . "' not found in <b>" . $trace[0]["file"]."</b> on line <b>" . $trace[0]["line"]."</b>");
 		}
 		require_once($path);
 	}
 
 	function importBean($classPath) {
 		global $TBBclassDir;
-		require_once($TBBclassDir . str_replace(".", "/", $classPath) . ".bean.php");
+		if (!isSet($TBBclassDir)) {
+			die("\$TBBclassDir not defined!");
+		}
+		$path = $TBBclassDir . str_replace(".", "/", $classPath) . ".bean.php";
+		if (!file_exists($path)) {
+			$trace = debug_backtrace();
+			die("Bean '".$classPath . "' not found in <b>" . $trace[0]["file"]."</b> on line <b>" . $trace[0]["line"]."</b>");
+		}
+		require_once($path);
 	}
 
 
