@@ -39,9 +39,11 @@
 		$pluginID = $_GET['plugin'];
 		$pluginTable = new PluginTable($database);
 		$pluginRow = $pluginTable->getRowByKey($pluginID);
-		$pluginRow->setValue("active", ($_GET['action'] == 'activate'));
-		$pluginRow->store();
-		$feedback->addMessage(sprintf('Plugin ge%sactiveerd', ($_GET['action'] == 'activate') ? "" : "de" ));
+		if (is_Object($pluginRow)) {
+			$pluginRow->setValue("active", ($_GET['action'] == 'activate'));
+			$pluginRow->store();
+			$feedback->addMessage(sprintf('Plugin ge%sactiveerd', ($_GET['action'] == 'activate') ? "" : "de" ));
+		}
 	}
 
 	$feedback->showMessages();
