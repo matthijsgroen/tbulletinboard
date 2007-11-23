@@ -33,7 +33,7 @@
 	}
 	require_once($TBBclassDir . 'library.php');
 	importClass("board.Configuration");
-	importClass("board.Session");
+	importClass("board.user.Session");
 	require_once($TBBconfigDir . 'settings.php');
 
 	/*****************************************

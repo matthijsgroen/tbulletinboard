@@ -22,9 +22,9 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	importClass("board.UserManagement");
+	importClass("board.user.UserManagement");
 	importClass("interface.Table");
-	importBean("board.User");
+	importBean("board.user.User");
 
 	$userID = 0;
 	if (isSet($_GET['id'])) $userID = $_GET['id'];

@@ -24,8 +24,8 @@
 	
 	importClass("util.LibDateTime");
 	importClass("board.AvatarList");
-	importBean("board.UserSettings");
-	importBean("board.User");
+	importBean("board.user.UserSettings");
+	importBean("board.user.User");
 	importBean("board.TopicRead");
 	importBean("board.Administrator");
 	importBean("board.SendPassword");

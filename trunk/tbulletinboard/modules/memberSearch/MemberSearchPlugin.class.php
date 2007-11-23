@@ -20,7 +20,7 @@
 
 	importClass("board.search.SearchPlugin");
 	importClass("board.BoardFormFields");
-	importBean("board.User");
+	importBean("board.user.User");
 
 	//global $libraryClassDir;
 	//require_once($libraryClassDir . "FormFields.class.php");

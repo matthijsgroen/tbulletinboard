@@ -21,7 +21,7 @@
 	require_once("folder.config.php");
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
-	importClass("board.User");
+	importClass("board.user.User");
 
 	$isRegistered = 0;
 	if (isSet($_POST['actionName']) && isSet($_POST['actionID'])) {

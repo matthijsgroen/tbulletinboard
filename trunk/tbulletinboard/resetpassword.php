@@ -24,7 +24,7 @@
 
 	importClass("interface.Form");
 	importClass("interface.Location");
-	importClass("board.UserManagement");
+	importClass("board.user.UserManagement");
 	importClass("interface.Text");
 	importClass("board.ActionHandler");
 
