@@ -31,7 +31,7 @@
 	importClass("board.Board");
 	importClass("board.ActionHandler");
 	importClass("board.BoardProfiles");
-	importClass("board.MemberGroups");
+	importClass("board.user.MemberGroups");
 	importClass("interface.Text");
 
 	$boardID = 0;

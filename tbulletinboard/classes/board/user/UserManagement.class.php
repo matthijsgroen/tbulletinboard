@@ -154,7 +154,7 @@
 			if (isSet($this->privateVars['onlineGuests'])) {
 				return $this->privateVars['onlineGuests'];
 			}
-			importBean("board.UserSession");
+			importBean("board.user.UserSession");
 			
 			$database = $TBBconfiguration->getDatabase();
 

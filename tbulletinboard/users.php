@@ -22,7 +22,7 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	importClass("board.UserManagement");
+	importClass("board.user.UserManagement");
 	importClass("interface.Table");
 	importClass("board.plugin.ModulePlugin");
 	importClass("board.search.SearchPlugin");

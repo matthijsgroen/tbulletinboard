@@ -30,7 +30,7 @@
 	importClass("interface.Location");
 	importClass("interface.Form");
 	importClass("interface.FormFields");
-	importClass("board.MemberGroups");
+	importClass("board.user.MemberGroups");
 	importClass("interface.Table");
 	importClass("interface.Text");
 	importClass("board.plugin.ModulePlugin");

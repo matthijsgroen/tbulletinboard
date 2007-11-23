@@ -18,7 +18,7 @@
 	 *	
 	 */
 
-	importBean("board.Group");
+	importBean("board.user.Group");
 
 	class MemberGroup {
 

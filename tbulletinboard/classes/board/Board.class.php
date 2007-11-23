@@ -20,14 +20,14 @@
 
 	importClass("util.LibDateTime");
 	importClass("interface.Location");
-	importClass("board.MemberGroups");
+	importClass("board.user.MemberGroups");
 	importClass("board.BoardProfiles");
 	importClass("board.TopicIconList");
 	importClass("board.plugin.ModulePlugin");
 	importClass("board.TopicIconList");
-	importClass("board.UserManagement");
+	importClass("board.user.UserManagement");
 
-	importBean("board.User");	
+	importBean("board.user.User");	
 	importBean("board.TopicRead");	
 	importBean("board.Board");	
 	importBean("board.Topic");	

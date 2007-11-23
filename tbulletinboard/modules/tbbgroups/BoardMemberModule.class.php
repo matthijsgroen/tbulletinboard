@@ -19,7 +19,7 @@
 	 */
 
 	importClass("board.plugin.MemberModule");
-	importClass("board.MemberGroups");
+	importClass("board.user.MemberGroups");
 
 	class BoardMemberModule extends MemberModule {
 

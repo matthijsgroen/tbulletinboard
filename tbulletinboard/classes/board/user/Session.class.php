@@ -20,8 +20,8 @@
 	importClass("util.LibDateTime");
 	importClass("util.Session");
 
-	importClass("board.User");
-	importBean("board.User");
+	importClass("board.user.User");
+	importBean("board.user.User");
 
 	class TBBSession extends Session {
 

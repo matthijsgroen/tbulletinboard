@@ -64,7 +64,7 @@
 				
 					$tbbUserName = $_POST['boardnick'];
 					//require_once($TBBclassDir . "User.bean.php");
-					importBean("board.User");
+					importBean("board.user.User");
 					$userTable = new UserTable($database);
 
 					$userFilter = new DataFilter();
@@ -110,7 +110,7 @@
 				
 					$boarUserID = $_POST['boaruserID'];
 					//require_once($TBBclassDir . "User.bean.php");
-					importBean("board.User");
+					importBean("board.user.User");
 					$userTable = new UserTable($database);
 
 					$userRow = $userTable->getRowByKey($boarUserID);
