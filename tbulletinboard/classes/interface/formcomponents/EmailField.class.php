@@ -47,7 +47,7 @@
 			$this->rowClass = "emailfield";
 		}
 
-		function hasValidValue() {
+		function hasValidValue($postData = null) {
 			if (!$this->hasValue()) return true;
 			$s = $this->form->getValue($this->privateVars['name'], $this->privateVars['type']);
 			return eregi("^([._a-z0-9-]+[._a-z0-9-]*)@(([a-z0-9-]+\.)*([a-z0-9-]+)(\.[a-z]{2,3})?)$", $s);

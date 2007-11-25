@@ -34,12 +34,19 @@
 	require_once($TBBclassDir . 'library.php');
 	importClass("board.Configuration");
 	importClass("board.user.Session");
-	require_once($TBBconfigDir . 'settings.php');
+	if (!file_exists($docRoot . 'upload/settings/settings.php')) {
+		die("The bulletinboard is not yet installed. See the instructions in the documentation folder on how to install TBB2.");
+	}
+	require_once($docRoot . 'upload/settings/settings.php');
 
 	/*****************************************
 	 * Account settings part
 	 */
-	
+
+	$GLOBALS['ivTableSpace'] = 0;
+	$GLOBALS['calendar_daynames'] = array("ma", "di", "wo", "do", "vr", "za", "zo");
+	$boardVersion = "2.0.11 &alpha;lpha version";
+		
 	// set security settings
 	date_default_timezone_set('CET');
 	importClass("orm.MySQLDatabase");

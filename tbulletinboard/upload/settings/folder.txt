@@ -1,0 +1,2 @@
+This folder is for the opload of topic icons. It is initially empty (except for this textfile). 
+When installed, administrators can upload their topic icons to this dir.

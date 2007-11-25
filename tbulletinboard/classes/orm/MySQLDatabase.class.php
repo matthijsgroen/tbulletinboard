@@ -70,8 +70,8 @@
 		function connect() {
 			$host = $this->privateVars['host'];
 			if ($this->privateVars['port'] != 3306) $host .= ":" . $this->privateVars['port'];
-			$mysql_link = mysql_connect($host,	$this->privateVars['user'], $this->privateVars['password'], true);
-			if($mysql_link && mysql_select_db($this->privateVars['database'], $mysql_link)) {
+			$mysql_link = @mysql_connect($host,	$this->privateVars['user'], $this->privateVars['password'], true);
+			if($mysql_link && @mysql_select_db($this->privateVars['database'], $mysql_link)) {
 				$this->privateVars['link'] = $mysql_link;
 				$this->privateVars['connected'] = true;
 				if($this->getVersion() >= 5) {

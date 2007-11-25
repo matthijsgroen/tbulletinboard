@@ -18,31 +18,12 @@
 	 *	
 	 */
 
-	$GLOBALS['ivTableSpace'] = 0;
-	$GLOBALS['calendar_daynames'] = array("ma", "di", "wo", "do", "vr", "za", "zo");
-	$boardVersion = "2.0.11 &alpha;lpha version";
-	
-	/*
-	// Online instance Menhir
-	$uploadPath = '/home/menhir/public_html/upload/';
-	$uploadOnlinePath = 'upload/';
-	
-	// database settings
-	$dbServer = "localhost";
-	$dbDatabase = "menhir_data";
-	$dbUser = "menhir_user";
-	$dbPassword = "traviantest";
-	/* -- */
+	$pageTime = microTime();
+	$procCounter = 0;
+	$docRoot = '../';
+	$TBBconfigDir = '../config/';
+	$TBBincludeDir = '../include/';
+	$TBBclassDir = '../classes/'; // always configure the classdir before loading the classes;
+	require_once($TBBclassDir . "library.php");
 
-	// Local development Matthijs
-	$developmentMode = true;
-	$uploadPath = '/var/www/tbb2/upload/';
-	$uploadOnlinePath = 'upload/';
-	// database settings
-	$dbServer = "localhost";
-	$dbDatabase = "tbb2";
-	$dbUser = "root";
-	$dbPassword = "msdb3181";
-	/* -- */
-		
 ?>

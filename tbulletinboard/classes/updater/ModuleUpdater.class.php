@@ -187,6 +187,45 @@
 		function getErrorMessage() {
 			return $this->errorMessage;
 		}
+		
+		function importDump($filename) {
+			$queries = file_get_contents($filename);
+			if (strLen(trim($queries)) > 0) {
+				$lines = explode("\n", $queries);
+				$queryList = array();
+				$inString = false;
+				$lastQuery = "";
+				foreach($lines as $line) {
+					$trimLine = trim($line);
+					$quotCount = substr_count($trimLine, "'");
+					$remQuotCount = substr_count($trimLine, "\'");
+					if ((($quotCount - $remQuotCount) % 2) == 1) {
+						$inString = !$inString;
+					}
+					if (subStr($trimLine, 0, 1) != '#') {
+						$lastQuery .= $line . "\n";
+						if ((subStr($trimLine, -1) == ';') && (!$inString)) {
+							$queryList[] = ' '.substr($lastQuery,0,-1);
+							$lastQuery = "";
+						}
+					}
+				}
+
+				//printf("Q(%s) \n", count($queryList));
+				//print htmlSpecialChars($queryList[1]);
+				//return false;
+				$i = 1;
+				foreach($queryList as $query) {
+					$result = $this->database->executeQuery($query);
+					if (!$result) {
+						$this->errorMessage('Invalid query: '.$query.'');
+						return false;
+					}
+					$i++;
+				}
+			}		
+			return true;
+		}
 	}
 
 ?>
