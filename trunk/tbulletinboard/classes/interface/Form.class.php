@@ -1142,6 +1142,7 @@
 		 */
 		function checkPostedFields(&$feedback, $values = null) {
 			if ($values == null) $values = $_POST;
+			importClass("util.Language");
 
 			$noValueError = ivMLGS("library", 16, "Veld `%s` is verplicht maar niet ingevuld!");
 			//This code makes a list of all markings that are REALLY hidden when posting the form

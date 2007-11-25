@@ -1,0 +1,20 @@
+Installatie
+-----------
+1. Kopieer de php files naar een omgeving waarin PHP 5 draait.
+2. ga via de browser naar de map van het forum met /install/ erachter en volg de wizard
+3. Je kunt nu volledig het forum configureren.
+4. start modules/create.php om alle modules te maken (verschijnen in upload map)
+5. Via beheer kunnen de modules worden geupload en worden geinstalleerd.
+
+optioneel:
+6. Download de laatste dump van http://s5.travian.com/map.sql
+
+Werken aan modules
+------------------
+Om te zorgen dat het werken aan modules makkelijker is, zorg dan dat in upload/settings/settings.php 
+$developmentMode = true;
+aangegeven staat. Op deze manier wordt een module die geinstalleerd en geactiveerd is niet uit /upload/modules/ geladen,
+maar direct uit /modules/ Op deze manier heb je geen rechten problemen en kun je direct de code veranderingen in de modules
+maken en bekijken. om de module weer in te pakken en te downloaden kun je de stap 8 hierboven uitvoeren of naar plugin
+beheer gaan en daar de module downloaden (alleen met developmentMode = true!)
+
