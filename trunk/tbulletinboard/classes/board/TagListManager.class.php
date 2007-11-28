@@ -119,15 +119,18 @@
 				importClass("board.plugin.ModulePlugin");
 				global $TBBModuleManager;
 				$plugin = $TBBModuleManager->getPluginByID($htmlcode);
-				$tbbTag = $plugin->getTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
-				$tbbTag->setID($id);
-				$tbbTag->setDescription($description);
-				$tbbTag->setExample($example);
-				$tbbTag->setActive($active);
-				$tbbTag->setSystem(true);
-				$tbbTag->setWordBreaks($wordBreaks);
-				$this->privateVars['tbbTags'][] = $tbbTag;
-				return $tbbTag;
+				if (is_Object($plugin)) {
+					$tbbTag = $plugin->getTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
+					$tbbTag->setID($id);
+					$tbbTag->setDescription($description);
+					$tbbTag->setExample($example);
+					$tbbTag->setActive($active);
+					$tbbTag->setSystem(true);
+					$tbbTag->setWordBreaks($wordBreaks);
+					$this->privateVars['tbbTags'][] = $tbbTag;
+					return $tbbTag;
+				}
+				return false;
 			} else {			
 				$tbbTag = new TBBTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
 				$tbbTag->setID($id);
