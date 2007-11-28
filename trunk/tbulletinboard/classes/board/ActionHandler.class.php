@@ -59,7 +59,7 @@
 		}
 
 		function check($boolean, $errMessage) {
-			if (!$this->correct) return;
+			if (!$this->correct) return false;
 			if (!$boolean) {
 				if (strLen(trim($errMessage)) > 0)
 					$this->feedback->addMessage($errMessage);
@@ -86,7 +86,10 @@
 				return $actionData;
 			}
 
-			if (($action['type'] == "post") && isSet($_POST['action']) && ($_POST['action'] == $action['name'])) {
+			if (($action['type'] == "post") && isSet($_POST['actionName']) && ($_POST['actionName'] == $action['name'])
+				&& isSet($_POST['actionID']) && ($_POST['actionID'] == $TBBsession->getActionID())) { // actionID now also required for
+				// post actions
+				
 				$check = true;
 				$actionData = new DataItem();
 				foreach($action['parameters'] as $parameter) {
@@ -101,7 +104,7 @@
 		}
 
 		function notEmpty($varName, $errMessage) {
-			if (!$this->correct) return;
+			if (!$this->correct) return false;
 
 			if (!isSet($this->material[$varName])) {
 				if (strLen(trim($errMessage)) > 0)
@@ -119,7 +122,7 @@
 		}
 
 		function isNumeric($varName, $errMessage) {
-			if (!$this->correct) return;
+			if (!$this->correct) return false;
 
 			if (!isSet($this->material[$varName])) {
 				if (strLen(trim($errMessage)) > 0)
@@ -137,7 +140,7 @@
 		}
 
 		function checkUpload(&$uploadObject, $message) {
-			if (!$this->correct) return;
+			if (!$this->correct) return false;
 			if (!$uploadObject->checkUpload($this->feedback, $message)) {
 				$this->correct = false;
 				return false;
@@ -156,7 +159,7 @@
 		}
 
 		function finish($message) {
-			if (!$this->correct) return;
+			if (!$this->correct) return false;
 			global $TBBsession;
 			$TBBsession->actionHandled();
 

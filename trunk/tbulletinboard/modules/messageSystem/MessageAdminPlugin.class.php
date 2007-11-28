@@ -34,7 +34,7 @@
 		function createMenu(&$menu) {
 			$menu->addGroup("messages", "Berichten");
 			$menu->addItem("mess_settings", "messages", "Bericht instellingen", 
-				"adminplugin.php?id=".$this->getModulename(), '', '', 0, false, '');
+				"adminplugin.php?id=".$this->getPluginID(), '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
@@ -42,7 +42,7 @@
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Bericht instellingen", "panelplugin.php?id=".$this->getModuleName()."&screen=inbox");
+			$location->addLocation("Bericht instellingen", "adminplugin.php?id=".$this->getPluginID());
 		}
 
 		function getPageTitle() {

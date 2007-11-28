@@ -66,4 +66,11 @@
 		<classname>TravianUserPanelAlliancePlugin</classname>
 	</plugin>
 
+	<plugin type="smarttag">
+		<name>Forum tags</name>
+		<version>1.0</version>
+		<build>1</build>
+		<filename>TravianTagsPlugin.class.php</filename>
+		<classname>TravianTagsPlugin</classname>
+	</plugin>
 </tbb-module>

@@ -13,7 +13,7 @@
 	
 	Database ontwerp:
 	
-	[ ] board (ID, parentID, name, read, write, topic, comment, order, settingsID, boardviews)
+	[x] board (ID, parentID, name, read, write, topic, comment, order, settingsID, boardviews, *type*)
 
 	[x] boardsettings (ID, viewmode, seclevel, name, inc_count, signatures)
 	[x] boardtags (ID, settingID, tagID)
@@ -22,6 +22,7 @@
 	[x] topic (ID, boardID, date, poster, title, icon, views, state, lastReaction, closed, special, plugin)
 
 	[ ] message_label (ID, userID, name)
+	[*] message_control (ID, settingsID, messageBoardID)
+
 	[*] message_reciever (ID, topicID, userID, [sent/receive])
-	[*] message_control (ID, settingsID, boxlimit)
 

@@ -39,10 +39,10 @@
 			);
 		}
 
-		static function breakAll() { return 0; }
+		static function breakAll() { return 3; }
 		static function breakText() { return 1; }
 		static function breakParameter() { return 2; }
-		static function breakNone() { return 3; }
+		static function breakNone() { return 0; }
 
 		function setID($id) {
 			$this->privateVars['id'] = $id;
@@ -83,6 +83,13 @@
 		function isEndTag($text) {
 			$endTags = $this->privateVars['endTag'];
 			return in_array($text, $endTags);
+		}
+		
+		function parseTag($text, $parameter) {
+			$htmlResult = $this->getHtmlReplace();
+			$htmlResult = str_Replace('{text}', $text, $htmlResult);
+			$htmlResult = str_Replace('{parameter}', $parameter, $htmlResult);
+			return $htmlResult;
 		}
 
 		function getHtmlReplace() {

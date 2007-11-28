@@ -210,9 +210,7 @@
 				$result .= $text;
 			}
 			if ($parseTag == true) {
-				$htmlResult = $this->tag->getHtmlReplace();
-				$htmlResult = str_Replace('{text}', $result, $htmlResult);
-				$htmlResult = str_Replace('{parameter}', ($breakSetting == TextTag::breakAll()) || ($breakSetting == TextTag::breakParameter()) ? $this->textParser->breakLongWords($this->parameter) : $this->parameter, $htmlResult);
+				$htmlResult = $this->tag->parseTag($result, ($breakSetting == TextTag::breakAll()) || ($breakSetting == TextTag::breakParameter()) ? $this->textParser->breakLongWords($this->parameter) : $this->parameter);				
 			} else {
 				if (strlen($this->parameter) > 0)
 					$htmlResult = $this->textParser->privateVars['tagStart1'].$this->tag->getName().'='.$this->parameter.$this->textParser->privateVars['tagStart2'].$result.$this->textParser->privateVars['tagEnd1'].$this->tag->getName().$this->textParser->privateVars['tagEnd2'];

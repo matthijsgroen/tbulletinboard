@@ -34,7 +34,7 @@
 		function createMenu(&$menu) {
 			$menu->addGroup("messages", "Berichten");
 			$menu->addItem("inbox", "messages", "Prive Berichten", 
-				"panelplugin.php?id=".$this->getModulename()."&screen=inbox", '', '', 0, false, '');
+				"panelplugin.php?id=".$this->getPluginID()."&screen=inbox", '', '', 0, false, '');
 		}
 
 		function selectMenuItem(&$menu) {
@@ -42,7 +42,7 @@
 		}
 
 		function getLocation(&$location) {
-			$location->addLocation("Berichten", "panelplugin.php?id=".$this->getModuleName()."&screen=inbox");
+			$location->addLocation("Berichten", "panelplugin.php?id=".$this->getPluginID()."&screen=inbox");
 		}
 
 		function getPageTitle() {

@@ -19,11 +19,46 @@
 	 */
 
 	importClass("interface.Form");
+	importClass("board.BoardProfiles");
+	importClass("board.ActionHandler");
 
 	global $formTitleTemplate;
-	includeFormComponents("TextField", "TemplateField", "Submit");
+	global $TBBsession;
+	global $TBBconfiguration;
+	// Retrieve the needed form components
+	includeFormComponents("TextField", "TemplateField", "Submit", "Select");
+	// Define the form
 	$form = new Form("settings", "");
+	// name of the action and the unique action ID (this is to prevent post refresh actions!)
+	$form->addHiddenField("actionName", "messageSettings");
 	$form->addComponent(new FormTemplateField($formTitleTemplate, "Berichten instellingen"));
+	$profileSelect = new FormSelect("Board profiel", "Profiel met toegestane onderwerptypen en tags", "profile");
+	$profiles = $GLOBALS['TBBboardProfileList']->getProfiles();
+	for ($i = 0; $i < count($profiles); $i++) {
+		$profileSelect->addComponent(new FormOption($profiles[$i]->getName(), $profiles[$i]->getID()));
+	}
+	$form->addComponent($profileSelect);
+	$form->addComponent(new FormSubmit("Opslaan", "", "", "storeButton"));
+
+	// get the table that handles the data of this form
+	include($moduleDir . "MessageSettings.bean.php");
+	$database = $TBBconfiguration->getDatabase();
+	$settingsTable = new MessageSettingsTable($database);
+
+	// A message log to show action error messages	
+	$feedback = new Messages();
+	$actionManager = new ActionHandler($feedback, $_POST);
+	$actionManager->definePostAction("messageSettings", "profile");
+	if ($data = $actionManager->inAction("messageSettings")) {
+		if ($actionManager->check($form->checkPostedFields($feedback), "")) {
+			$settingsTable->editSettings($data->getProperty("profile"));
+			$actionManager->finish("Instellingen opgeslagen");
+		}	
+	}
+	$form->setValue("profile", $settingsTable->getProfileID());
+	$form->addHiddenField("actionID", $TBBsession->getActionID());
+	
+	$feedback->showMessages();
 	
 	$form->writeForm();
 
