@@ -50,7 +50,7 @@
 	importClass("board.ActionHandler");
 	importClass("orm.DataOrderHelper");
 
-	$actionHandler = new ActionHandler($feedback);
+	$actionHandler = new ActionHandler($feedback, $_GET);
 	$actionHandler->definePostAction("delete");
 	$actionHandler->defineGetAction("moveUp", "id");
 	$actionHandler->defineGetAction("moveDown", "id");

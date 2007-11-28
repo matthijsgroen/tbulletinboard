@@ -44,6 +44,31 @@
 			$data = $this->discVars['dbData'];
 			return $data->getValue("message");
 		}
+		
+		function getParsedText($textParser, $emoticons, $tbbTags, $highlights) {
+			$cacheUseable = true;
+			$validCache = true;
+			if (count($highlights) > 0) $cacheUseable = false;
+			if (($emoticons === false) && ($this->smiliesOn())) $cacheUseachle = false;
+
+			$data = $this->discVars['dbData'];
+			if ($data->isNull("cachedate")) $validCache = false;
+			else {
+				$cacheDate = $data->getValue("cachedate");
+				global $TBBconfiguration;
+				if (!$TBBconfiguration->useTextCacheWithDate($cacheDate)) $validCache = false;			
+			}
+			if ((!$validCache) || (!$cacheUseable)) {
+				$result = $textParser->parseMessageText($data->getValue("message"), $emoticons, $tbbTags, $highlights);
+				if ($cacheUseable) {
+					$data->setValue("parsecache", $result);
+					$data->setValue("cachedate", new LibDateTime());
+					$data->store();
+				}
+				return $result;
+			}
+			return $data->getValue("parsecache");
+		}
 
 		function getReactions($start, $count) {
 			global $TBBconfiguration;

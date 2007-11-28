@@ -3,7 +3,7 @@
 	<info>
 		<group>discussionTopic</group>
 		<name>Discussies</name>
-		<version>0.1</version>
+		<version>0.3</version>
 		<description>Deze module breid het board uit met de mogelijkheid discussies te starten</description>
 	</info>
 
@@ -15,7 +15,7 @@
 
 	<plugin type="topic">
 		<name>Discussie Onderwerpen</name>
-		<version>0.1</version>
+		<version>0.3</version>
 		<build>1</build>
 		<filename>DiscussionTopicPlugin.class.php</filename>
 		<classname>DiscussionTopicPlugin</classname>

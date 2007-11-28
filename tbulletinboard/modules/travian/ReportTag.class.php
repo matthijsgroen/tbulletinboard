@@ -57,6 +57,25 @@
 			$this->race = $imgNr;
 		}
 		
+		function getRace() {
+			if ($this->race == 0) {
+				// Try an DB lookup
+				global $TBBconfiguration;
+				$database = $TBBconfiguration->getDatabase();
+				$playerTable = new TravianPlaceTable($database);
+				$filter = new DataFilter();
+				$filter->addEquals("playerName", $this->playerName);
+				$filter->setLimit(1);
+				$playerTable->selectRows($filter, new ColumnSorting());
+				if ($playerRow = $playerTable->getRow()) {
+					$items = $playerRow->getValue("race");
+					$this->race = (($items -1) * 10) + 1;
+				}
+			
+			}		
+			return $this->race;
+		}
+		
 		function toHTML($imageFolder) {
 			$hasHero = false;
 			if ((isSet($this->troops[0])) && (count($this->troops[0]) > 11)) $hasHero = true;
@@ -78,7 +97,7 @@
 			}
 			
 			$result .= "<tr>".sprintf($cell, "");
-			if ($this->race == 0) 
+			if ($this->getRace() == 0) 
 				for ($i = $this->race; $i < $this->race + 10; $i++) $result .= sprintf($cell, "?");
 			else for ($i = $this->race; $i < $this->race + 10; $i++) $result .= sprintf($cell, "<img src=\"".$imageFolder.$i.".gif\">");
 			if ($hasHero) $result .= sprintf($cell, "<img src=\"".$imageFolder."hero.gif\">");
