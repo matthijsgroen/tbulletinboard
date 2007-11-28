@@ -31,6 +31,9 @@
 			$this->defineBool("parseUrls", "parseurls", false);
 			$this->defineDate("lastChange", "lastChange", true);
 			$this->defineInt("changeBy", "changeby", true);
+
+			$this->defineText("parsecache", "parsecache", 2000000000, true);
+			$this->defineDate("cachedate", "cachedate", true);
 		}
 	}
 

@@ -53,6 +53,31 @@
 			$data = $this->privateVars['discData'];
 			return $data->getValue("message");
 		}
+		
+		function getParsedText($textParser, $emoticons, $tbbTags, $highlights) {
+			$cacheUseable = true;
+			$validCache = true;
+			if (count($highlights) > 0) $cacheUseable = false;
+			if (($emoticons === false) && ($this->smiliesOn())) $cacheUseachle = false;
+
+			$data = $this->privateVars['discData'];
+			if ($data->isNull("cachedate")) $validCache = false;
+			else {
+				$cacheDate = $data->getValue("cachedate");
+				global $TBBconfiguration;
+				if (!$TBBconfiguration->useTextCacheWithDate($cacheDate)) $validCache = false;			
+			}
+			if ((!$validCache) || (!$cacheUseable)) {
+				$result = $textParser->parseMessageText($data->getValue("message"), $emoticons, $tbbTags, $highlights);
+				if ($cacheUseable) {
+					$data->setValue("parsecache", $result);
+					$data->setValue("cachedate", new LibDateTime());
+					$data->store();
+				}
+				return $result;
+			}
+			return $data->getValue("parsecache");
+		}
 
 		function smiliesOn() {
 			$data = $this->privateVars['discData'];

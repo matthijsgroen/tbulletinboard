@@ -64,6 +64,21 @@
 			$dataOrderHelper = new DataOrderHelper($row->getTable(), "name", "order");
 			$dataOrderHelper->setNewOrder($row, "bottom");
 		}
+
+		function afterRowDelete(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+		
+		function afterRowInsert(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+
+		function afterRowUpdate(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
 	}
 
 /*

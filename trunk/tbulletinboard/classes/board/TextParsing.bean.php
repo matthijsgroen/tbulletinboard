@@ -82,6 +82,22 @@
 				);
 			*/
 		}
+
+		function afterRowDelete(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+		
+		function afterRowInsert(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+
+		function afterRowUpdate(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+		
 	}
 
 

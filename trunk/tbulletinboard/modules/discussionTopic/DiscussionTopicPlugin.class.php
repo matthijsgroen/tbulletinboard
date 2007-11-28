@@ -175,6 +175,9 @@
 			$discTopic->setValue("parseUrls", $parseUrls);
 			$discTopic->setValue("lastChange", new LibDateTime());
 			$discTopic->setValue("changeBy", $TBBcurrentUser->getUserID());
+			$discTopic->setNull("parsecache");
+			$discTopic->setNull("cachedate");
+			
 			$discTopic->store();
 			return true;
 		}
@@ -301,8 +304,11 @@
 			$reactions = array();
 
 			$boardProfile = $board->getBoardSettings();
+			$emoticonsVisible = $discussionTopic->smiliesOn();
+			
 			$tbbTags = $boardProfile->getTBBtagList();
-			$emoticons = $discussionTopic->smiliesOn() ? $TBBemoticonList : false;
+			$emoticons = $emoticonsVisible ? $TBBemoticonList : false;			
+						
 			if (!$TBBcurrentUser->showEmoticons()) $emoticons = false;
 
 			$topicPage = ($pageNr == 0);
@@ -347,6 +353,10 @@
 				if ($lastRead->before($discussionTopic->getTime())) {
 					$readIcon = '<img src="images/posticonnew.gif" alt="ongelezen" /> ';
 				}
+				$parsedText = $discussionTopic->getParsedText($textParser, $emoticons, $tbbTags, $highlights);
+				
+				//$textParser->parseMessageText($discussionTopic->getTopicText(), $emoticons, $tbbTags, $highlights);
+				
 				$topicRow = array(
 					sprintf(
 						'<span class="author">%s</span><br />%s',
@@ -357,7 +367,7 @@
 						'<h4>%s%s</h4><p class="messageText">%s</p>%s',
 						($discussionTopic->hasIcon()) ? '<img src="'.$iconInfo['imgUrl'].'" title="'.$iconInfo['name'].'" alt="" /> ' : "",
 						$textParser->breakLongWords(htmlConvert($discussionTopic->getTitle()), 40, $highlights),
-						$textParser->parseMessageText($discussionTopic->getTopicText(), $emoticons, $tbbTags, $highlights),
+						$parsedText,
 						$underPost
 					),
 					$readIcon .
@@ -426,7 +436,7 @@
 				if ($lastRead->before($reactionTime)) {
 					$readIcon = '<img src="images/posticonnew.gif" alt="ongelezen" /> ';
 				}
-
+				$parsedText = $reaction->getParsedText($textParser, $emoticons, $tbbTags, $highlights);
 				$posts->addRow(
 					sprintf(
 						'<a name="post%s" />%s<span class="author">%s</span><br />%s',
@@ -439,7 +449,7 @@
 						'<h4>%s%s</h4><p class="messageText">%s</p>%s',
 						($reaction->hasIcon()) ? '<img src="'.$iconInfo['imgUrl'].'" title="'.$iconInfo['name'].'" alt="" /> ' : "",
 						$textParser->breakLongWords(htmlConvert($reaction->getTitle()), 40, $highlights),
-						$textParser->parseMessageText($reaction->getMessage(), $emoticons, $tbbTags, $highlights),
+						$parsedText,
 						$underPost
 					),
 					$readIcon .
@@ -554,6 +564,8 @@
 			$newReaction->setValue("signature", $signature);
 			$newReaction->setValue("smileys", $smilies);
 			$newReaction->setValue("parseUrls", $parseUrls);
+			$newReaction->setNull("parsecache");
+			$newReaction->setNull("cachedate");
 			$newReaction->store();
 
 			$TBBsession->actionHandled();
@@ -585,6 +597,8 @@
 			$reaction->setValue("signature", $signature);
 			$reaction->setValue("smileys", $smilies);
 			$reaction->setValue("parseUrls", $parseUrls);
+			$reaction->setNull("parsecache");
+			$reaction->setNull("cachedate");
 			$reaction->store();
 
 			$TBBsession->actionHandled();

@@ -62,6 +62,7 @@
 			$this->defineInt("signatureProfile", "sigProfile", false);
 			$this->defineText("referenceID", "referenceID", 40, true);
 			$this->defineInt("binboard", "binboard", true);
+			$this->defineDate("textcache", "textcache", false);
 
 		}
 	}

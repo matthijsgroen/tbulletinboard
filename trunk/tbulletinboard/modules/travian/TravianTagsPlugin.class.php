@@ -82,6 +82,7 @@ Troops	0	0	0	0	0	0	0	0	0	0
 		function getTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags) {
 			if ($starttag == "report") {
 				require_once($this->getModuleDir() . "ReportTag.class.php");
+				require_once($this->getModuleDir() . "TravianPlace.bean.php");
 				$imageFolder = $this->getModuleOnlineDir() . "images/";
 				return new TravianReportTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags, $imageFolder);
 			}

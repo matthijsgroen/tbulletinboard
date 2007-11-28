@@ -149,7 +149,7 @@
 
 	if ($tbbTags->getTagCount() > 0) {
 		$table = new Table();
-		$table->setHeader("checkall", "recordID", "Start", "Beschrijving", "Parameters", "Actief", "active");
+		$table->setHeader("recordID", "recordID", "Start", "Beschrijving", "Parameters", "Actief", "active");
 		for ($i = 0; $i < $tbbTags->getTagCount(); $i++) {
 			$tbbTag = $tbbTags->getTag($i);
 			$table->addRow(

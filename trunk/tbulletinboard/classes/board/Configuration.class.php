@@ -216,7 +216,7 @@
 		}
 
 		function setSignatureProfileID($id) {
-			global $TBBboardProfileList;
+			//global $TBBboardProfileList;
 			$config = $this->getConfiguration();
 			$config->setValue("signatureProfile", $id);
 			$config->store();
@@ -224,7 +224,7 @@
 		}
 
 		function allowSignatures() {
-			global $TBBboardProfileList;
+			//global $TBBboardProfileList;
 			$config = $this->getConfiguration();
 			return $config->getValue("signatures");
 		}
@@ -233,6 +233,24 @@
 			global $TBBboardProfileList;
 			$config = $this->getConfiguration();
 			$config->setValue("signatures", $value);
+			$config->store();
+			return true;
+		}
+		
+		function getTextCacheDate() {
+			$config = $this->getConfiguration();
+			return $config->getValue("textcache");
+		}
+		
+		function useTextCacheWithDate($cacheDate) {
+			$config = $this->getConfiguration();
+			$changeDate = $config->getValue("textcache");
+			return $changeDate->before($cacheDate);
+		}
+		
+		function updateTextCacheDate() {
+			$config = $this->getConfiguration();
+			$config->setValue("textcache", new LibDateTime());
 			$config->store();
 			return true;
 		}

@@ -18,24 +18,12 @@
 	 *	
 	 */
 
-	class DiscussionReactionTable extends DataTable {
-		var $privateVars;
-
-		function DiscussionReactionTable(&$database) {
-			$this->DataTable($database, $database->getTablePrefix() . "tm_discreaction");
-			$this->defineInt("ID", "reactionID", false);
-			$this->setPrimaryKey("ID");
-			$this->defineInt("icon", "icon", false);
-			$this->defineText("title", "title", 80, false);
-			$this->defineText("message", "message", 2000000000, false);
-			$this->defineBool("signature", "signature", false);
-			$this->defineBool("smileys", "smilies", false);
-			$this->defineBool("parseUrls", "parseurls", false);
-
-			$this->defineText("parsecache", "parsecache", 2000000000, true);
-			$this->defineDate("cachedate", "cachedate", true);
-			
-		}
-	}
+	$patchName = "parsecache";
+	$patchFunc = false; // false by no function, name of function otherwise
+	$patchAuthor = "Matthijs Groen"; // 100 = IV, 131 = Matthijs, 120 = Guido, 126 = Urvin
 
 ?>
+ALTER TABLE `tbb_tm_discreaction` ADD `parsecache` TEXT NULL ,
+ADD `cachedate` DATETIME NULL ;
+ALTER TABLE `tbb_tm_disctopic` ADD `parsecache` TEXT NULL ,
+ADD `cachedate` DATETIME NULL ;

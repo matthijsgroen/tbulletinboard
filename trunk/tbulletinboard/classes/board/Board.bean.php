@@ -43,7 +43,28 @@
 			$this->defineInt("views", "boardviews", false);
 			$this->defineText("type", "type", 20, false);
 			$this->defineDefaultValue("type", "global");
+
+			$this->setEventHandler(new BoardEventListener());
 		}
+	}
+
+	class BoardEventListener extends DataEventListener {
+		
+		function afterRowDelete(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+		
+		function afterRowInsert(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+
+		function afterRowUpdate(&$row) {
+			global $TBBconfiguration;
+			$TBBconfiguration->updateTextCacheDate();
+		}
+		
 	}
 
 ?>
