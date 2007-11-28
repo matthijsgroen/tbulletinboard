@@ -54,35 +54,32 @@
 	$database = new MySQLDatabase($dbServer, $dbDatabase, $dbUser, $dbPassword);
 	$database->setTablePrefix("tbb_");
 	$database->connect();
-	
-	$TBBconfiguration = new Configuration($database);
-	//$TBBconfiguration->smtpServer = 'smtp.athome.nl';
-	$TBBconfiguration->onlineTimeout = 10;
-	$TBBconfiguration->imageOnlineDir = 'images/';
-	$TBBconfiguration->uploadDir = $uploadPath;
-	$TBBconfiguration->uploadOnlineDir = $uploadOnlinePath;
-
-	/*****************************************
-	 * End account settings
-	 */
-
 
 	$formTitleTemplate = "<div class=\"formtitle\">%text%</div>";
 	// Prepare other classes
 	importClass("interface.Messages");
 	$feedback = new Messages();
-	$TBBname = $TBBconfiguration->getBoardName();
+	
+	if (!isSet($limitedConfig) || (!$limitedConfig)) {
+		$TBBconfiguration = new Configuration($database);
+		//$TBBconfiguration->smtpServer = 'smtp.athome.nl';
+		$TBBconfiguration->onlineTimeout = 10;
+		$TBBconfiguration->imageOnlineDir = 'images/';
+		$TBBconfiguration->uploadDir = $uploadPath;
+		$TBBconfiguration->uploadOnlineDir = $uploadOnlinePath;
+		$TBBname = $TBBconfiguration->getBoardName();
 
-	if (!$TBBconfiguration->isOnline()) {
-		$feedback->addMessage($TBBname . ' is offline. Probeert u het later nog eens.');
-		$feedback->addMessage("Reden: ".htmlConvert($TBBconfiguration->getOfflineReason()));
-		$pageTitle = $TBBconfiguration->getBoardName() . ' - Offline!';
-		include($TBBincludeDir.'htmltop.php');
-		$feedback->showMessages();
-		include($TBBincludeDir.'htmlbottom.php');
-		exit;
+		if (!$TBBconfiguration->isOnline()) {
+			$feedback->addMessage($TBBname . ' is offline. Probeert u het later nog eens.');
+			$feedback->addMessage("Reden: ".htmlConvert($TBBconfiguration->getOfflineReason()));
+			$pageTitle = $TBBconfiguration->getBoardName() . ' - Offline!';
+			include($TBBincludeDir.'htmltop.php');
+			$feedback->showMessages();
+			include($TBBincludeDir.'htmlbottom.php');
+			exit;
+		}
+		$TBBsession = new TBBSession(); // "/tbb/", "localhost"
 	}
-	$TBBsession = new TBBSession(); // "/tbb/", "localhost"
 
 
 	importClass("util.TextParser");

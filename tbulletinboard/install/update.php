@@ -25,6 +25,7 @@
 	$TBBconfigDir = "../config/";
 	$TBBclassDir = "../classes/";
 	$docRoot = "../";
+	$limitedConfig = true;
 	require_once($TBBconfigDir . "configuration.php");
 	require_once($TBBclassDir . "library.php");
 	date_default_timezone_set('CET');	
@@ -45,7 +46,6 @@
 <body>
 <?php
 	//importClass("util.LibDateTime");
-	$database = $TBBconfiguration->getDatabase();
 	importClass("updater.ModuleUpdater");
 	$modUpdater = new ModuleUpdater("core", "patches/", $database);
 	
