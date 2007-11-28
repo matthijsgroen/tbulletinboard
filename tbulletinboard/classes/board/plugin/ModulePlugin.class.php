@@ -86,6 +86,14 @@
 		function isActive() {
 			return $this->privateVars['moduleActive'];
 		}
+		
+		function activate() {
+		
+		}
+		
+		function deactivate() {
+		
+		}
 
 	}
 
@@ -362,6 +370,7 @@
 				case "admin": return "Admin plugin";
 				case "usertype": return "Leden type plugin";
 				case "userpanel": return "Leden paneel plugin";
+				case "smarttag": return "Tag plugin";
 				default: return "Onbekend";
 			}
 		}

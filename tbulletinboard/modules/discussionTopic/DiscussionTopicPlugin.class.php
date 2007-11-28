@@ -37,30 +37,6 @@
 	require_once($moduleDir . "DiscussionTopic.bean.php");
 	importClass("board.plugin.TopicPlugin");
 
-	/*
-	$libraryClassDir = $GLOBALS['libraryClassDir'];
-	$TBBclassDir = $GLOBALS['TBBclassDir'];
-
-	require_once($libraryClassDir . 'PageNavigation.class.php');
-	require_once($libraryClassDir . 'TextParser.class.php');
-	require_once($libraryClassDir . 'Table.class.php');
-	require_once($libraryClassDir . 'Form.class.php');
-	require_once($libraryClassDir . 'FormFields.class.php');
-	require_once($libraryClassDir . 'Menu.class.php');
-	require_once($libraryClassDir . 'DataObjects.class.php');
-	require_once($TBBclassDir . 'Board.class.php');
-	require_once($TBBclassDir . 'Topic.bean.php');
-	require_once($TBBclassDir . 'Reaction.bean.php');
-	require_once($TBBclassDir . 'Buttonbar.class.php');
-	require_once($TBBclassDir . 'BoardFormFields.class.php');
-	require_once($TBBclassDir . 'TBBEmoticonList.class.php');
-	require_once($moduleDir . "DiscussionReaction.bean.php");
-	require_once($moduleDir . "DiscussionReaction.class.php");
-	require_once($moduleDir . "DiscussionTopic.class.php");
-	require_once($moduleDir . "DiscussionTopic.bean.php");
-	require_once($TBBclassDir . 'TopicPlugin.class.php');
-	*/
-
 	class DiscussionTopicPlugin extends TopicPlugin {
 
 		function DiscussionTopicPlugin() {

@@ -33,6 +33,14 @@
 			$this->TextTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
 		}
 
+		function setSystem($system) { 
+			$this->privateVars['system'] = $system;
+		}
+
+		function isSystem() {
+			return $this->privateVars['system'];
+		}
+
 		function setActive($active) {
 			$this->privateVars['active'] = $active;
 		}
@@ -59,14 +67,9 @@
 			if ($this->privateVars['tagsRead']) return true;
 			$textParsing = new TextParsingTable($database);
 			$textParsing->selectAll();
-			/*
-			$selectQuery = sprintf(
-				"SELECT * FROM %stextparsing",
-				$TBBconfiguration->tablePrefix
-			);
-			$selectResult = $database->executeQuery($selectQuery);
-			*/
+
 			while ($tagInfo = $textParsing->getRow()) {
+				$origin = $tagInfo->getValue("origin");
 				$startTag = $tagInfo->getValue("startName");
 				$acceptParameters = explode(' ', trim($tagInfo->getValue("acceptedParameters")));
 				if ((count($acceptParameters) == 1) && ($acceptParameters[0] == "")) $acceptParameters = array();
@@ -84,9 +87,10 @@
 				switch ($tagInfo->getValue("wordBreaks")) {
 					case "all": $wordBreaks = TextTag::breakAll(); break;
 					case "text": $wordBreaks = TextTag::breakText(); break;
-					case "parameter": $wordBreaks = TextTag::breakParam(); break;
+					case "parameter": $wordBreaks = TextTag::breakParameter(); break;
 				}
-				$tag = $this->addTBBTag($startTag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags, $active, $description, $example, $id, $wordBreaks);
+				$tag = $this->addTBBTag($origin, $startTag, $acceptParameters, $acceptAll, $endtag, $htmlcode, 
+					$endTagRequired, $inTags, $subTags, $active, $description, $example, $id, $wordBreaks);
 			}
 			$this->privateVars['tagsRead'] = true;
 			return true;
@@ -109,16 +113,32 @@
 			return $tagList;
 		}
 
-		function addTBBTag($starttag, $acceptParameters, $acceptAll,
+		private function addTBBTag($origin, $starttag, $acceptParameters, $acceptAll,
 				$endtag, $htmlcode, $endTagRequired, $inTags, $subTags, $active, $description, $example, $id, $wordBreaks) {
-			$tbbTag = new TBBTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
-			$tbbTag->setID($id);
-			$tbbTag->setDescription($description);
-			$tbbTag->setExample($example);
-			$tbbTag->setActive($active);
-			$tbbTag->setWordBreaks($wordBreaks);
-			$this->privateVars['tbbTags'][] = $tbbTag;
-			return $tbbTag;
+			if ($origin == "system") {
+				importClass("board.plugin.ModulePlugin");
+				global $TBBModuleManager;
+				$plugin = $TBBModuleManager->getPluginByID($htmlcode);
+				$tbbTag = $plugin->getTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
+				$tbbTag->setID($id);
+				$tbbTag->setDescription($description);
+				$tbbTag->setExample($example);
+				$tbbTag->setActive($active);
+				$tbbTag->setSystem(true);
+				$tbbTag->setWordBreaks($wordBreaks);
+				$this->privateVars['tbbTags'][] = $tbbTag;
+				return $tbbTag;
+			} else {			
+				$tbbTag = new TBBTag($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags);
+				$tbbTag->setID($id);
+				$tbbTag->setDescription($description);
+				$tbbTag->setExample($example);
+				$tbbTag->setActive($active);
+				$tbbTag->setSystem(false);
+				$tbbTag->setWordBreaks($wordBreaks);
+				$this->privateVars['tbbTags'][] = $tbbTag;
+				return $tbbTag;
+			}
 		}
 
 		function addTBBTagToDB($starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags, $description, $example, $wordBreak) {
@@ -144,25 +164,6 @@
 			$newTag->setValue("wordBreaks", $wb);
 			$newTag->store();
 
-			/*
-			$insertQuery = sprintf(
-				"INSERT INTO %stextparsing (`startName`, `acceptAll`, `acceptedParameters`, `endTags`, `endTagRequired`, `htmlReplace`, `allowParents`, `allowChilds`, `description`, `example`, `wordBreaks`) ".
-				"VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-				$TBBconfiguration->tablePrefix,
-				addSlashes($starttag),
-				($acceptAll) ? "yes" : "no",
-				addSlashes($acceptParameters),
-				addSlashes($endtag),
-				($endTagRequired) ? "yes" : "no",
-				addSlashes($htmlcode),
-				addSlashes($inTags),
-				addSlashes($subTags),
-				addSlashes($description),
-				addSlashes($example),
-				addSlashes($wb)
-			);
-			$database->executeQuery($insertQuery);
-			*/
 		}
 
 		function editTBBtagInDB($id, $starttag, $acceptParameters, $acceptAll, $endtag, $htmlcode, $endTagRequired, $inTags, $subTags, $description, $example, $wordBreak) {
@@ -188,26 +189,6 @@
 			$newTag->setValue("wordBreaks", $wb);
 			$newTag->store();
 
-			/*
-			$insertQuery = sprintf(
-				"REPLACE INTO %stextparsing (`ID`, `startName`, `acceptAll`, `acceptedParameters`, `endTags`, `endTagRequired`, `htmlReplace`, `allowParents`, `allowChilds`, `description`, `example`, `wordBreaks`) ".
-				"VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-				$TBBconfiguration->tablePrefix,
-				addSlashes($id),
-				addSlashes($starttag),
-				($acceptAll) ? "yes" : "no",
-				addSlashes($acceptParameters),
-				addSlashes($endtag),
-				($endTagRequired) ? "yes" : "no",
-				addSlashes($htmlcode),
-				addSlashes($inTags),
-				addSlashes($subTags),
-				addSlashes($description),
-				addSlashes($example),
-				addSlashes($wb)
-			);
-			$database->executeQuery($insertQuery);
-			*/
 		}
 
 		function deleteTag($tagID) {
@@ -220,21 +201,6 @@
 			$textParsingTable->deleteRowByKey($tagID);
 			//$tag->deleteRow();
 
-			/*
-			$deleteQuery = sprintf(
-				"DELETE FROM %stextparsing WHERE `ID`='%s' LIMIT 1",
-				$TBBconfiguration->tablePrefix,
-				addSlashes($tagID)
-				);
-			$deleteResult = $database->executeQuery($deleteQuery);
-			$result = ($deleteResult->getNumAffectedRows() == 1);
-			$deleteQuery = sprintf(
-				"DELETE FROM %sboardtags WHERE `tagID`='%s'",
-				$TBBconfiguration->tablePrefix,
-				addSlashes($tagID)
-				);
-			$database->executeQuery($deleteQuery);
-			*/
 			unSet($this->privateVars['tbbTags'][$index]);
 			//return $result;
 		}
@@ -247,15 +213,6 @@
 			$tag = $textParsingTable->getRowByKey($tagID);
 			$tag->setValue("active", $active);
 			$tag->store();
-			/*
-			$updateQuery = sprintf(
-				"UPDATE %stextparsing SET `active`='%s' WHERE `ID`='%s'",
-				$TBBconfiguration->tablePrefix,
-				($active) ? "yes" : "no",
-				addSlashes($tagID)
-				);
-			$updateResult = $database->executeQuery($updateQuery);
-			*/
 			for ($i = 0; $i < count($this->privateVars['tbbTags']); $i++) {
 				$tag = $this->privateVars['tbbTags'][$i];
 				if ($tag->getID() == $tagID) {

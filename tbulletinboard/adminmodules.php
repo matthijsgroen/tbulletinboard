@@ -40,6 +40,12 @@
 		$pluginTable = new PluginTable($database);
 		$pluginRow = $pluginTable->getRowByKey($pluginID);
 		if (is_Object($pluginRow)) {
+			$plugin = $TBBModuleManager->getPluginByID($pluginID);
+			if ($_GET['action'] == 'activate') {
+				$plugin->activate();
+			} else {
+				$plugin->deactivate();			
+			}			
 			$pluginRow->setValue("active", ($_GET['action'] == 'activate'));
 			$pluginRow->store();
 			$feedback->addMessage(sprintf('Plugin ge%sactiveerd', ($_GET['action'] == 'activate') ? "" : "de" ));

@@ -24,6 +24,7 @@
 
 	$TBBconfigDir = "../config/";
 	$TBBclassDir = "../classes/";
+	$docRoot = "../";
 	require_once($TBBconfigDir . "configuration.php");
 	require_once($TBBclassDir . "library.php");
 	date_default_timezone_set('CET');	

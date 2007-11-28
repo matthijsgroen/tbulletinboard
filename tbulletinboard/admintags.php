@@ -149,10 +149,11 @@
 
 	if ($tbbTags->getTagCount() > 0) {
 		$table = new Table();
-		$table->setHeader("recordID", "Start", "Beschrijving", "Parameters", "Actief", "active");
+		$table->setHeader("checkall", "recordID", "Start", "Beschrijving", "Parameters", "Actief", "active");
 		for ($i = 0; $i < $tbbTags->getTagCount(); $i++) {
 			$tbbTag = $tbbTags->getTag($i);
 			$table->addRow(
+				($tbbTag->isSystem()) ? -1 : $tbbTag->getID(),
 				$tbbTag->getID(),
 				'<a href="javascript:popupWindow(\'popups/poptag.php?id='.$tbbTag->getID().'\', 300, 350, \'tagpop\', 1)" title="Klik voor informatie">'.$tbbTag->getName().'</a>',
 				htmlConvert($tbbTag->getDescription()),
@@ -177,8 +178,9 @@
 			);
 		}
 		$table->setCheckboxColumn(0);
-		$table->setRowSelect(array(0, 5), 'selectTag');
-		$table->hideColumn(5);
+		$table->setRowSelect(array(1, 6), 'selectTag');
+		$table->hideColumn(1);
+		$table->hideColumn(6);
 
 		$tagForm = new Form("tagForm", "admintags.php");
 		$tagForm->addHiddenField("actionID", $TBBsession->getActionID());

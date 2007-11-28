@@ -1217,6 +1217,7 @@
 			$boardTable = new BoardTable($database);
 			$filter = new DataFilter();
 			$filter->addEquals("parentID", $parentID);
+			$filter->addEquals("type", "global");
 			$sorting = new ColumnSorting();
 			$sorting->addColumnSort("order", true);
 			$boardTable->selectRows($filter, $sorting);

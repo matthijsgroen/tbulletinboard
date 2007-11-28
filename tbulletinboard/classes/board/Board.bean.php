@@ -41,6 +41,8 @@
 			$this->defineInt("order", "order", false);
 			$this->defineInt("settingsID", "settingsID", false);
 			$this->defineInt("views", "boardviews", false);
+			$this->defineText("type", "type", 20, false);
+			$this->defineDefaultValue("type", "global");
 		}
 	}
 

@@ -108,7 +108,8 @@
 			while ($row = $boardTags->getRow()) {
 				$idList[] = $row->getValue("tagID");
 			}
-			return $TBBtagListManager->getTagList($idList);
+			$list = $TBBtagListManager->getTagList($idList);
+			return $list;
 		}
 
 		function getAllowedTopicPlugins() {

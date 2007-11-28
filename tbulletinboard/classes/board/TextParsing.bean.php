@@ -39,6 +39,8 @@
 
 			$this->defineInt("ID", "ID", false);
 			$this->setPrimaryKey("ID");
+			$this->defineEnum("origin", "origin", array("system" => "system", "user" => "user"), false);
+			$this->defineDefaultValue("origin", "user");
 			$this->defineBool("active", "active", false);
 			$this->defineDefaultValue("active", false);
 			$this->defineText("startName", "startName", 20, false);
@@ -51,7 +53,7 @@
 			$this->defineText("allowChilds", "allowChilds", 255, false);
 			$this->defineText("description", "description", 255, false);
 			$this->defineText("example", "example", 5000, false);
-			$this->defineEnum("wordBreaks", "wordBreaks", array(0 => "all", 1 => "none", 2 => "parameter", 3 => "text"), false);
+			$this->defineEnum("wordBreaks", "wordBreaks", array("all" => "all", "none" => "none", "parameter" => "parameter", "text" => "text"), false);
 
 			$this->setEventHandler(new TextParseEventHandler());
 		}
