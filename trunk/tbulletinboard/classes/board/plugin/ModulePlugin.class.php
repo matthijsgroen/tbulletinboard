@@ -189,7 +189,11 @@
 			@mkdir($moduleFolder);
 			$moduleFile = new PackFile();
 			$moduleFile->load($TBBconfiguration->uploadDir.'temp/newmodule.tbbmod');
-			$moduleFile->saveAllFiles($moduleFolder);
+			if (!$moduleFile->saveAllFiles($moduleFolder)) {
+				$feedback->addMessage("De bestanden konden niet worden uitgepakt! (Controleer schrijfrechten)");
+				return false;
+			}
+			
 			$packageContents = $this->getPackContents($moduleFolder.'deploy.xml');
 
 			$moduleTable = new ModuleTable($database);
