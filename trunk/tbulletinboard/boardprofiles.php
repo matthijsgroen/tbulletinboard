@@ -109,7 +109,8 @@
 	<div class="adminContent">
 <?php
 	$menu = new Menu();
-	$menu->addItem("add", "", "Profiel toevoegen", "javascript:popupWindow('popups/editboardprofile.php', 500, 400, 'editprofile')", "", "", 0, false, '');
+	$addPopupLink = "javascript:popupWindow('popups/editboardprofile.php', 500, 400, 'editprofile')";
+	$menu->addItem("add", "", "Profiel toevoegen", $addPopupLink, "", "", 0, false, '');
 	$menu->addItem("edit", "", "Profiel bewerken", "javascript:editProfile()", "", "", 0, false, '');
 	$menu->addItem("delete", "", "Profiel verwijderen", "javascript:deleteProfile()", "", "", 0, false, '');
 	$menu->showMenu('toolbar');
@@ -135,7 +136,7 @@
 		$table->showTable();
 	} else {
 		$text = new Text();
-		$text->addHTMLText("Geen profielen gevonden");
+		$text->addHTMLText("Geen profielen gevonden. Klik <a href=\"".$addPopupLink."\">hier</a> om een nieuw profiel aan te maken.");
 		$text->showText();
 	}
 ?>
