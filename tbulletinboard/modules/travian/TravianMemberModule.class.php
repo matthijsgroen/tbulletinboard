@@ -35,8 +35,7 @@
 		}
 
 		function getAddGroupForm(&$form, &$formFields, $currentStep) {
-			global $libraryClassDir;			
-			require_once($libraryClassDir.'formcomponents/TextField.class.php');
+			includeFormComponents("TextField")
 
 			if ($currentStep == 1) {
 				$form->addHiddenField("actionName", "setAlliance");
