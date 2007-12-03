@@ -175,7 +175,8 @@
 		}
 	} else {
 		$text = new Text();
-		$text->addHTMLText("Er kunnen geen groepen worden toegevoegd. Er zijn geen leden modules ge&iuml;nstalleerd!");
+		$text->addHTMLText("Er kunnen geen groepen worden toegevoegd. Er zijn geen leden modules ge&iuml;nstalleerd. ".
+			"Via <a href=\"adminmodules.php\">Module beheer</a> kunnen nieuwe modules worden toegevoegd.");
 		$text->showText();
 	}
 
