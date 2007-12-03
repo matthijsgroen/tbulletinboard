@@ -26,7 +26,7 @@
 	$boardVersion = "2.0";
 	date_default_timezone_set('CET');	
 
-	if (file_exists($docRoot . 'upload/settings/settings.php')) {
+	if (file_exists($docRoot . 'upload/settings/settings.php') && (!isSet($_POST['step']))) {
 		die("The bulletinboard is installed.");
 	}
 
