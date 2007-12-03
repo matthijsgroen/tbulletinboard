@@ -251,7 +251,8 @@
 
 			// parse the parts
 			for ($i = 2; $i < count($lines); ) {
-				if (preg_match("/^(Attacker|Defender) ([0-9a-zA-Z_\-[:space:]\'\\\"`]+) from the village ([0-9a-zA-Z_\-[:space:]\'\\\"`]+)/", $lines[$i], $matches)) {
+				$nameMatch = "0-9a-zA-Z_\-[:space:]\'\\\"`?";
+				if (preg_match("/^(Attacker|Defender) ([".$nameMatch."]+) from the village ([".$nameMatch."]+)/", $lines[$i], $matches)) {
 					//var_dump($matches);
 					$reportPart = new ReportPart($matches[2], $matches[3], $matches[1]);
 					$i++;
