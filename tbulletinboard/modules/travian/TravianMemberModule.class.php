@@ -35,7 +35,7 @@
 		}
 
 		function getAddGroupForm(&$form, &$formFields, $currentStep) {
-			includeFormComponents("TextField")
+			includeFormComponents("TextField");
 
 			if ($currentStep == 1) {
 				$form->addHiddenField("actionName", "setAlliance");
