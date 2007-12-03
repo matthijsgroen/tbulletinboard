@@ -118,10 +118,12 @@
 			}
 
 			@mkDir($folder);
-			$handle = fOpen($folder.'/'.$plainFilename, "w");
-			$uncompress = gzUncompress($fileInfo['data']);
-			fWrite($handle, $uncompress, $fileInfo['original_size']);
-			fClose($handle);
+			$handle = @fOpen($folder.'/'.$plainFilename, "w");
+			$uncompress = @gzUncompress($fileInfo['data']);
+			@fWrite($handle, $uncompress, $fileInfo['original_size']);
+			@fClose($handle);
+			
+			if (!file_exists($folder.'/'.$plainFilename)) return false;
 			return true;
 		}
 
