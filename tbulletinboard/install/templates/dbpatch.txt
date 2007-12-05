@@ -20,7 +20,7 @@
 
 	$patchName = "%1$s";
 	$patchFunc = false; // false by no function, name of function otherwise
-	$patchAuthor = "%2$s"; // 100 = IV, 131 = Matthijs, 120 = Guido, 126 = Urvin
+	$patchAuthor = "%2$s"; 
 
 ?>
 %3$s

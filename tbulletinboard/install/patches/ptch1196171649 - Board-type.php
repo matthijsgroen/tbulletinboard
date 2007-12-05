@@ -20,7 +20,7 @@
 
 	$patchName = "Board-type";
 	$patchFunc = false; // false by no function, name of function otherwise
-	$patchAuthor = "Matthijs Groen"; // 100 = IV, 131 = Matthijs, 120 = Guido, 126 = Urvin
+	$patchAuthor = "Matthijs Groen"; 
 
 ?>
 ALTER TABLE `tbb_board` ADD `type` VARCHAR( 20 ) NOT NULL DEFAULT 'global';
