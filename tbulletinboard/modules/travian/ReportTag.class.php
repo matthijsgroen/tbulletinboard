@@ -260,7 +260,7 @@
 					if (strpos($lines[$i], "Legionnaire") !== false) { $reportPart->setRace(1); $i++; }
 					if (strpos($lines[$i], "Clubswinger") !== false) { $reportPart->setRace(11); $i++; }
 					if (strpos($lines[$i], "Rat") !== false) { $reportPart->setRace(31); $i++; }
-					if (($matches[2] == "Nature") && ($matches[3] == "abandoned valley")) { $reportPart->setRace(31); }
+					if ((trim($matches[2]) == "Nature") && (trim($matches[3]) == "abandoned valley")) { $reportPart->setRace(31); }
 					
 					//print $lines[$i];
 					$pattern = "/^(Troops|Casualties|Prisoners)";
@@ -272,10 +272,14 @@
 						$i++;
 					}
 					$info = "";
+					$once = false;
 					while (@preg_match("/Info/", $lines[$i], $matches)) {
 						$infoMode = true;
 						while ($infoMode) {
 							$infoMode = false;
+							while (strpos($lines[$i], " conquered ") !== false) {
+								$info .= str_replace("Info", "", $lines[$i]) . "\n"; $i++; $infoMode = true;
+							}
 							while (strpos($lines[$i], " level ") !== false) {
 								$info .= str_replace("Info", "", $lines[$i]) . "\n"; $i++; $infoMode = true;
 							}
@@ -285,7 +289,7 @@
 							while (@preg_match("/\bdestroyed\b/", $lines[$i], $matches)) {
 								$info .= str_replace("Info", "", $lines[$i]) . "\n"; $i++; $infoMode = true;
 							}
-							if ($info == "") { $infoMode = true; $i++; }
+							if (($info == "") && (!$once)) { $infoMode = true; $i++; $once = true; }
 						}
 						if ($info == "") $i++;
 					}
