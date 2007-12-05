@@ -22,6 +22,9 @@ table.table th {
 	border-bottom: 1px solid black;
 	color: #000000;
 }
+table.table th.rowgroup {
+	background-color: #FFFFFF;
+}
 table.table th.odd { background-color: #30b356; }
 table.table th.even { background-color: #ffe21a; }
 table.table td { font-size: 80%; text-align: center; }
