@@ -20,7 +20,7 @@
 
 	$patchName = "update-table";
 	$patchFunc = false; // false by no function, name of function otherwise
-	$patchAuthor = "Matthijs Groen"; // 100 = IV, 131 = Matthijs, 120 = Guido, 126 = Urvin
+	$patchAuthor = "Matthijs Groen"; 
 
 ?>
 CREATE TABLE IF NOT EXISTS `tbb_update_history` (
