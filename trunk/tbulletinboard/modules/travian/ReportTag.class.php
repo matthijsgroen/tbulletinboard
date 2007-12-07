@@ -218,7 +218,10 @@
 			$images = $this->imageFolder; //"modules/travian/images/";
 			
 			$report = new TravianReport();
-			$originallines = explode("\n", str_replace("<br />", "", $text));
+			
+			$cleanText = str_replace("<p>", "", $text);
+			$cleanText = str_replace("</p>", "", $cleanText);
+			$originallines = explode("\n", str_replace("<br />", "", $cleanText));
 			$startLine = 0;
 			$lines = array();
 			// parse subject

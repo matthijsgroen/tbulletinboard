@@ -105,3 +105,15 @@ span.highlight2 { background-color: pink; }
 span.highlight3 { background-color: orange; }
 span.highlight4 { background-color: red; }
 span.highlight5 { background-color: blue; }
+table.wikielement {
+	border: 1px solid black;
+}
+table.wikielement td {
+	border: 1px solid black;
+	padding: 2px;
+}
+table.wikielement th {
+	border: 1px solid black;
+	background-color: white;
+	padding: 2px;
+}
