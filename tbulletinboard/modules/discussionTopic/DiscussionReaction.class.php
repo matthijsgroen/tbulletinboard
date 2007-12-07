@@ -68,7 +68,7 @@
 				if (!$TBBconfiguration->useTextCacheWithDate($cacheDate)) $validCache = false;			
 			}
 			if ((!$validCache) || (!$cacheUseable)) {
-				$result = $textParser->parseMessageText($data->getValue("message"), $emoticons, $tbbTags, $highlights);
+				$result = $textParser->parseMessageText($data->getValue("message"), $emoticons, $tbbTags, $highlights, true);
 				if ($cacheUseable) {
 					$data->setValue("parsecache", $result);
 					$data->setValue("cachedate", new LibDateTime());

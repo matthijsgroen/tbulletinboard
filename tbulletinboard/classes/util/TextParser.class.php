@@ -140,11 +140,11 @@
 		 * Returns the text from this node.
 		 *@param bool $raw if false, the text will be returned parsed, otherwise it will be returned raw
 		 */
-		function getText($raw, $breakWords, $highlights = array()) {
+		function getText($raw, $breakWords, $highlights = array(), $wiki = false) {
 			$result = '';
 			for ($i = 0; $i < count($this->content); $i++) {
 				$node = $this->content[$i];
-				$result .= $node->getText($raw, $breakWords, $highlights);
+				$result .= $node->getText($raw, $breakWords, $highlights, $wiki);
 			}
 			return $result;
 		}
@@ -184,7 +184,7 @@
 		 * Parses the text and parameter contents to the HTML style defined in the TextTag of this object.
 		 *@param bool $raw when <code>true</code> plain text will be returned, when <code>false</code> the html replacement will be returned
 		 */
-		function getText($raw, $breakWords, $highlights=array()) {
+		function getText($raw, $breakWords, $highlights=array(), $wiki = false) {
 			//print count($highlights)." highlights!\n";
 			$result = '';
 			$parseTag = !$raw;
@@ -202,7 +202,7 @@
 			$acceptText = $this->tag->allowSubTag('{text}');
 			for ($i = 0; $i < count($this->content); $i++) {
 				$node = $this->content[$i];
-				$text = $node->getText(!$parseTag, ($breakSetting == TextTag::breakAll()) || ($breakSetting == TextTag::breakText()), $highlights);
+				$text = $node->getText(!$parseTag, ($breakSetting == TextTag::breakAll()) || ($breakSetting == TextTag::breakText()), $highlights, $wiki);
 				if ((get_Class($node) == 'textnode') && (!$acceptText)) {
 					$text = str_replace("\n", " ", $text);
 					$text = str_replace("<br />", " ", $text);
@@ -256,8 +256,9 @@
 		 *@param bool $raw does not apply to this class. It is always raw.
 		 *@return string the raw text
 		 */
-		function getText($raw, $breakWords, $highlights = array()) {
-			return ($breakWords) ? $this->textParser->breakLongWords($this->text, -1, $highlights) : $this->text;
+		function getText($raw, $breakWords, $highlights = array(), $wiki = false) {
+			$result = $this->text;
+			return ($breakWords) ? $this->textParser->breakLongWords($result, -1, $highlights) : $result;
 		}
 
 		/**
@@ -311,12 +312,19 @@
 			$this->privateVars['tagList'] = null;
 		}
 
-		function parseMessageText($text, $emoticonList, $tbbTagList, $highlights=array()) {
+		function parseMessageText($text, $emoticonList, $tbbTagList, $highlights=array(), $wiki = false) {
 			$result = htmlConvert($text);
 			if (!is_Object($tbbTagList)) $result = $this->breakLongWords($result, -1, $highlights);
 
-			$result = str_replace("\n", "<br />\n", $result);
-			if (is_Object($tbbTagList)) $result = $this->parseTextTags($result, $tbbTagList, $highlights);
+			//$wiki = false;
+			if ($wiki) {
+				importClass("util.WikiParser");
+				$wikiParser = new WikiParser();
+				$result = $wikiParser->parseWiki($result);
+			} else 
+				$result = str_replace("\n", "<br />\n", $result);
+			
+			if (is_Object($tbbTagList)) $result = $this->parseTextTags($result, $tbbTagList, $highlights, $wiki);
 
 			if (is_Object($emoticonList)) $result = $this->parseEmoticons($result, $emoticonList);
 			return $result;
@@ -389,14 +397,14 @@
 		 *@param string $text the text to parse for tags
 		 *@param TextTagList $tagList the list containing the tag definitions
 		 */
-		function parseTextTags($text, $tagList, $highlights=array()) {
+		function parseTextTags($text, $tagList, $highlights=array(), $wiki = false) {
 			$this->privateVars['tagList'] = $tagList;
 
 			$textNode = new ParseNode($this, array());
 			$textNode->setText($text);
 			//print count($highlights)." highlights!\n";
 
-			$result = $textNode->getText(false, true, $highlights);
+			$result = $textNode->getText(false, true, $highlights, $wiki);
 			return $result;
 		}
 

@@ -409,7 +409,7 @@
 						'<h4>%s%s</h4><p class="messageText">%s<br />%s</p>%s',
 						($voteTopic->hasIcon()) ? '<img src="'.$iconInfo['imgUrl'].'" title="'.$iconInfo['name'].'" alt="" /> ' : "",
 						$textParser->breakLongWords(htmlConvert($voteTopic->getTitle()), 40, $highlights),
-						$textParser->parseMessageText($voteTopic->getTopicText(), $emoticons, $tbbTags, $highlights),
+						$textParser->parseMessageText($voteTopic->getTopicText(), $emoticons, $tbbTags, $highlights, true),
 						"<strong>Stemmen:</strong> ".$thumbUp." ".$posCount." - ".$thumbDown." ".$negCount."",
 						$underPost
 					),
@@ -495,7 +495,7 @@
 						$voteImg,
 						($reaction->hasIcon()) ? '<img src="'.$iconInfo['imgUrl'].'" title="'.$iconInfo['name'].'" alt="" /> ' : "",
 						$textParser->breakLongWords(htmlConvert($reaction->getTitle()), 40, $highlights),
-						$textParser->parseMessageText($reaction->getMessage(), $emoticons, $tbbTags, $highlights),
+						$textParser->parseMessageText($reaction->getMessage(), $emoticons, $tbbTags, $highlights, true),
 						$underPost
 					),
 					$readIcon .
