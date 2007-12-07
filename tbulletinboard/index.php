@@ -244,6 +244,7 @@
 			$topicOverview->addGroup('Speciaal');
 			$topicOverview->addRow(-1, "", "", '<a href="emoticons.php">Emoticons</a>', "Help", "", "", "");
 			$topicOverview->addRow(-1, "", "", '<a href="tbbtags.php">TBB tags&trade;</a>', "Help", "", "", "");
+			$topicOverview->addRow(-1, "", "", '<a href="wikihelp.php">Wiki syntax</a>', "Help", "", "", "");
 			$daysPrune = -1;
 		}
 		if ($topGroups) {
