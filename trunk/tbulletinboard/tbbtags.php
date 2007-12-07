@@ -22,7 +22,7 @@
 	// Load the configuration
 	require_once($TBBconfigDir.'configuration.php');
 
-	$pageTitle = $TBBconfiguration->getBoardName() . ' - Instellingen';
+	$pageTitle = $TBBconfiguration->getBoardName() . ' - Tag Help';
 	include($TBBincludeDir.'htmltop.php');
 	include($TBBincludeDir.'usermenu.php');
 

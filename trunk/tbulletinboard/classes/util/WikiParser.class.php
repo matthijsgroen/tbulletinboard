@@ -43,6 +43,9 @@
 		//  handy to have <p/> inside your <h1/>
 		//
 		public function parseWiki($s, $options = array()) {
+			$s = str_replace("&gt;", ">", $s);
+			$s = str_replace("&lt;", "<", $s);
+		
 			list($tk, $tk_s) = $this->tokenizeText($s, $options);
 
 			$block		= array();		// lines for current block
@@ -142,6 +145,9 @@
 		}
 
 		private function convertHTMLspecialChars($text) {
+			$text = str_replace(">", "&gt;", $text);
+			$text = str_replace("<", "&lt;", $text);
+
 			return $text;
 		}
 
