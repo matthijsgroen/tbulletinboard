@@ -811,7 +811,7 @@
 						$link = substr($link, 1, -1);
 					}
 	
-					$pre  = '<a href="' . $this->convertHTMLspecialChars($this->filterUri($link)) . '">';
+					$pre  = '<a href="' . $this->convertHTMLspecialChars($this->filterUri($link)) . '" target="_blank">';
 					$post = '</a>';
 					unset($attr['link']);
 				} else {
@@ -1201,7 +1201,7 @@
 			if (isset($GLOBALS['any_acl'])) {
 				$uri = $GLOBALS['any_acl']->filterUri($uri);
 			}
-			return $pre . '<a href="' . $this->convertHTMLspecialChars($uri) . $this->convertHTMLspecialChars($anchor) . '"' . $attrs . '>' . $descr . '</a>' . $post;
+			return $pre . '<a href="' . $this->convertHTMLspecialChars($uri) . $this->convertHTMLspecialChars($anchor) . '"' . $attrs . ' target="_blank">' . $descr . '</a>' . $post;
 		}
 
 		// Parameters:	$descr
