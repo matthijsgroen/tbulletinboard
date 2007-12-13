@@ -218,7 +218,7 @@
 			$images = $this->imageFolder; //"modules/travian/images/";
 			
 			$report = new TravianReport();
-			
+			$nameMatch = "0-9a-zA-Z_\-[:space:]\'\\\"`?";
 			$cleanText = str_replace("<p>", "", $text);
 			$cleanText = str_replace("</p>", "", $cleanText);
 			$originallines = explode("\n", str_replace("<br />", "", $cleanText));
@@ -254,7 +254,7 @@
 
 			// parse the parts
 			for ($i = 2; $i < count($lines); ) {
-				$nameMatch = "0-9a-zA-Z_\-[:space:]\'\\\"`?";
+				
 				if (preg_match("/^(Attacker|Defender) ([".$nameMatch."]+) from the village ([".$nameMatch."]+)/", $lines[$i], $matches)) {
 					//var_dump($matches);
 					$reportPart = new ReportPart($matches[2], $matches[3], $matches[1]);
