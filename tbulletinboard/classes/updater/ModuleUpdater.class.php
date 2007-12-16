@@ -51,7 +51,7 @@
 			if (is_dir($this->patchFolder)) {
 				if ($dh = opendir($this->patchFolder)) {
 					while (($file = readdir($dh)) !== false) {
-						if(preg_match("/ptch.*.php/", $file)) {
+						if(preg_match("/ptch.*\.php/", $file)) {
 							$time = substr($file, 4, 10);
 							$this->patchList[] = array("time" => $time, "name" => $file, "path" => $this->patchFolder . $file, "folder" => $this->patchFolder);
 						}
