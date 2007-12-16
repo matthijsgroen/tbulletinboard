@@ -7,15 +7,15 @@
 	 *	it under the terms of the GNU General Public License as published by
 	 *	the Free Software Foundation, either version 3 of the License, or
 	 *	(at your option) any later version.
-	 *	
+	 *
 	 *	This program is distributed in the hope that it will be useful,
 	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	 *	GNU General Public License for more details.
-	 *	
+	 *
 	 *	You should have received a copy of the GNU General Public License
 	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	 *	
+	 *
 	 */
 	importBean("updater.UpdateHistory");
 
@@ -30,7 +30,7 @@
 		private $newPatchList = array();
 		private $newPatchesListed = false;
 		private $database = null;
-		
+
 		private $lastPatchExecuted = null;
 		private $lastPatchDate = null;
 		private $errorMessage = "";
@@ -40,18 +40,18 @@
 			$this->patchFolder = $patchFolder;
 			$this->database = $database;
 		}
-	
+
 		function getTotalPatchCount() {
 			$this->indexPatches();
 			return count($this->patchList);
 		}
-		
+
 		private function indexPatches() {
 			if ($this->patchesListed) return;
 			if (is_dir($this->patchFolder)) {
 				if ($dh = opendir($this->patchFolder)) {
 					while (($file = readdir($dh)) !== false) {
-						if(fnmatch("ptch*.php", $file)) {
+						if(preg_match("/ptch.*.php/", $file)) {
 							$time = substr($file, 4, 10);
 							$this->patchList[] = array("time" => $time, "name" => $file, "path" => $this->patchFolder . $file, "folder" => $this->patchFolder);
 						}
@@ -72,12 +72,12 @@
 			array_multisort($patchtime, SORT_ASC, $patchname, SORT_ASC, $this->patchList);
 			$this->patchesListed = true;
 		}
-		
+
 		function getNewPatchCount() {
 			$this->createNewPatchList();
 			return count($this->newPatchList);
 		}
-		
+
 		private function createNewPatchList() {
 			if ($this->newPatchesListed) return;
 			$this->indexPatches();
@@ -94,7 +94,7 @@
 					$lastUpdate = $lastRecord->getValue("patchDate");
 					$this->lastPatchDate = $lastRecord->getValue("patchDate");
 					$this->lastPatchExecuted = $lastRecord->getValue("executeDate");
-				}				
+				}
 			}
 			$patchTime = new LibDateTime();
 			foreach($this->patchList as $patchInfo) {
@@ -107,7 +107,7 @@
 					}
 				}
 			}
-			$this->newPatchesListed = true;			
+			$this->newPatchesListed = true;
 		}
 
 		function executePatches() {
@@ -117,7 +117,7 @@
 			}
 			return true;
 		}
-		
+
 		private function executePatch($patchInfo) {
 			ob_start();
 			include($patchInfo['path']);
@@ -167,7 +167,7 @@
 					$i++;
 				}
 			}
-			
+
 			$patchTime = new LibDateTime();
 			$patchTime->initializeByLinuxTimestamp($patchInfo['time']);
 
@@ -183,11 +183,11 @@
 			}
 			return true;
 		}
-		
+
 		function getErrorMessage() {
 			return $this->errorMessage;
 		}
-		
+
 		function importDump($filename) {
 			$queries = file_get_contents($filename);
 			if (strLen(trim($queries)) > 0) {
@@ -223,7 +223,7 @@
 					}
 					$i++;
 				}
-			}		
+			}
 			return true;
 		}
 	}

@@ -7,15 +7,15 @@
 	 *	it under the terms of the GNU General Public License as published by
 	 *	the Free Software Foundation, either version 3 of the License, or
 	 *	(at your option) any later version.
-	 *	
+	 *
 	 *	This program is distributed in the hope that it will be useful,
 	 *	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	 *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	 *	GNU General Public License for more details.
-	 *	
+	 *
 	 *	You should have received a copy of the GNU General Public License
 	 *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	 *	
+	 *
 	 */
 
 	require_once("folder.config.php");
@@ -24,7 +24,7 @@
 	$formTitleTemplate = "<div class=\"formtitle\">%text%</div>";
 	$queriesExecuted = 0;
 	$boardVersion = "2.0";
-	date_default_timezone_set('CET');	
+	date_default_timezone_set('CET');
 
 	if (file_exists($docRoot . 'upload/settings/settings.php') && (!isSet($_POST['step']))) {
 		die("The bulletinboard is installed.");
@@ -32,9 +32,9 @@
 
 	importClass("interface.Form");
 	importClass("interface.Messages");
-	includeFormComponents("TextField", "TemplateField", "PlainText", "ButtonBar", "Submit", "PasswordField", "NumberField", 
+	includeFormComponents("TextField", "TemplateField", "PlainText", "ButtonBar", "Submit", "PasswordField", "NumberField",
 		"EmailField", "Checkbox");
-	
+
 	function is__writable($path) {
 		//will work in despite of Windows ACLs bug
 		//NOTE: use a trailing slash for folders!!!
@@ -55,12 +55,12 @@
 		    unlink($path);
 		return true;
 	}
-	
+
 	function getForm($step) {
 		global $formTitleTemplate;
 		$maxStep = 5;
 		$stepText = sprintf("(Stap %s van %s)", $step -1 , $maxStep);
-		
+
 		if ($step == 1) {
 			$form = new Form("installstep", "");
 			$form->addComponent(new FormTemplateField($formTitleTemplate, "Welkom bij TBB2!"));
@@ -98,7 +98,7 @@
 			$form->addComponent(new FormPlainText("Schrijfrechten", "", str_replace("\n", "<br />\n", $text)));
 			$folderCheck = array("emoticons", "modules", "settings", "systemavatars", "temp", "topicicons");
 			$notWriteable = array();
-			
+
 			for ($i = 0; $i < count($folderCheck); $i++) {
 				if (!is__writable("../upload/".$folderCheck[$i])) {
 					$notWriteable[] = $folderCheck[$i];
@@ -129,7 +129,7 @@
 			$form->addComponent(new FormNumberField("port", "Poort", "leeg is default", 4, false, false));
 			$form->addComponent(new FormTextField("dbname", "Database", "naam van de database", 255, true, false));
 			$form->addComponent(new FormTextField("dbuser", "Gebruiker", "", 255, true, false));
-			$form->addComponent(new FormPasswordField("dbpassw", "Wachtwoord", "", 255, true, false));
+			$form->addComponent(new FormPasswordField("dbpassw", "Wachtwoord", "", 255, false, false));
 
 			$bar = new FormButtonBar("", "", "buttonbar");
 			$bar->addComponent(new FormSubmit("Volgende &raquo;", "", "", "nextstep"));
@@ -182,7 +182,7 @@
 			$bar->addComponent(new FormSubmit("Voltooien", "", "", "nextstep"));
 			$form->addComponent($bar);
 			return $form;
-		}		
+		}
 		$form = new Form("installstep", "");
 		return $form;
 	}
@@ -209,7 +209,7 @@
 			if ($form->checkPostedFields($feedback)) {
 				importClass("orm.MySQLDatabase");
 				$port = 3306;
-				
+
 				$testConnection = new MySQLDatabase($_POST['server'], $_POST['dbname'], $_POST['dbuser'], $_POST['dbpassw'], $port);
 				$testConnection->connect();
 				if (!$testConnection->isConnected()) {
@@ -226,7 +226,7 @@
 		if ($submitStep == 5) {
 			$form = getForm($submitStep);
 			if ($form->checkPostedFields($feedback)) $step = $submitStep + 1;
-		}	
+		}
 		if ($submitStep == 6) { // the big one...
 			include("../upload/settings/settings.php");
 			importClass("orm.MySQLDatabase");
@@ -253,7 +253,7 @@
 				$userID, "high", "master");
 			$result = $installConnection->executeQuery($insSettings);
 			$installer->executePatches();
-			$step = $submitStep + 1;			
+			$step = $submitStep + 1;
 		}
 		if ($submitStep == 7) {
 			/* Redirect to a different page in the current directory that was requested */
