@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Online file packer</title>
+	<title>Module download</title>
 </head>
 <body>
 <?php
@@ -28,8 +28,8 @@
 	$TBBclassDir = "../classes/";
 	require_once($TBBclassDir . "library.php");
 	importClass("util.PackFile");
-
-	$dir = substr(__file__, 0, strrpos(__file__, "/"));
+	$filename = str_replace("\\", "/", __file__);
+	$dir = substr($filename, 0, strrpos($filename, "/"));
 
 	print 'scanning: '.$dir."<br />";
 	// open the current directory by opendir
