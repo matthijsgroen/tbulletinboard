@@ -28,7 +28,7 @@ function htmlToText(text) {
 }
 
 /**
- * The popup function as exclusivly used by the Javascript.class.php
+ * The popup function as exclusively used by the Javascript.class.php
  */
 function js_class_popupWindow(url, sizeX, sizeY, name, location, lPos, tPos, scrollbar, resizable) {
 	var left;
@@ -238,7 +238,7 @@ function getFrameHeight(frameArray) {
 
 /**
  * Add/Changes a parameter with value to a given url.
- * If the parameter (key) already excists it will be overwriten, else it will be added
+ * If the parameter (key) already exists it will be overwritten, else it will be added
  *@param String the url
  *@param String the parameter name (key)
  *@param String the value
